@@ -1,0 +1,15 @@
+---
+layout: default
+title: Blog
+---
+
+{% for post in site.posts %}
+    <h2>{{ post.title }}</a></h2>
+    <p>
+        <strong>{{ post.date | date: "%-d/%-m/%Y" }}</strong>
+    </p>
+    {{ post.excerpt }}
+    <p>
+        <a class="link-full" href="{{ site.baseurl }}{{ post.url }}">Read more...</a>
+    </p>
+{% endfor %}
