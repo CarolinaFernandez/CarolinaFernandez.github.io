@@ -1,0 +1,15 @@
+---
+layout: default
+title: {{ site.name }}
+---
+
+<div id="home">
+  <h1>Thoughts on technical findings</h1>
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li><strong>{{ post.date | date: "%-d/%-m/%Y" }}</strong> &raquo; <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+    {% endfor %}
+  </ul>
+</div>
+
+Find the full contents in the <a href="{{ site.baseurl }}/_posts">list of posts</a>.                                                                                                                            

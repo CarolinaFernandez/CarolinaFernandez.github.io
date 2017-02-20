@@ -1,3 +1,10 @@
+---
+layout: default
+title:  "Jenkins to process updates on branches using Github hooks"
+date:   2015-10-13 01:45:04
+categories: ci
+---
+
 Git hooks are undoubtedly useful and convenient to integrate with many other tools. One of the tasks I had in mind was to configure Jenkins in a proper way so as to receive notifications from pushes in GitHub and use those to do an internal process -- in this specific case, triggering a merge between every modified branch and the master one.
 
 *Yet this can be considered as either kind of bold, or under the assumption of limitless trust between the developers; the concept itself can be re-used for many other deployments where your CI requires to be aware of changes per branch in order to trigger some other action.*
@@ -15,9 +22,9 @@ The following steps **assume** the following:
 * Public repository available in GitHub
 * Jenkins used as CI tool
 * Organisation of the repository:
-** N branches, one per component (e.g. *"component1"*,* "component2"*, ...)
-** One branch to merge them (e.g. *"master"*)
-** Similar or complementing structure across branches (i.e. preferably work in different directories and leave the root clean of files to modify)
+  * N branches, one per component (e.g. _"component1"_, _"component2"_, ...)
+  * One branch to merge them (e.g. _"master"_)
+  * Similar or complementing structure across branches (i.e. preferably work in different directories and leave the root clean of files to modify)
 
 ## Configuring Jenkins
 
@@ -105,7 +112,7 @@ fi
 
 In this bash script, when *0* is returned, any dependant (downstream) task will take place. Otherwise (when *1* is returned), the task will end silently, with no errors.
 
-_**Note** that using the same script in the normal "*Execute Shell*" text area would result in an error, due to the triggered task attempting to process data from "<u>$branch_name</u>", when different to the expected "<u>$current_branch</u>"._
+*__Note__ that using the same script in the normal "*Execute Shell*" text area would result in an error, due to the triggered task attempting to process data from "<u>$branch_name</u>", when different to the expected "<u>$current_branch</u>".*
 
 ### Add downstream tasks
 

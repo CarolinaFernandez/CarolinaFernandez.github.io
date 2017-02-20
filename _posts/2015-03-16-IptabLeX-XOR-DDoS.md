@@ -1,3 +1,10 @@
+---
+layout: default
+title:  "IptabLex/IptabLes XOR.DDoS attack on UNIX systems"
+date:   2015-03-16 15:32:45
+categories: unix, security
+---
+
 For almost a year now, I have had the opportunity to work with a small network of machines part of a high-speed network and publicly facing the Internet - thus consequently reachable by everyone. During the last quarter of the previous year (around November 2014) and the first quarter of the current one (around February 2015), these machines were targeted by Chinese attackers. They gained access to some of the machines, probably by brute-force attacks via SSH, and placed a couple of binaries that infected the machine to -I assume- send continuous traffic to a set of targeted locations. At the end of the day, this is nothing new: if you have machines connected to the Internet that are not properly maintained or secured (e.g. weak passwords, default SSH port, allowing access as root, lacking a firewall, etc) is music to the attacker's ears.
 
 This comes after I firstly noticed strange behaviours on a number of machines: `top` showed a strange process called *IptabLex* (or a random sequence of characters, in later attacks) consuming tons of CPU. Apparently, this process forced the machine to be part of a DDoS-based botnet. The first wave of the attack is commented in the [CSO blog](http://www.csoonline.com/article/2600353/malware-cybercrime/new-botnet-research-from-prolexic-research-team.html) and analysed in ["Malware Must Die!"](http://blog.malwaremustdie.org/2014_06_01_archive.html). As for the second wave, [a detailed explanation is given in this post](https://www.fireeye.com/blog/threat-research/2015/02/anatomy_of_a_brutef.html), among a description of its variants and the rootkit (XOR.DDoS) used by the attackers.

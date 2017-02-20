@@ -1,3 +1,10 @@
+---
+layout: default
+title:  "Environment variables in Linux with Apache and Django"
+date:   2014-09-22 12:23:10
+categories: python, unix
+---
+
 One of the basic issues any software developer or maintainer may face at some point is *how to provide the software such that it can be installed and run from anywhere*. Most people probably prefer a system where the configuration constraints for each software are as minimum as possible.
 
 If you are running a Django app on top of Apache, you may have at least 3 different files:

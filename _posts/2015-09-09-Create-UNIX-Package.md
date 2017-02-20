@@ -1,3 +1,10 @@
+---
+layout: default
+title:  "Creating a UNIX package"
+date:   2015-09-09 08:47:16
+categories: unix
+---
+
 It is already some time since I first started a coding project to provide a tool that easily generates Debian or RedHat packages. This [project](https://github.com/CarolinaFernandez/unixpackage) is at a *somewhat debatable stable state*, with instructions and examples on different README files, and also a step-by-step guide in the wiki. There is ma---any stuff to improve on the packaging options, the bundling modes or the UI itself; but it does the work for simpler projects.
 
 While Python's [Tkinter](https://docs.python.org/2/library/tkinter.html) library is quite straightforward, Java AWT or [Swing](http://docs.oracle.com/javase/tutorial/uiswing/) libraries produced a more refined interface -- yet the development UI takes more time than the development and debugging of the scripts themselves. Basically, the tool is a JAR package with a GUI (and CLI) wrapper on top of some Shell scripts.
@@ -6,7 +13,7 @@ So far with the history and brief contents of the tool. The idea behind the scri
 
 ## Creating a DEB package
 
-First, the Debian packages. These are the .deb files used to install sources through apt-get or other package manager. The benefits of packaging and installing following this standard is that there is a built-in registry and workflow (<*hooks*) for installing and uninstalling such packages.
+First, the Debian packages. These are the .deb files used to install sources through apt-get or other package manager. The benefits of packaging and installing following this standard is that there is a built-in registry and workflow (*hooks*) for installing and uninstalling such packages.
 
 Put simply, these are the commands to create a Debian package:
 
