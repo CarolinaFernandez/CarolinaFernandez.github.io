@@ -1,8 +1,9 @@
 ---
-layout: default
+layout: post
 title:  "IptabLex/IptabLes XOR.DDoS attack on UNIX systems"
 date:   2015-03-16 15:32:45
-categories: unix, security
+categories: security
+tags: [unix, botnet]
 ---
 
 For almost a year now, I have had the opportunity to work with a small network of machines part of a high-speed network and publicly facing the Internet - thus consequently reachable by everyone. During the last quarter of the previous year (around November 2014) and the first quarter of the current one (around February 2015), these machines were targeted by Chinese attackers. They gained access to some of the machines, probably by brute-force attacks via SSH, and placed a couple of binaries that infected the machine to -I assume- send continuous traffic to a set of targeted locations. At the end of the day, this is nothing new: if you have machines connected to the Internet that are not properly maintained or secured (e.g. weak passwords, default SSH port, allowing access as root, lacking a firewall, etc) is music to the attacker's ears.

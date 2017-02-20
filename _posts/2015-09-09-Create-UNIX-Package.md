@@ -1,8 +1,9 @@
 ---
-layout: default
+layout: post
 title:  "Creating a UNIX package"
 date:   2015-09-09 08:47:16
-categories: unix
+categories: deployment
+tags: unix
 ---
 
 It is already some time since I first started a coding project to provide a tool that easily generates Debian or RedHat packages. This [project](https://github.com/CarolinaFernandez/unixpackage) is at a *somewhat debatable stable state*, with instructions and examples on different README files, and also a step-by-step guide in the wiki. There is ma---any stuff to improve on the packaging options, the bundling modes or the UI itself; but it does the work for simpler projects.

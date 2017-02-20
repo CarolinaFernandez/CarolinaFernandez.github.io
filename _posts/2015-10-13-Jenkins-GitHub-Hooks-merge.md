@@ -1,8 +1,9 @@
 ---
-layout: default
+layout: post
 title:  "Jenkins to process updates on branches using Github hooks"
 date:   2015-10-13 01:45:04
 categories: ci
+tags: [jenkins, github]
 ---
 
 Git hooks are undoubtedly useful and convenient to integrate with many other tools. One of the tasks I had in mind was to configure Jenkins in a proper way so as to receive notifications from pushes in GitHub and use those to do an internal process -- in this specific case, triggering a merge between every modified branch and the master one.
