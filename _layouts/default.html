@@ -6,11 +6,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#157878">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-    <!--<link rel="stylesheet" href="{{ '/assets/css/style.css?v=' | append: site.github.build_revision | relative_url }}">-->
-    <link rel="stylesheet" href="/assets/css/style.css">
+    <!-- Theme -->
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/actions.js"></script>
+    <!-- Font-awesome -->
+    <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.css">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   </head>
   <body>
-    <section class="page-header">
+    <section class="site-header">
       <p>
         <!--<h1 class="project-name"><a href="{{ site.baseurl }}">{{ site.title | default: site.github.repository_name }}</a></h1>-->
         <h1 class="project-name">{{ site.title | default: site.github.repository_name }}</h1>
@@ -25,15 +30,21 @@
       {% endif %}
     </section>
 
-    <section class="main-content">
-      {{ content }}
+    <section class="site-content">
+      <div class="sidebar-content">
+            {% include sidebar.html %}
+      </div>
 
-      <footer class="site-footer">
-        {% if site.github.is_project_page %}
-          <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
-        {% endif %}
-        <span class="site-footer-credits"><em>Page generated with Jekyll and <a href="https://pages.github.com">GitHub Pages</a></em></span>
-      </footer>
+      <section class="main-content" style="width: 100%">
+        {{ content }}
+
+        <footer class="site-footer">
+          {% if site.github.is_project_page %}
+            <span class="site-footer-owner"><a href="{{ site.github.repository_url }}">{{ site.github.repository_name }}</a> is maintained by <a href="{{ site.github.owner_url }}">{{ site.github.owner_name }}</a>.</span>
+          {% endif %}
+          <span class="site-footer-credits"><em>Theme extended from Cayman (<a href="https://pages.github.com">GitHub Pages</a>)</em></span>
+        </footer>
+      </section>
     </section>
 
     {% if site.google_analytics %}

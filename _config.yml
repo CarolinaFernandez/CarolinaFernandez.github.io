@@ -9,6 +9,7 @@ paginate:     1
 author:
   name:       Carolina Fernandez
   url:        CarolinaFernandez.github.io
+  github:     CarolinaFernandez
 
 # Gems
 gems:
@@ -17,4 +18,4 @@ gems:
 #Others
 markdown: kramdown
 
-theme: jekyll-theme-cayman
+#theme: jekyll-theme-cayman
