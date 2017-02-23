@@ -45,8 +45,9 @@ The purpose of this snippet is to list all the tags you have in your site.
 
 {% for tag in tags %}
     {% if page.url contains "blog" %}
-        <a class="post-tag" href="#{{ tag | slugify }}"> {{ tag }} </a>
+        <a class="post-tag" href="#{{ tag | slugify }}">
     {% else %}
-        <a class="post-tag" href="blog/tag.html#{{ tag | slugify }}"> {{ tag }} </a>
+        <a class="post-tag" href="blog/tag.html#{{ tag | slugify }}">
     {% endif %}
+    <i class="fa fa-tag" aria-hidden="true"></i> {{ tag }}</a>
 {% endfor %}
