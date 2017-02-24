@@ -5,7 +5,7 @@ title: {{ site.name }}
 
 <div id="home">
 
-  <h1>Blog entries (<a class="link-full" href="{{ site.baseurl }}blog/index.html">full</a>)</h1>
+  <h2>Blog entries (<a class="link-full" href="{{ site.baseurl }}blog/index.html">full</a>)</h2>
   <ul class="posts">
     {% for post in site.posts %}
       <li><strong>{{ post.date | date: "%-d/%-m/%Y" }}</strong> &raquo; <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
