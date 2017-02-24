@@ -3,13 +3,14 @@ layout: default
 title: Blog
 ---
 
+<h2 class="page-title">Blog entries</h2>
 {% for post in site.posts %}
-    <h2>{{ post.title }}</h2>
-    <p>
+    <a class="link-full" href="{{ site.baseurl }}{{ post.url }}"><h3>{{ post.title }}</h3></a>
+    <p class="post-date">
         <strong>{{ post.date | date: "%-d/%-m/%Y" }}</strong>
     </p>
     {{ post.excerpt }}
-    <p>
+    <p class="post-more">
         <a class="link-full" href="{{ site.baseurl }}{{ post.url }}">Read more...</a>
     </p>
 {% endfor %}
