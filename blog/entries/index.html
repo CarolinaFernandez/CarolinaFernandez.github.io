@@ -5,12 +5,10 @@ title: Blog
 
 <h2 class="page-title">Blog entries</h2>
 {% for post in site.posts %}
-    <a class="link-full" href="{{ site.baseurl }}{{ post.url }}"><h3>{{ post.title }}</h3></a>
+    <h3>{% include post-url-pretty.html %}</h3>
     <p class="post-date">
         <strong>{{ post.date | date: "%-d/%-m/%Y" }}</strong>
     </p>
     {{ post.excerpt }}
-    <p class="post-more">
-        <a class="link-full" href="{{ site.baseurl }}{{ post.url }}">Read more...</a>
-    </p>
+    <p class="post-more">(...)</p>
 {% endfor %}

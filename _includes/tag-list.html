@@ -41,7 +41,7 @@ The purpose of this snippet is to list all the tags you have in your site.
 {% if page.url contains "blog" %}
     Tags
 {% else %}
-    <a class="link-full" href="blog/tag.html">Tags</a>
+    <a class="link-full" href="/blog/tags/">Tags</a>
 {% endif %}
 </h2>
 
@@ -49,7 +49,7 @@ The purpose of this snippet is to list all the tags you have in your site.
     {% if page.url contains "blog" %}
         <a class="post-tag" href="#{{ tag | slugify }}">
     {% else %}
-        <a class="post-tag" href="blog/tag.html#{{ tag | slugify }}">
+        <a class="post-tag" href="/blog/tags/#{{ tag | slugify }}">
     {% endif %}
     <i class="fa fa-tag" aria-hidden="true"></i> {{ tag }}</a>
 {% endfor %}
