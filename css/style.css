@@ -34,6 +34,14 @@ body {
         background-size: 2.5em;
     }
 }
+@media print {
+  body {
+    background: none;
+    font-size: 1em;
+    margin-left: 2em;
+    margin-right: 2em;
+  }
+}
 
 /* Text */
 
@@ -112,6 +120,11 @@ stress { /* New tag for semantic HTML */
     margin-top: 2rem;
     padding-top: 2rem;
 }
+@media print {
+  .site-footer {
+    display: none;
+  }
+}
 @media screen and (min-width: 64em) { .site-footer { font-size: 1rem; } }
 @media screen and (min-width: 42em) and (max-width: 64em) { .site-footer { font-size: 1rem; } }
 @media screen and (max-width: 42em) { .site-footer { font-size: 0.9rem; } }
@@ -148,6 +161,11 @@ stress { /* New tag for semantic HTML */
     color: #567482;
     font: 1rem Consolas, "Liberation Mono", Menlo, Courier, monospace;
     word-wrap: normal;
+}
+@media print {
+  .main-content pre {
+    background: none;
+  }
 }
 .main-content pre > code { padding: 0; margin: 0; font-size: 0.9rem; color: #567482; word-break: normal; white-space: pre; background: transparent; border: 0; }
 
@@ -234,6 +252,18 @@ ul {
     border-bottom: none;
     border-radius: 0em;
     background-color: rgba(229, 217, 199, 0.6) !important;
+  }
+}
+@media print {
+  .sidebar-content li {
+    font-size: 1.7rem;
+    background: none !important;
+    display: inline-block;
+  }
+  .sidebar-content li .navbar-text {
+    display: inline-block;
+    float: right !important;
+    margin-top: .5em;
   }
 }
 
@@ -330,6 +360,19 @@ h2 a.link-full {
     margin-top: 0em;
     min-width: 100%;
     transform: none;
+  }
+}
+@media print {
+  .sidebar-content-wrapper {
+    min-width: 100%;
+    position: relative;
+  }
+  .sidebar-content {
+    border: 0em;
+    background: none;
+    font-size: 1em;
+    margin-top: 0em;
+    min-width: 100%;
   }
 }
 
