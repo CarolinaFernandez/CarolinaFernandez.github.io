@@ -31,7 +31,6 @@ body {
 
 @media screen and (max-width: 64em) {
     body {
-        background-position-x: right;
         background-size: 2.5em;
     }
 }
@@ -100,7 +99,13 @@ body {
 .main-content dl dd { padding: 0; margin-bottom: 1rem; }
 .main-content hr { height: 2px; padding: 0; margin: 1rem 0; background-color: #eff0f1; border: 0; }
 
-.site-footer { padding-top: 2rem; margin-top: 2rem; border-top: solid 1px #eff0f1; }
+.site-footer {
+    border-top: solid 1px #eff0f1;
+    float: right;
+    margin-bottom: 1em;
+    margin-top: 2rem;
+    padding-top: 2rem;
+}
 @media screen and (min-width: 64em) { .site-footer { font-size: 1rem; } }
 @media screen and (min-width: 42em) and (max-width: 64em) { .site-footer { font-size: 1rem; } }
 @media screen and (max-width: 42em) { .site-footer { font-size: 0.9rem; } }
@@ -174,23 +179,20 @@ ul {
     text-align: center;
 }
 .sidebar-content li {
-    /*background: linear-gradient(to top, rgba(255,255,255,0) 30%, rgb(255, 221, 165) 100%);
-    border: 1px solid rgb(215, 181, 125);*/
-    background: linear-gradient(to top, rgba(255,255,255,0) 30%, rgb(255, 221, 165) 100%);
-    border-top: .6em solid transparent;
-    border-bottom: 1em solid transparent;
-    border-left: 1.4em solid rgb(255, 221, 165);
-    height: .8em;
-    /*margin-top: .2em;*/
-    width: 0em;
+    background-image: url(../img/arrow.png);
+    background-repeat: no-repeat;
+    background-position-x: left;
+    margin-top: .2em;
+    min-width: 2em;
 }
-@media screen and (max-width: 64em) {
-  .sidebar-content li {
-    background: none;
-    border: none !important;
-    display: inline-block;
-    margin-left: 2em;
-  }
+.sidebar-content li:nth-child(2) {
+    background: linear-gradient(-120deg, rgba(255,255,255,0) 30%, rgb(254, 210, 116) 100%);
+}
+.sidebar-content li:nth-child(3) {
+    background: linear-gradient(-120deg, rgba(255,255,255,0) 30%, rgb(189, 239, 124) 100%);
+}
+.sidebar-content li:nth-child(4) {
+    background: linear-gradient(-120deg, rgba(255,255,255,0) 30%, rgb(205, 164, 108) 100%);
 }
 .sidebar-content li:before {
     content: "";
@@ -198,8 +200,35 @@ ul {
     margin: 0;
 }
 .sidebar-content li:hover {
-    border-left: 1.6em solid rgb(255, 207, 165);
+    border-bottom: 1px solid #bfbb65;
     transform: translateX(20);
+}
+.sidebar-content li:hover {
+    background: linear-gradient(-120deg, rgba(255,255,255,0) 30%, rgb(255, 251, 165) 60%, #f1a243 100%);
+}
+.sidebar-content li:nth-child(2):hover {
+    background: linear-gradient(-120deg, rgba(255,255,255,0) 30%, rgb(254, 210, 116) 60%, #f1a243 100%);
+}
+.sidebar-content li:nth-child(3):hover {
+    background: linear-gradient(-120deg, rgba(255,255,255,0) 30%, rgb(189, 239, 124) 60%, #f1a243 100%);
+}
+.sidebar-content li:nth-child(4):hover {
+    background: linear-gradient(-120deg, rgba(255,255,255,0) 30%, rgb(205, 164, 108) 60%, #f1a243 100%);
+}
+
+@media screen and (max-width: 64em) {
+  .sidebar-content li {
+    background: none !important;
+    border: none;
+    display: inline-block;
+    margin-left: 5%;
+    margin-top: 0em;
+  }
+  .sidebar-content li:hover {
+    border-bottom: none;
+    border-radius: 0em;
+    background-color: rgba(229, 217, 199, 0.6) !important;
+  }
 }
 
 /* Links */
@@ -226,7 +255,6 @@ h2 a.link-full {
 .sidebar-content .fa {
     color: #567482;
     margin: .2em;
-    margin-left: -1.3em;
 }
 .sidebar-content .fa:hover {
     opacity: 0.7;
@@ -236,7 +264,7 @@ h2 a.link-full {
     color: #567482;
     display: none;
     font-size: .5em;
-    transform: skewY(-15deg);
+    margin-left: .5em;
 }
 @media screen and (max-width: 64em) {
     .sidebar-content .fa {
@@ -245,10 +273,12 @@ h2 a.link-full {
     .navlink .navbar-text {
         display: block;
         font-size: .5em;
+        margin-left: none;
         transform: none;
         visibility: hidden;
     }
     .navlink:hover .navbar-text {
+        display: block !important;
         visibility: visible;
     }
 }
@@ -256,10 +286,14 @@ h2 a.link-full {
     text-decoration: none;
 }
 .navlink:hover .navbar-text {
-    display: block;
+    display: inline;
 }
 
 /* Sections */
+
+.main-content {
+    height: 100%;
+}
 
 .sidebar-content-wrapper {
     float: left;
@@ -275,7 +309,6 @@ h2 a.link-full {
     margin-bottom: 0.2em;
     margin-top: 2.5em;
     max-width: 10em;
-    transform: skewY(7deg);
     z-index: 2;
 }
 
