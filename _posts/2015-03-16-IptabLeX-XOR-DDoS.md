@@ -12,11 +12,11 @@ This comes after I firstly noticed strange behaviours on a number of machines: `
 
 In this post I'll summarise what a colleague and me found on the matter. If you fear your machine is infected, you could get a glimpse of the attack here, but be aware that the attack may be further improved by the time you read this.
 
-## First wave of the attack
+### First wave of the attack
 
 During the first attack I noticed an outrageous % of CPU consumption on one of the machines, which was due to a strange file, called *IptabLex* and located under the */root/* folder. By that time, I just killed its process and removed the file, then checked again that the consumption was okay. At this point I did not investigate further, as I am not the sysadmin for these machines, and the consumption seemed just fine.
 
-## Second wave of the attack
+### Second wave of the attack
 
 During February, however; the problem with the consumption of CPU had extended to some other machines. A considerable number of our experimental network had been compromised at that point of time. However, the attack seemed more subtle this time: the consuming process respawned with a different name after its previous instance was killed and even some files removed. Let's assume there's an infected machine and let's go step by step on this.
 

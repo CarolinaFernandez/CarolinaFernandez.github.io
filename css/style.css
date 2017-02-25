@@ -131,7 +131,10 @@ stress { /* New tag for semantic HTML */
 
 .site-footer-owner { display: block; font-weight: bold; }
 
-.site-footer-credits { color: #819198; }
+.site-footer-credits {
+    color: #819198;
+    margin-right: 1em;
+}
 
 /* Header and title */
 .page-header {

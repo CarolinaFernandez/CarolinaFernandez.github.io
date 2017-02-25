@@ -22,7 +22,7 @@ Let us assume the following points:
 
 In this specific case, the configuration inside the first file is tightly coupled to the physical distribution of the files. This means that, if some other files are moved, Apache won't be able to run the app.
 
-## A way to proceed
+### A way to proceed
 
 To solve that, let us take the first configuration file (`/etc/apache2/sites-available/some_app.conf`) as an example:
 
@@ -35,7 +35,7 @@ WSGIScriptAlias / /path/to/some_app/wsgi/django.wsgi process-group=monitor appli
 
 The highlighted lines indicate the dependencies, where the physical structure (`/path/to/some_app`) is referenced. To change that, one method would be to use environment variables.
 
-### 1. Environment variables in Apache
+#### 1. Environment variables in Apache
 
 Apache uses its own env vars which can be set (1) either using the [`SetEnv`](http://httpd.apache.org/docs/2.0/mod/mod_env.html#setenv) directive into your vhost configuration file (check an [example](http://stackoverflow.com/questions/10902433/setting-environment-variables-for-accessing-in-php)) or (2) exporting the env var directly from Apache's configuration files.
 
@@ -43,7 +43,7 @@ I opted for the second, since the vhost configuration file was not to be touched
 
 <stress>Referencing an Apache env var</stress> from its configuration files is easy: just replace the path to the app for the variable, surrounded by braces.
 
-### 2. Environment variables in Unix
+#### 2. Environment variables in Unix
 
 OK, you may need variables within the Apache environment because some configuration files need them. Fine. But why environment variables in Unix?
 
@@ -55,9 +55,9 @@ You should assess how much this operation is likely to happen in your system and
 
 To <stress>access the Unix env vars from Python</stress> (e.g. from your Django app), just pass the env var's name to the [`os.getenv`](https://docs.python.org/2/library/os.html#os.getenv) module from within your Python code and you are done.
 
-## Final result
+### Final result
 
-### 1. Apache2 envvars
+#### 1. Apache2 envvars
 
 First, add the environment variable to `/etc/apache2/envvars`.
 
@@ -118,7 +118,7 @@ WSGIDaemonProcess monitor
 WSGIScriptAlias / ${SOME_APP_PATH}/wsgi/django.wsgi process-group=monitor application-group=%{GLOBAL}
 ```
 
-### 2. Unix envvars
+#### 2. Unix envvars
 
 Now add the same value to a global env var in `/etc/profile.d/some_app.sh`.
 

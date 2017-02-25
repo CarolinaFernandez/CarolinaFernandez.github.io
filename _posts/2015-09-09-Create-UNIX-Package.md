@@ -12,7 +12,7 @@ While Python's [Tkinter](https://docs.python.org/2/library/tkinter.html) library
 
 So far with the history and brief contents of the tool. The idea behind the scripts is explained below, were you interested to understand it and bundling manually.
 
-## Creating a DEB package
+### Creating a DEB package
 
 First, the Debian packages. These are the .deb files used to install sources through apt-get or other package manager. The benefits of packaging and installing following this standard is that there is a built-in registry and workflow (*hooks*) for installing and uninstalling such packages.
 
@@ -42,7 +42,7 @@ Does not seem complicated, until trying to figure out where to put every file an
 
 There are a myriad of configuration possibilities in the Debian control files, located under `debian/control`. For instance, you can define the behaviour before and after installing or uninstalling the package.
 
-## Creating a RPM package
+### Creating a RPM package
 
 Unlike the Debian package system, the Red Hat package system is less constrained and, in my experience, more prone to funny behaviours upon installation and update of the packages. On the other hand, RPM packages are much easier to generate. For instance, the [structure of the folders](http://www.rpm.org/max-rpm/ch-rpm-build.html) is quite clear.
 

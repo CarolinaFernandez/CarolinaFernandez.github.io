@@ -12,9 +12,9 @@ Note that these generic views are already introduce in 1.4, but its use is not e
 
 Below you will find a short guide in order perform a quick migration. Note that this is limited to a specific scope, and may be just <stress>a subset of required modifications</stress> needed for your app to work. If you have enough time to experiment, my advice is that you investigate the differences across versions and attempt to migrate to the latest stable versions. This way you'll pave the road for further upgrades.
 
-## Part 1: the new settings
+### Part 1: the new settings
 
-### DATABASES structure
+#### DATABASES structure
 
 In our case, we provide settings files to be modified by the user. The `DATABASES` structure should be added into your app's static settings, far away from any potential modification from the user's side. In any case, the user is not interested in this structure, right?
 
@@ -30,9 +30,9 @@ DATABASES = {
 }
 ```
 
-## Part 2: the modified settings
+### Part 2: the modified settings
 
-### TEMPLATE_LOADERS
+#### TEMPLATE_LOADERS
 
 Both the package and module name for the template loaders is changed in Django 1.4.5.
 
@@ -51,9 +51,9 @@ TEMPLATE_LOADERS = [
 ]
 ```
 
-## Part 3: the modified fields
+### Part 3: the modified fields
 
-### XMLField
+#### XMLField
 
 This field, once present in Django 1.2.3, is no longer supported. It must be changed to a `TextField` to work under Django 1.4.5. This field already existed under Django, therefore this change shall not affect your app, whether it runs under 1.2.3 or 1.4.5.
 

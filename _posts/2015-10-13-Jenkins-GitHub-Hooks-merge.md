@@ -10,7 +10,7 @@ Git hooks are undoubtedly useful and convenient to integrate with many other too
 
 *Yet this can be considered as either kind of bold, or under the assumption of limitless trust between the developers; the concept itself can be re-used for many other deployments where your CI requires to be aware of changes per branch in order to trigger some other action.*
 
-## Defining the scenario
+### Defining the scenario
 
 When developing within a collaborative environment, there are multiple approaches to divide the work among different teams. The approach we use to build our framework is to create a branch per software component, plus a master one where all the others are merged into.
 
@@ -27,7 +27,7 @@ The following steps **assume** the following:
   * One branch to merge them (e.g. _"master"_)
   * Similar or complementing structure across branches (i.e. preferably work in different directories and leave the root clean of files to modify)
 
-## Configuring Jenkins
+### Configuring Jenkins
 
 First things first: Jenkins must be installed and configured.
 
@@ -65,29 +65,29 @@ server {
 }
 ```
 
-## Creating tasks to detect and pull changes
+### Creating tasks to detect and pull changes
 
 To detect changes in any of the N branches from your project, you should create tasks to retrieve the latest sources upon any change:
 
-### Parameterize build
+#### Parameterize build
 
 The task will receive a POST request from GitHub, which contains a parameter called "*payload*" and whose contents are a JSON structure. Thus the task must be [parameterized](ttps://wiki.jenkins-ci.org/display/JENKINS/Parameterized+Build) by using a text value with the name "*payload*".
 
 ![alt text][param_task]
 
-### Fetching sources, checking branches out
+#### Fetching sources, checking branches out
 
 Set up the repository details to pull the source code and check out to the specific branch (e.g. "*component1*"). You may also place the code in a specific directory, e.g. outside the Jenkins workspace. 
 
 ![alt text][repo_details]
 
-### Enable triggering builds remotely
+#### Enable triggering builds remotely
 
 Enable the checkbox to trigger building this task remotely (through the GitHub webhooks) and define an authentication token, such as "*organisation-git-push-component1*". The resulting address will be something such as "*http://&#60;ci.subdomain.domain&#62;/job/git-pull-component1/buildWithParameters?token=organisation-git-push-component1*".
 
 ![alt text][trigger_rem_build]
 
-### Conditional step sources, checking branches out
+#### Conditional step sources, checking branches out
 
 In the conditional step, add scripting code that process the incoming payload.
 
@@ -115,19 +115,19 @@ In this bash script, when *0* is returned, any dependant (downstream) task will 
 
 *__Note__ that using the same script in the normal "*Execute Shell*" text area would result in an error, due to the triggered task attempting to process data from "<stress>$branch_name</stress>", when different to the expected "<stress>$current_branch</stress>".*
 
-### Add downstream tasks
+#### Add downstream tasks
 
 Finally, if some other task depends on this one (downstream task), it shall be defined as such.
 
 Within "*Conditional step (single)*" > "*Builder*" > "*Build triggers*" > "*Projects to build*", write the names of any merging task(s) to be performed after a successful build of this pull task.
 
-## Creating the hooks in GitHub
+### Creating the hooks in GitHub
 
 Finally, the whole thing must be activated. After due configuration, GitHub is expected to send a POST request against the URL you define, which will triggering the specific task.
 
 Use the same *authentication token* used in "*Enable triggering builds remotely*". The remote URL to add here is something like "*http://&#60;ci.subdomain.domain&#62;/job/git-pull-component1/buildWithParameters?token=organisation-git-push-component1*". It is VERY important to define "*Content Type*" as "*application/x-www-form-urlencoded*", as this enables GitHub to send the JSON payload as the value for the "*payload*" parameter defined in the first step.
 
-## Bonus: creating the merging task
+### Bonus: creating the merging task
 
 A simple task will do here. Just remember to call it from the pull task(s) as a downstream task and then add a suitable script to merge branches within the "*Build*" > "*Execute shell*" text area.
 
