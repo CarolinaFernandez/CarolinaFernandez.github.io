@@ -41,7 +41,7 @@ Apache uses its own env vars which can be set (1) either using the [`SetEnv`](ht
 
 I opted for the second, since the vhost configuration file was not to be touched. The file is located at `/etc/apache2/envvars`, and variables can be exported like in any other Unix script.
 
-<u>Referencing an Apache env var</u> from its configuration files is easy: just replace the path to the app for the variable, surrounded by braces.
+<stress>Referencing an Apache env var</stress> from its configuration files is easy: just replace the path to the app for the variable, surrounded by braces.
 
 ### 2. Environment variables in Unix
 
@@ -53,7 +53,7 @@ There may be multiple ways to do this. The one I chose was to create a new scrip
 
 You should assess how much this operation is likely to happen in your system and choose the option best suited for you. In this case, this option seemed good enough.
 
-To <u>access the Unix env vars from Python</u> (e.g. from your Django app), just pass the env var's name to the [`os.getenv`](https://docs.python.org/2/library/os.html#os.getenv) module from within your Python code and you are done.
+To <stress>access the Unix env vars from Python</stress> (e.g. from your Django app), just pass the env var's name to the [`os.getenv`](https://docs.python.org/2/library/os.html#os.getenv) module from within your Python code and you are done.
 
 ## Final result
 

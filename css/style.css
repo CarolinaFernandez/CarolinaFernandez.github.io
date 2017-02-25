@@ -35,6 +35,12 @@ body {
     }
 }
 
+/* Text */
+
+stress { /* New tag for semantic HTML */
+    text-decoration: underline;
+}
+
 /* Headers and divs */
 
 .site-header {

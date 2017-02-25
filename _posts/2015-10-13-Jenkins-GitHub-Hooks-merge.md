@@ -113,7 +113,7 @@ fi
 
 In this bash script, when *0* is returned, any dependant (downstream) task will take place. Otherwise (when *1* is returned), the task will end silently, with no errors.
 
-*__Note__ that using the same script in the normal "*Execute Shell*" text area would result in an error, due to the triggered task attempting to process data from "<u>$branch_name</u>", when different to the expected "<u>$current_branch</u>".*
+*__Note__ that using the same script in the normal "*Execute Shell*" text area would result in an error, due to the triggered task attempting to process data from "<stress>$branch_name</stress>", when different to the expected "<stress>$current_branch</stress>".*
 
 ### Add downstream tasks
 
