@@ -51,5 +51,5 @@ The purpose of this snippet is to list all the tags you have in your site.
     {% else %}
         <a class="post-tag" href="/blog/tags/#{{ tag | slugify }}">
     {% endif %}
-    <i class="fa fa-tag" aria-hidden="true"></i> {{ tag }}</a>
+    <em class="fa fa-tag" aria-hidden="true"></em> {{ tag }}</a>
 {% endfor %}
