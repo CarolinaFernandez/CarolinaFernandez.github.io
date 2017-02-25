@@ -279,7 +279,7 @@ h2 a.link-full {
     .navlink .navbar-text {
         display: block;
         font-size: .5em;
-        margin-left: none;
+        margin-left: 0em;
         transform: none;
         visibility: hidden;
     }
