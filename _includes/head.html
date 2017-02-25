@@ -1,18 +1,21 @@
 <head>
   <meta charset="UTF-8">
   <title>{{ page.title | default: site.title }}</title>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#157878">
+  <meta name="description" content="{{ site.description }}"/>
   <link href="/img/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml">
+  <!-- Fonts and Google APIs -->
   <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-  <!-- Theme -->
-  <link rel="stylesheet" href="/css/style.css">
-  <!-- Font-awesome -->
-  <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.css">
-  <!-- Google APIs -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lobster+Two&effect=static">
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand">
+  <!-- Font-awesome -->
+  <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.css">
+  <!-- Theme -->
   <!-- Redirect for 404 -->
+  <link rel="stylesheet" href="/css/style.css">
   {% if page.url contains "404" %}
       <meta http-equiv="refresh" content="3; url=/">
   {% endif %}

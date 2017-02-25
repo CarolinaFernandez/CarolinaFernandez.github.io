@@ -1,8 +1,9 @@
 # Setup
 title:        "Snippets on technical thoughts"
-description:  Carolina Fernandez
+description:  "Short guides and code snippets for common development and deployment questions"
 tagline:      ""
 baseurl:      ""
+url:          CarolinaFernandez.github.io
 paginate:     1
 
 # About/contact
