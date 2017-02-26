@@ -16,7 +16,14 @@ author:
 gems:
   - jekyll-paginate
 
-#Others
-markdown: kramdown
+# Headers
+webrick:
+  headers:
+    Strict-Transport-Security: max-age=2592000
+
+# Include extra folders
 include:
     - _pages
+
+# Markdown parsing
+markdown: kramdown
