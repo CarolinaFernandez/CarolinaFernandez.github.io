@@ -270,6 +270,25 @@ ul {
   }
 }
 
+ul#markdown-toc {
+    border: 1px solid #eb836e;
+    float: right;
+    font-size: .8em;
+    max-width: 20em;
+    padding: 1em;
+    position: fixed;
+    right: 1em;
+    top: 8em;
+}
+@media print {
+  ul#markdown-toc {
+    display: none;
+  }
+}
+ul#markdown-toc li:before {
+    content: "";
+}
+
 /* Links */
 a {
     color: #987134;

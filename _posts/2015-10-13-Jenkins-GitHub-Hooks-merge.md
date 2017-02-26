@@ -6,6 +6,9 @@ categories: ci
 tags: [jenkins, github]
 ---
 
+* TOC
+{:toc}
+
 Git hooks are undoubtedly useful and convenient to integrate with many other tools. One of the tasks I had in mind was to configure Jenkins in a proper way so as to receive notifications from pushes in GitHub and use those to do an internal process -- in this specific case, triggering a merge between every modified branch and the master one.
 
 *Yet this can be considered as either kind of bold, or under the assumption of limitless trust between the developers; the concept itself can be re-used for many other deployments where your CI requires to be aware of changes per branch in order to trigger some other action.*
