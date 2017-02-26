@@ -6,17 +6,20 @@ categories: security
 tags: [unix, botnet]
 ---
 
-For almost a year now, I have had the opportunity to work with a small network of machines part of a high-speed network and publicly facing the Internet - thus consequently reachable by everyone. During the last quarter of the previous year (around November 2014) and the first quarter of the current one (around February 2015), these machines were targeted by Chinese attackers. They gained access to some of the machines, probably by brute-force attacks via SSH, and placed a couple of binaries that infected the machine to -I assume- send continuous traffic to a set of targeted locations. At the end of the day, this is nothing new: if you have machines connected to the Internet that are not properly maintained or secured (e.g. weak passwords, default SSH port, allowing access as root, lacking a firewall, etc) is music to the attacker's ears.
+* TOC
+{:toc}
+
+For almost a year now, I have had the opportunity to work with a small network of machines part of a high-speed network and publicly facing the Internet - thus consequently reachable by everyone. During the last quarter of the previous year (around November 2014) and the first quarter of the current one (around February 2015), these machines were targeted by Chinese attackers. They gained access to some of the machines, probably by brute-force attacks via SSH, and placed a couple of binaries that infected the machine to -I assume- send continuous traffic to a set of targeted locations. <!--more-->At the end of the day, this is nothing new: if you have machines connected to the Internet that are not properly maintained or secured (e.g. weak passwords, default SSH port, allowing access as root, lacking a firewall, etc) is music to the attacker's ears.
 
 This comes after I firstly noticed strange behaviours on a number of machines: `top` showed a strange process called *IptabLex* (or a random sequence of characters, in later attacks) consuming tons of CPU. Apparently, this process forced the machine to be part of a DDoS-based botnet. The first wave of the attack is commented in the [CSO blog](http://www.csoonline.com/article/2600353/malware-cybercrime/new-botnet-research-from-prolexic-research-team.html) and analysed in ["Malware Must Die!"](http://blog.malwaremustdie.org/2014_06_01_archive.html). As for the second wave, [a detailed explanation is given in this post](https://www.fireeye.com/blog/threat-research/2015/02/anatomy_of_a_brutef.html), among a description of its variants and the rootkit (XOR.DDoS) used by the attackers.
 
 In this post I'll summarise what a colleague and me found on the matter. If you fear your machine is infected, you could get a glimpse of the attack here, but be aware that the attack may be further improved by the time you read this.
 
-### First wave of the attack
+### First attack wave
 
 During the first attack I noticed an outrageous % of CPU consumption on one of the machines, which was due to a strange file, called *IptabLex* and located under the */root/* folder. By that time, I just killed its process and removed the file, then checked again that the consumption was okay. At this point I did not investigate further, as I am not the sysadmin for these machines, and the consumption seemed just fine.
 
-### Second wave of the attack
+### Second attack wave
 
 During February, however; the problem with the consumption of CPU had extended to some other machines. A considerable number of our experimental network had been compromised at that point of time. However, the attack seemed more subtle this time: the consuming process respawned with a different name after its previous instance was killed and even some files removed. Let's assume there's an infected machine and let's go step by step on this.
 
@@ -26,9 +29,9 @@ The safest and cleanest option is install from scratch or restore a backup. See 
 
 However, this post is not focused on installing from scratch or restoring a previous version. If you have a complex environment and for whatever reason you have not documented, automated or performed a backup of your deployment; then you may prefer try sanitizing your environment to continue working on the machine as soon as possible. This is <span style="text-decoration: underline;">not</span> a thorough guide, but here are some hints that may help you to identify the problem, isolate it and hopefully, destroy it. As already said, this explanation attempts to be a workaround to fix a compromised environment so you can resume work on your machine, having back its full capacity; but nevertheless, <span style="text-decoration: underline;">you should do a clean install of your OS</span> in the machine as soon as possible.
 
-#### First: identify if your VM is compromised
+#### Find the compromised node
 
-It usually seems hard to identify [whether your VM is part of a DDoS botnet](http://security.stackexchange.com/questions/12446/how-do-i-know-if-my-computer-is-being-used-for-a-botnet-based-ddos-attack), as the first thing the attacker does is cover their footprints.
+It usually seems hard to identify [whether your machine is part of a DDoS botnet](http://security.stackexchange.com/questions/12446/how-do-i-know-if-my-computer-is-being-used-for-a-botnet-based-ddos-attack), as the first thing the attacker does is cover their footprints.
 
 In this case, while the malicious binaries attempt to hide themselves, it is actually (still) possible to see them. Providing a given machine reports strange consumption of CPU, you should originally look for the files *IptabLes*, *IptabLex*; but now also for files *aiziwen* and *2862ashui8u*.
 
@@ -78,11 +81,11 @@ Swap:        0k total,        0k used,        0k free,    21720k cached
 
 See that process with random characters? It's consuming a lot of CPU and seems to have a random name. It does not seem the typical Unix process. If your machine presents any of these symptoms, then you can assume it is infected.
 
-#### Second: isolate your machine
+#### Isolate the node
 
 First things first: you have to get the machine off the public network. Do you have physical access to it? Great! Work locally only. Don't you have? You can either inform the sysadmin and seek for help or try to fix it first by yourself. However, if you want to proceed alone in the first stage, <span style="text-decoration: underline;">you should be confident that you are able to stop and start the machine anytime you want</span>. This is so because you shouldn't leave this machine connected to a public network more time than necessary. Remember, it is being used to attack other machines.
 
-#### Third: understanding how the attack works
+#### Basic attack understanding
 
 Look first for the process with the random name that is consuming most of the machine's CPU (*djaafnvlvv* for this iteration). You should perform a `lsof -p $process_pid`. This will give you the physical location of the files used to run the process. Alternatively, you could directly scan the filesystem for it:
 
@@ -148,7 +151,7 @@ Now, open the */etc/crontab* file with your preferred editor. We saw the followi
 
 Although the name of the file may vary in different attacks, the behaviour is the same: every 3 minutes, it calls that script. I do not recall its contents as it is already removed, but this one ran the infected process with the random name. At the same time, this entry is generated by the copy of the virus (presumably in */lib/libgcc4.4.so*); which makes this whole stuff act in a cyclic fashion, one spawning the other and viceversa.
 
-#### Fourth: identifying open connections
+#### Search for open connections
 
 This step is not that useful to clean your system, but it is interesting to know which location is your infected machine trying to flood, or from where it is downloading the infected files. The next step deals with cleaning the system, so you may just skip there.
 
@@ -311,7 +314,7 @@ source:         APNIC
 
 ***Update on March 22th, 2015:</strong> the server seems to be already taken down.***
 
-#### Fifth: disinfecting your system
+#### Disinfect the system
 
 The logical step now is to break the aforementioned vicious circle and remove the infected files. But it's not that easy. Besides the loop of replications, there are some inconveniences: some of the files cannot be removed, even by the root user.
 
@@ -345,7 +348,7 @@ Use the previous as a side note to consider during the clean up process. I copy 
 
 After cleaning, I recommend you to spend some time looking at `top` (to see the most-consuming CPU processes), `uptime` to see the system load average during the last 1, 5 and 15 minutes. See that these numbers correspond to your usage, and not to the virus. Look thoroughly for any other modified files that may be dampering your vision for the overall system status, such as the aforementioned system binaries for `top` or `ps`.
 
-#### Sixth: update environment, patch and add proper security
+#### Update, patch and secure
 
 After all you've passed to try to clean the environment, it's advisable to add proper security. This means updating and upgrading your system in order to patch any security hole, such as [shellshock ](https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2014-6271) (CVE-2014 in all its variants: 6277, 6278, 7169, 7186 and 7187).
 

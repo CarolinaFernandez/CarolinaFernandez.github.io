@@ -16,6 +16,8 @@ author:
 gems:
   - jekyll-paginate
 
+excerpt_separator: <!--more-->
+
 # Headers
 webrick:
   headers:

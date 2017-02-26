@@ -6,13 +6,18 @@ categories: deployment
 tags: unix
 ---
 
-It is already some time since I first started a coding project to provide a tool that easily generates Debian or RedHat packages. This [project](https://github.com/CarolinaFernandez/unixpackage) is at a *somewhat debatable stable state*, with instructions and examples on different README files, and also a step-by-step guide in the wiki. There is ma---any stuff to improve on the packaging options, the bundling modes or the UI itself; but it does the work for simpler projects.
+* TOC
+{:toc}
+
+It is already some time since I first started a coding project to provide a tool that easily generates Debian or RedHat packages. This [project](https://github.com/CarolinaFernandez/unixpackage) is at a *somewhat debatable stable state*, with instructions and examples on different README files, and also a step-by-step guide in the wiki. <!--more-->There is ma---any stuff to improve on the packaging options, the bundling modes or the UI itself; but it does the work for simpler projects.
 
 While Python's [Tkinter](https://docs.python.org/2/library/tkinter.html) library is quite straightforward, Java AWT or [Swing](http://docs.oracle.com/javase/tutorial/uiswing/) libraries produced a more refined interface -- yet the development UI takes more time than the development and debugging of the scripts themselves. Basically, the tool is a JAR package with a GUI (and CLI) wrapper on top of some Shell scripts.
 
+---
+
 So far with the history and brief contents of the tool. The idea behind the scripts is explained below, were you interested to understand it and bundling manually.
 
-### Creating a DEB package
+### DEB package
 
 First, the Debian packages. These are the .deb files used to install sources through apt-get or other package manager. The benefits of packaging and installing following this standard is that there is a built-in registry and workflow (*hooks*) for installing and uninstalling such packages.
 
@@ -42,7 +47,7 @@ Does not seem complicated, until trying to figure out where to put every file an
 
 There are a myriad of configuration possibilities in the Debian control files, located under `debian/control`. For instance, you can define the behaviour before and after installing or uninstalling the package.
 
-### Creating a RPM package
+### RPM package
 
 Unlike the Debian package system, the Red Hat package system is less constrained and, in my experience, more prone to funny behaviours upon installation and update of the packages. On the other hand, RPM packages are much easier to generate. For instance, the [structure of the folders](http://www.rpm.org/max-rpm/ch-rpm-build.html) is quite clear.
 

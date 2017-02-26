@@ -57,6 +57,11 @@ stress { /* New tag for semantic HTML */
     padding-right: .5em;
     text-align: right;
 }
+@media screen and (max-width: 64em) {
+    .site-header {
+        height: 1.5em;
+    }
+}
 
 .project-name, .project-name a {
     border-bottom: none;
@@ -80,7 +85,11 @@ stress { /* New tag for semantic HTML */
     display: none !important;
   }
 }
-
+@media screen and (max-width: 42em) {
+  .project-name {
+    font-size: 7vw !important;
+  }
+}
 
 .main-content { word-wrap: break-word; }
 .main-content :first-child { margin-top: 0; }
@@ -101,7 +110,6 @@ stress { /* New tag for semantic HTML */
 .main-content .highlight pre, .main-content pre { padding: 0.8rem; overflow: auto; font-size: 0.9rem; line-height: 1.45; border-radius: 0.3rem; -webkit-overflow-scrolling: touch; }
 .main-content pre code, .main-content pre tt { display: inline; max-width: initial; padding: 0; margin: 0; overflow: initial; line-height: inherit; word-wrap: normal; background-color: transparent; border: 0; }
 .main-content pre code:before, .main-content pre code:after, .main-content pre tt:before, .main-content pre tt:after { content: normal; }
-.main-content ul, .main-content ol { margin-top: 0; }
 .main-content blockquote { padding: 0 1rem; margin-left: 0; color: #819198; border-left: 0.3rem solid #dce6f0; }
 .main-content blockquote > :first-child { margin-top: 0; }
 .main-content blockquote > :last-child { margin-bottom: 0; }
@@ -200,6 +208,15 @@ ul {
     list-style: none;
 }
 
+.main-content ul, .main-content ol {
+    margin-top: 0;
+}
+@media screen and (max-width: 64em) {
+    .main-content ul, .main-content ol {
+        padding-left: 0;
+    }
+}
+
 .sidebar-content ul {
     padding: 0px;
     margin: 0px;
@@ -248,13 +265,18 @@ ul {
     background: none !important;
     border: none;
     display: inline-block;
-    margin-left: 5%;
-    margin-top: 0em;
+    margin-left: 0;
+    margin-top: 0;
   }
   .sidebar-content li:hover {
     border-bottom: none;
-    border-radius: 0em;
+    border-radius: 0;
     background-color: rgba(229, 217, 199, 0.6) !important;
+  }
+}
+@media screen and (max-width: 42em) {
+  .sidebar-content li {
+    font-size: 7vw !important;
   }
 }
 @media print {
@@ -268,6 +290,33 @@ ul {
     float: right !important;
     margin-top: .5em;
   }
+}
+
+ul#markdown-toc {
+    border: 1px solid #eb836e;
+    float: right;
+    font-size: .7rem;
+    max-width: 16em;
+    padding: 1em;
+    position: fixed;
+    right: 1em;
+    top: 8em;
+}
+@media screen and (max-width: 64em) {
+  ul#markdown-toc {
+    display: none;
+  }
+}
+@media print {
+  ul#markdown-toc {
+    display: none;
+  }
+}
+ul#markdown-toc li:before {
+    content: "-";
+}
+#markdown-toc ul {
+    padding-left: 1.3em;
 }
 
 /* Links */
@@ -307,12 +356,12 @@ h2 a.link-full {
 }
 @media screen and (max-width: 64em) {
     .sidebar-content .fa {
-        margin-left: 0em;
+        margin-left: 0;
     }
     .navlink .navbar-text {
         display: block;
         font-size: .5em;
-        margin-left: 0em;
+        margin-left: 0;
         transform: none;
         visibility: hidden;
     }
@@ -347,20 +396,20 @@ h2 a.link-full {
     float: left;
     margin-bottom: 0.2em;
     margin-top: 2.5em;
-    max-width: 10em;
+    max-width: 10;
     z-index: 2;
 }
 
 @media screen and (max-width: 64em) {
   .sidebar-content-wrapper {
-    margin: 0em;
+    margin: 0;
     min-width: 100%;
     position: relative;
   }
   .sidebar-content {
     border: 1px solid rgb(215, 181, 125);
     background: linear-gradient(70deg, rgba(255,255,255,0) 30%, rgb(255, 221, 165) 100%);
-    margin-top: 0em;
+    margin-top: 0;
     min-width: 100%;
     transform: none;
   }
@@ -371,10 +420,10 @@ h2 a.link-full {
     position: relative;
   }
   .sidebar-content {
-    border: 0em;
+    border: 0;
     background: none;
     font-size: 1em;
-    margin-top: 0em;
+    margin-top: 0;
     min-width: 100%;
   }
 }
