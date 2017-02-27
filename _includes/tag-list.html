@@ -38,11 +38,9 @@ The purpose of this snippet is to list all the tags you have in your site.
 {% endcomment %}
 
 <h2 class="page-title">
-{% if page.url contains "blog" %}
-    Tags
-{% else %}
+{% unless page.url contains "blog" %}
     <a class="link-full" href="/blog/tags/">Tags</a>
-{% endif %}
+{% endunless %}
 </h2>
 
 {% for tag in tags %}
