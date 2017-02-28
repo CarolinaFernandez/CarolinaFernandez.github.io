@@ -8,14 +8,16 @@ paginate:     1
 
 # About/contact
 author:
-  name:       Carolina Fernandez
-  url:        CarolinaFernandez.github.io
-  github:     CarolinaFernandez
+  name:           Carolina Fernandez
+  url:            CarolinaFernandez.github.io
+  github:         CarolinaFernandez
+google_analytics: UA-92777337-1
 
 # Gems
 gems:
   - jekyll-paginate
 
+# Post configuration
 excerpt_separator: <!--more-->
 
 # Headers
