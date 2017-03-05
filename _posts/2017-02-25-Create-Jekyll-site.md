@@ -245,7 +245,7 @@ require 'rouge'
 
 # -*- coding: utf-8 -*- #
 # stdlib
-require 'rouge'
+require 'cgi'
 
 module Rouge
   module Formatters
@@ -255,6 +255,8 @@ module Rouge
 ```
 
 Once that's done, you can proceed as you'd normally do with the code modifications.
+
+*__Note__: [user-plugins are not enabled](https://github.com/jekyll/jekyll/issues/325) during deployment to GitHub; so for them to work you need to directly [publish your sources](http://shitao.github.io/use-jekyll-plugin-on-gitpage/).*
 
 ## Upload the content
 
