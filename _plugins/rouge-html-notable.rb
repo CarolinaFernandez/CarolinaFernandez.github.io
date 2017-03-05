@@ -30,6 +30,7 @@ module Rouge
         @css_class = opts.fetch(:css_class, 'highlight')
         @css_class = " class=#{@css_class.inspect}" if @css_class
 
+        @format_style = opts.fetch(:format_style, 'table')
         @line_numbers = opts.fetch(:line_numbers, false)
         @start_line = opts.fetch(:start_line, 1)
         @inline_theme = opts.fetch(:inline_theme, nil)
@@ -41,20 +42,32 @@ module Rouge
       # @yield the html output.
       def stream(tokens, &b)
         if @line_numbers
-          stream_divized(tokens, &b)
+          if @format_style == "div"
+            stream_divized(tokens, &b)
+          else
+            stream_tableized(tokens, &b)
+          end
         else
-          stream_undivized(tokens, &b)
+          stream_lightformat(tokens, &b)
         end
       end
 
     private
-      def stream_undivized(tokens, &b)
+      def stream_lightformat(tokens, &b)
         yield "<pre#@css_class><code>" if @wrap
         tokens.each{ |tok, val| span(tok, val, &b) }
         yield "</code></pre>\n" if @wrap
       end
 
-      def stream_divized(tokens)
+      def stream_tableized(tokens, &b)
+        stream_formatted(tokens, 'table', &b)
+      end
+
+      def stream_divized(tokens, &b)
+        stream_formatted(tokens, 'div', &b)
+      end
+
+      def stream_formatted(tokens, style = 'table', &b)
         num_lines = 0
         last_val = ''
         formatted = ''
@@ -76,45 +89,70 @@ module Rouge
           .to_a.join("\n")}</pre>>
 
         yield "<div#@css_class>" if @wrap
-        yield '<div style="display: table; border-spacing: 0"><div style="display: table-row">'
+        
+        if style == "div"
+          yield '<div style="display: table; border-spacing: 0"><div style="display: table-row">'
+        else
+          yield '<table style="border-spacing: 0"><tbody><tr>'
+        end
 
         # the "gl" class applies the style for Generic.Lineno
-        yield '<div class="gutter gl" style="display: table-cell; text-align: right">'
+        if style == "div"
+          yield '<div class="gutter gl" style="display: table-cell; text-align: right">'
+        else
+          yield '<td class="gutter gl" style="text-align: right">'
+        end
         yield numbers
-        yield '</div>'
+        if style == "div"
+          yield '</div>'
+        else
+          yield '</td>'
+        end
 
-        yield '<div style="display: table-cell;" class="code">'
+        if style == "div"
+          yield '<div style="display: table-cell;" class="code">'
+        else
+          yield '<td class="code">'
+        end
         yield '<pre>'
         yield formatted
         yield '</pre>'
-        yield '</div>'
+        if style == "div"
+          yield '</div>'
+        else
+          yield '</td>'
+        end
 
-        yield "</div></div>\n"
+        if style == "div"
+          yield "</div></div>\n"
+        else
+          yield "</tr></tbody></table>\n"
+        end
         yield "</div>\n" if @wrap
       end
 
-      #TABLE_FOR_ESCAPE_HTML = {
-      #  '&' => '&amp;',
-      #  '<' => '&lt;',
-      #  '>' => '&gt;',
-      #}
+      # TABLE_FOR_ESCAPE_HTML = {
+      #   '&' => '&amp;',
+      #   '<' => '&lt;',
+      #   '>' => '&gt;',
+      # }
 
-      def span(tok, val)
-        val = val.gsub(/[&<>]/, TABLE_FOR_ESCAPE_HTML)
-        shortname = tok.shortname or raise "unknown token: #{tok.inspect} for #{val.inspect}"
-
-        if shortname.empty?
-          yield val
-        else
-          if @inline_theme
-            rules = @inline_theme.style_for(tok).rendered_rules
-
-            yield "<span style=\"#{rules.to_a.join(';')}\">#{val}</span>"
-          else
-            yield "<span class=\"#{shortname}\">#{val}</span>"
-          end
-        end
-      end
+    #   def span(tok, val)
+    #     val = val.gsub(/[&<>]/, TABLE_FOR_ESCAPE_HTML)
+    #     shortname = tok.shortname or raise "unknown token: #{tok.inspect} for #{val.inspect}"
+    # 
+    #     if shortname.empty?
+    #       yield val
+    #     else
+    #       if @inline_theme
+    #         rules = @inline_theme.style_for(tok).rendered_rules
+    # 
+    #         yield "<span style=\"#{rules.to_a.join(';')}\">#{val}</span>"
+    #       else
+    #         yield "<span class=\"#{shortname}\">#{val}</span>"
+    #       end
+    #     end
+    #   end
     end
   end
 end

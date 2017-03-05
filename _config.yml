@@ -40,6 +40,7 @@ highlighter: rouge
     # https://jekyllrb.com/docs/plugins/#converters
 kramdown:
   syntax_highlighter_opts:
+    format_style: 'div'
     # Rouge Options: https://kramdown.gettalong.org/syntax_highlighter/rouge.html, https://github.com/jneen/rouge/blob/master/README.md
     css_class: 'highlight'
     span:
