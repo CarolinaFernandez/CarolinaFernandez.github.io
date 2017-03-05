@@ -16,6 +16,7 @@ google_analytics: UA-92777337-1
 # Gems
 gems:
   - jekyll-paginate
+  - rouge
 
 # Post configuration
 excerpt_separator: <!--more-->
@@ -31,3 +32,18 @@ include:
 
 # Markdown parsing
 markdown: kramdown
+highlighter: rouge
+
+# More options at https://github.com/jekyll/jekyll/issues/4619
+# Custom MD converter:
+    # https://gist.github.com/leonardfactory/5532926#file-redcarpet_pygments-rb-L3
+    # https://jekyllrb.com/docs/plugins/#converters
+kramdown:
+  syntax_highlighter_opts:
+    # Rouge Options: https://kramdown.gettalong.org/syntax_highlighter/rouge.html, https://github.com/jneen/rouge/blob/master/README.md
+    css_class: 'highlight'
+    span:
+      line_numbers: false
+    block:
+      line_numbers: true
+#    formatter: 'Rouge::Formatters::HTMLLinewise'

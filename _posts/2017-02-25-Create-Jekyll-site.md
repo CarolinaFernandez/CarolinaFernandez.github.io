@@ -232,6 +232,30 @@ include:
 
 In GitHub you have the possibility of extending from a list of [available themes](https://help.github.com/articles/adding-a-jekyll-theme-to-your-github-pages-site/) that you can define in your `_config.yml` file. _Be careful, however, as the theme you pick i) will work only in remote -- if you want to work you will need to download the specific theme into your root's folder, and ii) the remote [theme customisation](https://help.github.com/articles/customizing-css-and-html-in-your-jekyll-theme/) can be tricky, as you will be overriding the default theme by extending HTML and CSS specific files into pre-defined folders in your repository.
 
+### Plug-ins
+
+It is also possible to provide plug-ins, both for [Jekyll](https://jekyllrb.com/docs/plugins/) or for its different dependencies, like the [Rouge](http://rouge.jneen.net/) highlighter. A practical example is to attempt to override the Rouge's [formatters](https://github.com/jneen/rouge/tree/master/lib/rouge/formatters) to avoid HTML tables and use divs instead.
+
+First you need to identify which version you use for both Ruby and the module you want to override. In this specific example, using Ruby 2.3.0 and Rouge v1.11.1 on an OSX system, the code to override is located at */usr/local/lib/ruby/gems/2.3.0/gems/rouge-1.11.1/lib/rouge/formatters/html.rb*. You can find the location in your system by issuing `gem which rouge`.
+
+The class above will serve as the base. Create a new `_plugins` folder, located at the root of your pages' directory. Inside the folder, place a copy of the code to override. Before starting any modification, you will need to include the specific Ruby's module (here, "Rouge") -- were this not present, Jekyll would not be able to identify the *Rouge* module, nor any of its submodules and classes. Note the "require" at the first line.
+
+```ruby
+require 'rouge'
+
+# -*- coding: utf-8 -*- #
+# stdlib
+require 'rouge'
+
+module Rouge
+  module Formatters
+    # Transforms a token stream into HTML output.
+    class HTML < Formatter
+    ...
+```
+
+Once that's done, you can proceed as you'd normally do with the code modifications.
+
 ## Upload the content
 
 You can now upload the content of your site to your GitHub pages repository and these will be online few seconds after you push the code.
