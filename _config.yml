@@ -12,6 +12,7 @@ author:
   url:            CarolinaFernandez.github.io
   github:         CarolinaFernandez
 google_analytics: UA-92777337-1
+disqus:           cf-github
 
 # Gems
 gems:

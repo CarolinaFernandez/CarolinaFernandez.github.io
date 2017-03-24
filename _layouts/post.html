@@ -1,7 +1,12 @@
 ---
 layout: default
+comments: true
 ---
 <h2>{{ page.title }}</h2>
 <p class="meta">{{ page.date | date: "%-d/%-m/%Y %H:%M:%S" }}</p>
 
 {{ content }}
+
+{% if page.comments and site.disqus %}
+  {% include comments.html %}
+{% endif %}

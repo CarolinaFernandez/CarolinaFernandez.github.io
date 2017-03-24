@@ -4,6 +4,7 @@ title:  "IptabLex/IptabLes XOR.DDoS attack on UNIX systems"
 date:   2015-03-16 15:32:45
 categories: security
 tags: [unix, botnet]
+comments: true
 ---
 
 * TOC

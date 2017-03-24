@@ -4,6 +4,7 @@ title:  "Quick guide to upgrade Django from 1.2.3 to 1.4.5"
 date:   2014-09-21 17:33:00
 categories: development
 tags: [python, django]
+comments: true
 ---
 
 * TOC

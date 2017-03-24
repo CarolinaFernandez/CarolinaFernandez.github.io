@@ -4,6 +4,7 @@ title:  "Creating a UNIX package"
 date:   2015-09-09 08:47:16
 categories: deployment
 tags: unix
+comments: true
 ---
 
 * TOC

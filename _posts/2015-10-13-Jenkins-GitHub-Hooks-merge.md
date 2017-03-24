@@ -4,6 +4,7 @@ title:  "Jenkins to process updates on branches using Github hooks"
 date:   2015-10-13 01:45:04
 categories: ci
 tags: [jenkins, github]
+comments: true
 ---
 
 * TOC

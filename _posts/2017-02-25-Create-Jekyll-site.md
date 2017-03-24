@@ -4,6 +4,7 @@ title:  "Create a site with Jekyll"
 date:   2017-02-25 22:15:23
 categories: development
 tags: [jekyll, liquid, github]
+comments: true
 ---
 
 * TOC
@@ -211,6 +212,27 @@ layout: null
     { % endfor % }
   </channel>
 </rss>
+```
+
+#### Comments
+
+Adding Disqus in the Jekyll posts can be done in two steps:
+
+1. Create a new page for comments, for instance at `\_layouts/comments.html`, with the code at the [Universal Embed Code](https://disqus.com/admin/install/platforms/universalcode). Note that it is suggested to update the Javascript variables conveniently ([more info](http://danielcodes.github.io/2016/02/03/disqus-variables/))
+1. Modify the layout (e.g. the default one) and the posts you would like to enable comments on (use "false" to disable per post)
+    ```xml
+---
+layout: default
+comments: true
+...
+---
+    ```
+
+```ruby
+...
+{ % if page.comments % }
+  { % include comments.html % }
+{ % endif % }
 ```
 
 ### Includes and other sections
