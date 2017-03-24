@@ -218,8 +218,11 @@ layout: null
 
 Adding Disqus in the Jekyll posts can be done in two steps:
 
-1. Create a new page for comments, for instance at `\_layouts/comments.html`, with the code at the [Universal Embed Code](https://disqus.com/admin/install/platforms/universalcode). Note that it is suggested to update the Javascript variables conveniently ([more info](http://danielcodes.github.io/2016/02/03/disqus-variables/))
-1. Modify the layout (e.g. the default one) and the posts you would like to enable comments on (use "false" to disable per post)
+1. Create a new page for comments, for instance at `\_layouts/comments.html`, with the code at the [Universal Embed Code](https://disqus.com/admin/install/platforms/universalcode).
+* Note that it is suggested to update the Javascript variables conveniently -- check [this](http://danielcodes.github.io/2016/02/03/disqus-variables/)) and [this](https://github.com/CarolinaFernandez/CarolinaFernandez.github.io/blob/master/_includes/comments.html) for specific details to replicate this
+* Summing up, you need to include a `disqus` directive in your configuration file to define your Disqus ID, then read this and the specific URLs from the environment variables
+1. Modify the layout (e.g. the default one) and the posts you would like to enable comments on
+* Use "true" or "false" to your convenience, both in the layout and the posts pages
     ```xml
 ---
 layout: default
@@ -227,13 +230,13 @@ comments: true
 ...
 ---
     ```
-
-```ruby
+* At the end of the page add a snippet to include the comments' file (remember to remove spaces between the curly traces)
+    ```ruby
 ...
 { % if page.comments % }
   { % include comments.html % }
 { % endif % }
-```
+    ```
 
 ### Includes and other sections
 
