@@ -1,6 +1,6 @@
 # Setup
-title:        "Snippets on technical thoughts"
-description:  "Short guides and code snippets for common development and deployment questions"
+title:        "Rand/eng works"
+description:  "Snippets of advice for common development and deployment topics"
 tagline:      ""
 baseurl:      ""
 url:          CarolinaFernandez.github.io
@@ -8,11 +8,13 @@ paginate:     1
 
 # About/contact
 author:
-  name:           Carolina Fernandez
-  url:            CarolinaFernandez.github.io
-  github:         CarolinaFernandez
-google_analytics: UA-92777337-1
-disqus:           cf-github
+  name:             Carolina Fernandez
+  url:              CarolinaFernandez.github.io
+  github:           CarolinaFernandez
+  google_analytics: UA-92777337-1
+  disqus:           cf-github
+  linkedin:         cfermart
+  researchgate:     Carolina_Fernandez19
 
 # Gems
 gems:
