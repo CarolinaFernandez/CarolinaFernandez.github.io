@@ -222,7 +222,7 @@ ul {
     list-style: none;
 }
 ul.expanded {
-	padding-left: 1em;
+	padding-left: 0em;
 }
 ul.expanded li:before {
     content: "\221D";
@@ -357,16 +357,19 @@ ul#markdown-toc li:before {
 	display: table-cell;
 }
 .experience-icon {
+	min-width: 10%;
     padding-right: 1em;
-    width: 5em;
+    width: 10%;
 }
 .experience-title {
-	min-width: 90%;
+	min-width: 72%;
 	text-align: left;
+	vertical-align: middle;
+	width: 72%;
 }
 .experience-length {
 	text-align: right;
-	width: 10em;
+	width: 18%;
 }
 .studies-title {
 	min-width: 17em;
@@ -464,23 +467,28 @@ a.social-icon em:hover {
 	color: #b2cf92;
 }
 .sidebar-content .fa:hover,
+.sidebar-content a.active .fa,
 .sidebar-content .navbar-text:hover + .fa
 {
 	color: #fefffa !important;
 }
 .sidebar-content li:nth-child(1) .fa:hover,
+.sidebar-content li:nth-child(1) a.active .fa,
 .sidebar-content li:nth-child(1) .navbar-text:hover + .fa {
 	background-color: #f1d734;
 }
 .sidebar-content li:nth-child(2) .fa:hover,
+.sidebar-content li:nth-child(2) a.active .fa,
 .sidebar-content li:nth-child(2) .navbar-text:hover + .fa {
 	background-color: #ff734a;
 }
 .sidebar-content li:nth-child(3) .fa:hover,
+.sidebar-content li:nth-child(3) a.active .fa,
 .sidebar-content li:nth-child(3) .navbar-text:hover + .fa {
 	background-color: #f1a243;
 }
 .sidebar-content li:nth-child(4) .fa:hover,
+.sidebar-content li:nth-child(4) a.active .fa,
 .sidebar-content li:nth-child(4) .navbar-text:hover + .fa {
 	background-color: #83ba4b;
 }

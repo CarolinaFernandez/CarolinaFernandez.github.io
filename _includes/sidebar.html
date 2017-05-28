@@ -2,7 +2,7 @@
 <div id="navlink-conn-2" class="diag-right-up-line"><div class="diag-left-down-arrow"></div></div>
 <div id="navlink-conn-3" class="diag-left-up-line"><div class="diag-right-down-arrow"></div></div>
 
-<ul>
+<!--<ul>
   <li>
     <a rel="external" href="/" class="navlink" title="Home">
       <p class="navbar-text">Home</p>
@@ -27,4 +27,34 @@
       <em class="fa fa-paper-plane-o" aria-hidden="true"></em>
     </a>
   </li>
+</ul>-->
+
+<ul>
+{% for node in site.pages %}
+  {% if node.url contains "404" or node.url contains "/page" or node.url contains "pages" %}
+  {% else %}
+  <li>
+    {% if page.url == node.url %}
+      <a rel="external" href="{{node.url}}" class="active navlink" title="{{node.title}}">
+    {% else %}
+      <a rel="external" href="{{node.url}}" class="navlink" title="{{node.title}}">
+	{% endif %}
+	  {% if node.url == "/" %}
+	    <p class="navbar-text">Home</p>
+	  {% else %}
+        <p class="navbar-text">{{node.title}}</p>
+	  {% endif %}
+      {% if node.url == "/" %}
+        <em class="fa fa-map-marker hover" aria-hidden="true"></em>
+      {% elsif node.url == "/blog/entries/" %}
+        <em class="fa fa-pencil" aria-hidden="true"></em>
+      {% elsif node.url == "/blog/tags/" %}
+        <em class="fa fa-tags" aria-hidden="true"></em>
+      {% elsif node.url == "/resume/" %}
+        <em class="fa fa-paper-plane-o" aria-hidden="true"></em>
+      {% endif %}
+    </a>
+  </li>
+  {% endif %}
+{% endfor %}
 </ul>
