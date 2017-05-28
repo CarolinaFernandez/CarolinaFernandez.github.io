@@ -409,6 +409,11 @@ a.post-tag,
     border-bottom: none;
     text-decoration: none;
 }
+.main-content a.post-tag {
+    background-color: #e6e67a;
+    border-radius: .4em;
+    padding: .25em;
+}
 
 h2 a.link-full {
     color: #c5270a;

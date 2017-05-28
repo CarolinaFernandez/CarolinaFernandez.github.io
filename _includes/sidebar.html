@@ -31,7 +31,7 @@
 
 <ul>
 {% for node in site.pages %}
-  {% if node.url contains "404" or node.url contains "/page" or node.url contains "pages" %}
+  {% if node.url contains "404" or node.url contains "/page" or node.url contains "pages" or node.url contains "README" or node.url contains "css" %}
   {% else %}
   <li>
     {% if page.url == node.url %}
