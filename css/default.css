@@ -1,3 +1,4 @@
+4000
 /**
 * CSS BASED ON CAYMAN THEME.
 */
@@ -98,9 +99,9 @@ stress { /* New tag for semantic HTML */
   }
 }
 
-.main-content { word-wrap: break-word; }
+.main-content { word-wrap: break-word; text-align: justify; }
 .main-content :first-child { margin-top: 0; }
-@media screen and (min-width: 75em) { .main-content { max-width: 55rem; padding: 4rem 6rem; margin: 0 auto; font-size: 1.1rem; } }
+@media screen and (min-width: 75em) { .main-content { max-width: 50rem; padding: 4rem 6rem; margin: 0 auto; font-size: 1.1rem; } }
 @media screen and (min-width: 42em) and (max-width: 75em) { .main-content { padding: 4rem 4rem; font-size: 1.1rem; } }
 @media screen and (max-width: 42em) { .main-content { padding: 4rem 1rem; font-size: 1rem; } }
 .main-content img { max-width: 100%; }
@@ -287,7 +288,7 @@ ul.expanded li {
 }
 @media screen and (max-width: 42em) {
   .sidebar-content li {
-    font-size: 7vw !important;
+    font-size: 4.5vw !important;
   }
 }
 @media print {
@@ -455,6 +456,12 @@ a.social-icon em:hover {
     padding-top: .5em;
     width: 1.5em;
 }
+@media screen and (max-width: 42em) {
+  .sidebar-content .fa {
+    width: 40%;
+  }
+}
+
 .sidebar-content li:nth-child(1) .fa {
 	border-color: #d7bd1e;
 	color: #f1d734;
@@ -514,6 +521,11 @@ a.social-icon em:hover {
     flex-direction: row;
   }
 }
+@media screen and (max-width: 42em) {
+  .navlink {
+    display: block;
+  }
+}
 
 .navlink .fa {
     align-self: flex-end;
@@ -537,7 +549,9 @@ a.social-icon em:hover {
     .navlink .navbar-text {
         display: block;
         font-size: .5em;
-        margin-left: 0;
+        margin-bottom: -.1em;
+        margin-left: auto;
+        margin-right: auto;
         transform: none;
     }
     .navlink:hover .navbar-text {
@@ -708,6 +722,11 @@ a.social-icon em:hover {
   }
   .sidebar-content div {
 	display: none;
+  }
+}
+@media screen and (max-width: 42em) {
+  .sidebar-content {
+	display: inline;
   }
 }
 @media print {

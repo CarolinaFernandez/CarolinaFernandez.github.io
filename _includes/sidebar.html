@@ -37,22 +37,31 @@
     {% if page.url == node.url %}
       <a rel="external" href="{{node.url}}" class="active navlink" title="{{node.title}}">
     {% else %}
-      <a rel="external" href="{{node.url}}" class="navlink" title="{{node.title}}">
-	{% endif %}
-	  {% if node.url == "/" %}
-	    <p class="navbar-text">Home</p>
-	  {% else %}
-        <p class="navbar-text">{{node.title}}</p>
-	  {% endif %}
+      <a rel="external" href="{{node.url}}" class="navlink"
       {% if node.url == "/" %}
-        <em class="fa fa-map-marker hover" aria-hidden="true"></em>
+        title="Home">
+	  {% else %}
+        title="{{node.title}}">
+	  {% endif %}
+	{% endif %}
+	  <p class="navbar-text">
+	  {% if node.url == "/" %}
+	    Home
+	  {% else %}
+        {{node.title}}
+	  {% endif %}
+      </p>
+      <em aria-hidden="true"
+      {% if node.url == "/" %}
+        class="fa fa-map-marker">
       {% elsif node.url == "/blog/entries/" %}
-        <em class="fa fa-pencil" aria-hidden="true"></em>
+        class="fa fa-pencil">
       {% elsif node.url == "/blog/tags/" %}
-        <em class="fa fa-tags" aria-hidden="true"></em>
+        class="fa fa-tags">
       {% elsif node.url == "/resume/" %}
-        <em class="fa fa-paper-plane-o" aria-hidden="true"></em>
+        class="fa fa-paper-plane-o">
       {% endif %}
+      </em>
     </a>
   </li>
   {% endif %}
