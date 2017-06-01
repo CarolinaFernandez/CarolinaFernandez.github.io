@@ -38,7 +38,7 @@
       <a rel="external" href="{{node.url}}" class="active navlink" title="{{node.title}}">
     {% else %}
       <a rel="external" href="{{node.url}}" class="navlink"
-      {% if node.url == "/" %}
+      {% if node.url == "/" or node.url == "" %}
         title="Home">
 	  {% else %}
         title="{{node.title}}">
