@@ -1,0 +1,42 @@
+a.social-icon {
+    border-bottom: 0;
+    font-size: 2em;
+}
+a.social-icon em {
+    border-radius: .2em;
+    color: #fefffa;
+    opacity: .7;
+    padding: .15em;
+    text-align: center;
+    width: 1em;
+}
+a.social-icon em#linkedin-icon {
+	background-color: #0077b5;
+}
+a.social-icon em#researchgate-icon {
+	background-color: #0cb;
+}
+a.social-icon em#github-icon {
+	background-color: #24292e;
+}
+a.social-icon em:hover {
+    opacity: .9;
+}
+
+.site-credits {
+	color: #819198;
+	font-size: 1rem;
+	margin-right: 1em;
+}
+@media screen and (max-width: 42em) {
+	.site-credits {
+		font-size: .6rem;
+	}
+
+}
+
+#disqus_thread {
+    border-top: .1em dashed #66503b;
+    margin-top: 5em;
+    padding-top: 1em;
+}

@@ -1,0 +1,39 @@
+.main-content a.post-tag {
+    background-color: #e6e67a;
+    border-radius: .4em;
+    padding: .25em;
+}
+
+/* Extract from posts (right after date) should be displayed inline */
+p.post-date {
+    display: inline;
+}
+p.post-date::after {
+    content: "~";
+}
+p.post-date + p {
+    display: inline;
+}
+p.post-more {
+    display: inline;
+    margin-bottom: 1em;
+}
+p.post-more + a>h2 {
+    margin-top: 1em !important;
+}
+
+/* Tags */
+.post-tag:before {
+    /*content: "\2318";*/
+    padding-right: .1em;
+}
+.post-tag {
+    background: #e6e67a;
+    border-radius: .3em;
+    margin: .1em;
+    padding: .2em;
+}
+.post-tag:hover {
+    text-decoration: none;
+    opacity: .7;
+}

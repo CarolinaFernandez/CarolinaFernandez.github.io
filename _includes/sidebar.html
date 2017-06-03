@@ -35,10 +35,15 @@
   {% else %}
   <li>
     {% if page.url == node.url %}
-      <a rel="external" href="{{node.url}}" class="active navlink" title="{{node.title}}">
+      <a rel="external" href="{{node.url}}" class="active navlink"
+      {% if node.url == "/" %}
+        title="Home">
+	  {% else %}
+        title="{{node.title}}">
+	  {% endif %}
     {% else %}
       <a rel="external" href="{{node.url}}" class="navlink"
-      {% if node.url == "/" or node.url == "" %}
+      {% if node.url == "/" %}
         title="Home">
 	  {% else %}
         title="{{node.title}}">
