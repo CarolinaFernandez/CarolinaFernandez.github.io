@@ -47,9 +47,13 @@ body::after {
 		background-color: #fefffa;
 		background-image: url(../img/fox.png);
 		background-image: url(../img/fox.png), linear-gradient(35deg, #ffff23, #fefffa 4em, #fefffa);
-		opacity: .15;
+        opacity: .4;
 	}
-
+}
+@media screen and (max-width: 42em) {
+    body::after {
+        opacity: .1;
+    }
 }
 @media print {
 	body {
@@ -129,30 +133,34 @@ stress {/* New tag for semantic HTML */
 .main-content :first-child {
 	margin-top: 0;
 }
-@media screen and (min-width: 75em) {.main-content {
+@media screen and (min-width: 75em) {
+  .main-content {
 	max-width: 75%;
 	padding-top: 4rem;
 	padding-left: 6rem;
 	margin: 0 auto;
 	margin-left: 9.5em;
 	font-size: 1.1rem;
+  }
 }
-
-}
-@media screen and (min-width: 42em) and (max-width: 75em) {.main-content {
+@media screen and (min-width: 42em) and (max-width: 75em) {
+  .main-content {
 	padding: 4rem 4rem;
 	font-size: 1.1rem;
+  }
 }
-
-}
-@media screen and (max-width: 42em) {.main-content {
+@media screen and (max-width: 42em) {
+  .main-content {
 	padding: 4rem 1rem;
 	font-size: .8rem;
-}
-
+  }
 }
 .main-content img {
 	max-width: 100%;
+}
+.main-content img[src$="img-center"] {
+    display: block;
+    margin: 0 auto;
 }
 .main-content h1, main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
 	margin-top: 2rem;
@@ -171,9 +179,9 @@ stress {/* New tag for semantic HTML */
 }
 .main-content .highlight {
 	margin-bottom: 1rem;
-    max-width: 90%;
+    max-width: 95%;
 }
-@media screen and (min-width: 42em) and (max-width: 75em) {
+@media screen and (max-width: 75em) {
   .main-content .highlight {
     overflow: scroll;
   }
@@ -285,6 +293,34 @@ stress {/* New tag for semantic HTML */
 	border: 0;
 }
 
+/* Notes */
+.highlight-box {
+    border-radius: .3em;
+    display: table;
+    margin: 1em 0em 1em 0em;
+    padding: .5em 1em .5em 1em;
+}
+.highlight-note {
+    background-color: #e1f0f7;
+    border: #bde5f8 1px solid;
+    color: #00529B;
+}
+.highlight-box .fa {
+    display: table-cell;
+    font-size: 2em;
+    padding-right: .4em;
+    vertical-align: middle;
+}
+.highlight-box .highlight-content {
+    display: table-cell;
+}
+.highlight-content::first-letter {
+    margin-left: 0 !important;
+}
+.highlight-content {
+    color: #606c71;
+}
+
 .site-footer {
 	float: right;
 	margin-bottom: .4em;
@@ -298,24 +334,21 @@ stress {/* New tag for semantic HTML */
 	.site-footer {
 		display: none;
 	}
-
 }
-@media screen and (min-width: 75em) {.site-footer {
-	font-size: 1rem;
-}
-
+@media screen and (min-width: 75em) {
+  .site-footer {
+	font-size: .7rem;
+  }
 }
 @media screen and (min-width: 42em) and (max-width: 75em) {
 	.site-footer {
 		font-size: 1rem;
 	}
-
 }
 @media screen and (max-width: 42em) {
 	.site-footer {
 		font-size: .65rem;
 	}
-
 }
 
 .site-footer-owner {
@@ -374,13 +407,17 @@ stress {/* New tag for semantic HTML */
 	border: 0;
 }
 
-/* Lists */
-li:before {
-	content: "\2ABC";
-	margin-right: 1em;
+ol, ul {
+    padding-bottom: .4em;
+}
+/* Unordered lists */
+ul li:before {
+	content: "\2A7A";
+	margin-right: .5em;
 }
 ul {
 	list-style: none;
+    padding-left: 1.2em;
 }
 ul.expanded {
 	padding-left: 0em;
@@ -433,8 +470,7 @@ ul#markdown-toc {
 	nav-index: 0;
 	outline: 0;
 	padding: 1em;
-	position: absolute;
-	/*position: fixed;*/
+	position: fixed;
 	right: 1em;
 	text-transform: uppercase;
 	top: 15em;
@@ -481,6 +517,11 @@ a {
 	color: #987134;
 	text-decoration: none;
 	border-bottom: 3px double;
+}
+@media screen and (max-width: 42em) {
+  a {
+	border-bottom: 1px solid;
+  }
 }
 
 .link-full,

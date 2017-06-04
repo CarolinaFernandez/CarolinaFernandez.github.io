@@ -211,6 +211,7 @@
     display: inline-block;
     margin-left: 0;
     margin-top: 0;
+    max-width: 20%;
 	-webkit-transform: scaleX(1);
 	-moz-transform: scaleX(1);
 	-ms-transform: scaleX(1);
