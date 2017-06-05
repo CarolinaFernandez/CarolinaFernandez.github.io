@@ -154,6 +154,9 @@ stress {/* New tag for semantic HTML */
 	padding: 4rem 1rem;
 	font-size: .8rem;
   }
+  .highlighter-rouge {
+	font-size: .7rem !important;
+  }
 }
 .main-content img {
 	max-width: 100%;
@@ -161,6 +164,7 @@ stress {/* New tag for semantic HTML */
 .main-content img[src$="img-center"] {
     display: block;
     margin: 0 auto;
+    max-width: 80%;
 }
 .main-content h1, main-content h2, .main-content h3, .main-content h4, .main-content h5, .main-content h6 {
 	margin-top: 2rem;
@@ -438,11 +442,15 @@ ul.expanded li {
 .main-content ul, .main-content ol {
 	margin-top: 0;
 }
+@media screen and (max-width: 42em) {
+    .main-content ul, .main-content ol {
+        padding-left: 1em !important;
+    }
+}
 @media screen and (max-width: 75em) {
 	.main-content ul, .main-content ol {
 		padding-left: 0;
 	}
-
 }
 
 ul#markdown-toc:before {

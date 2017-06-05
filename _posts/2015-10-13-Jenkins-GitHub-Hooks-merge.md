@@ -190,7 +190,7 @@ if [ $current_last_commit != $final_last_commit ]; then
 fi
 ```
 
-[param_task]: http://i1377.photobucket.com/albums/ah66/sh3r3/CI/jenkins-githook-task1_zps8zleh5ah.png "Parameterize the task with a text value"
-[repo_details]: http://i1377.photobucket.com/albums/ah66/sh3r3/CI/jenkins-githook-task2_zpshajiydbn.png "Set up repository details and check out behaviour"
-[trigger_rem_build]: http://i1377.photobucket.com/albums/ah66/sh3r3/CI/jenkins-githook-task3_zpsadqfozlx.png "Enable triggering builds remotely"
-[run_add_tasks]: http://i1377.photobucket.com/albums/ah66/sh3r3/CI/jenkins-githook-task4_zps7uymsynx.png "Add conditional step to run and build other tasks"
+[param_task]: http://i1377.photobucket.com/albums/ah66/sh3r3/Github/CI/jenkins-githook-task1_zps8zleh5ah.png?style=img-center "Parameterize the task with a text value"
+[repo_details]: http://i1377.photobucket.com/albums/ah66/sh3r3/Github/CI/jenkins-githook-task4_zps7uymsynx.png?style=img-center "Set up repository details and check out behaviour"
+[trigger_rem_build]: http://i1377.photobucket.com/albums/ah66/sh3r3/Github/CI/jenkins-githook-task3_zpsadqfozlx.png?style=img-center "Enable triggering builds remotely"
+[run_add_tasks]: http://i1377.photobucket.com/albums/ah66/sh3r3/Github/CI/jenkins-githook-task4_zps7uymsynx.png?style=img-center "Add conditional step to run and build other tasks"

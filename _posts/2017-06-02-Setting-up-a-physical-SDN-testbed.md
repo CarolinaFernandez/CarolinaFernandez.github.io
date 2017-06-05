@@ -76,7 +76,7 @@ With the above information in mind, it is now possible to define the topology of
 
 Note that, the larger the set of connections or devices, the more tidier your design should be. That is, simple port/interface-to-port/interface wiring definition is preferred for small, spurious testing scenarios; but for larger or most stable ones, it is recommended to use labels with naming conventions and references to subsections of the network. A sample is provided below.
 
-![sample_wiring]{:height="420" width="800"}
+![sample_wiring]
 
 ### Wire it up
 
