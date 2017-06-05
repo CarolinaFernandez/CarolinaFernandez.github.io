@@ -28,6 +28,7 @@
 		display: none;
 	}
     .resume-section {
+        font-size: .85em;
         padding-top: 0em;
     }
 }

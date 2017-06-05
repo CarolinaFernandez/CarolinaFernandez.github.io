@@ -137,9 +137,15 @@ After design and configuration, test shall take place to determine proper end-to
 1. **Control plane**. Run the controller. Assess it has view on all connected devices
 1. **Data plane**. Configure the interfaces to be in the same subnet. Do this for the end-points, or locations from where the user submits traffic. Test connectivity
 
-In case of problems, troubleshooting should consider arrival of ICMP packets, ARP tables, firewalls on servers and the like.
-If none of these cause the problem, consider moving layers down to the wiring itself, links up, interface negotiation, speed and so on.
+If ping is achieved; congratulations! The set-up is complete.
+Otherwise, in case or problems; troubleshooting should consider the following (in order of decreasing likelihood):
 
-If ping is achieved; the work has finished. For now.
+* Interface high-level configuration: ensure both src and dst interfaces have been assigned an IP in the same subnet. Same goes for VLANs, if in use
+* ICMP packets: are these being sent from the source, and hitting the destination interface?
+* ARP tables: are these being filled properly? I.e., assigning the proper MAC to the dst IP and going through the expected interface
+* Firewall: the servers may have a default REJECT/DROP policy. Certain OSs, such as CentOS or RHEL, restrict connections by default -- even if no iptables were configured. If this is the case, specific ports should be <a title="Open port in CentOS/RHEL firewall" href="http://ask.xmodulo.com/open-port-firewall-centos-rhel.html" target="_blank">enabled</a>.
+* Interface low-level configuration: are the interfaces up? (e.g. use "*ethtool*"). Is the proper speed defined? Are these negotiating properly with the interfaces or ports these are connected to?
+* Wiring check: does the physical setup match to the wiring diagram? If so, are the links up?
+* Ask for help: a pair of external eyes (and knowledge set) provides a different view and focus on the issue
 
 [sample_wiring]: http://i1377.photobucket.com/albums/ah66/sh3r3/Github/Testbed/sample-wiring_zpsjknjig6f.png?style=img-center "Sample wiring diagram"
