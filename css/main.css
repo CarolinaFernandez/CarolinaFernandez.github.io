@@ -135,7 +135,7 @@ stress {/* New tag for semantic HTML */
 @media screen and (min-width: 75em) {
   .main-content {
 	max-width: 75%;
-	padding-top: 4rem;
+	padding-top: 2rem;
 	padding-left: 6rem;
 	margin: 0 auto;
 	margin-left: 9.5em;
@@ -242,14 +242,18 @@ stress {/* New tag for semantic HTML */
 	margin-bottom: 0;
 }
 .main-content table {
-	display: block;
-	width: 100%;
+	/*display: block;*/
+    margin-left: auto;
+    margin-right: auto;
 	overflow: auto;
+    text-align: center;
+	/*width: 100%;*/
 	word-break: normal;
 	word-break: keep-all;
 	-webkit-overflow-scrolling: touch;
 }
 .main-content table th {
+    background: #eef4af;
 	font-weight: bold;
 }
 .main-content table th, .main-content table td {
@@ -489,7 +493,7 @@ ul#markdown-toc {
 	position: fixed;
 	right: 1em;
 	text-transform: uppercase;
-	top: 15em;
+	top: 7rem;
 }
 ul#markdown-toc:hover {
     height: auto;

@@ -21,7 +21,7 @@
     box-sizing: border-box;
     float: left;
     margin-bottom: 0.2em;
-    margin-top: 2.5em;
+    margin-top: 1.5em;
     max-width: 7em;
     z-index: 2;
 }
@@ -84,7 +84,7 @@
 .sidebar-content #navlink-conn-2 {
 	border-color: transparent transparent #f1a243 transparent;
 	border-style: dotted;
-	margin-top: 8em;
+	margin-top: 7.2em;
 }
 .sidebar-content #navlink-conn-2 .diag-left-down-arrow {
 	border-color: transparent transparent #f1a243 transparent;

@@ -32,11 +32,11 @@ a.social-icon em:hover {
 	.site-credits {
 		font-size: .6rem;
 	}
-
 }
 
 #disqus_thread {
     border-top: .1em dashed #66503b;
+    margin-bottom: 2em;
     margin-top: 5em;
     padding-top: 1em;
 }

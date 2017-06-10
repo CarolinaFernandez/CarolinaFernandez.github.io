@@ -3,7 +3,7 @@ layout: post
 title:  "Create a site with Jekyll"
 date:   2017-02-25 22:15:23
 categories: development
-tags: [jekyll, liquid, github]
+tags: [jekyll, github]
 comments: true
 ---
 
@@ -238,7 +238,11 @@ comments: true
 { % endif % }
     ```
 
-### Includes and other sections
+#### Formulas
+
+This requires the MathJax Javascript library. Different methods can be found <a title="How to use MathJax in Jekyll generated Github" href="http://haixing-hu.github.io/programming/2013/09/20/how-to-use-mathjax-in-jekyll-generated-github-pages/" target="_blank">here</a> and <a title="Using MathJax on Github:Pages" href="http://www.christopherpoole.net/using-mathjax-on-githubpages.html" target="_blank">here</a> (see <a title="Examples of MathJax in action" href="http://genomicsclass.github.io/book/pages/clt_and_t-distribution.html" target="_blank">running example</a>). The second method was used for this site.
+
+### Includes and sections
 
 Note that, if you want to reuse your code to the maximum, you may want to place partial HTML files under the `_includes` folder. You can then just use the Ruby's `include` directive as follows (remember to remove spaces between the curly traces):
 
