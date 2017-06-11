@@ -42,6 +42,8 @@ highlighter: rouge
     # https://gist.github.com/leonardfactory/5532926#file-redcarpet_pygments-rb-L3
     # https://jekyllrb.com/docs/plugins/#converters
 kramdown:
+  input: GFM
+  hard_wrap: false
   syntax_highlighter_opts:
     format_style: 'div'
     # Rouge Options: https://kramdown.gettalong.org/syntax_highlighter/rouge.html, https://github.com/jneen/rouge/blob/master/README.md

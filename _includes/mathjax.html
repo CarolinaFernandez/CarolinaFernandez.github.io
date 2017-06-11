@@ -1,0 +1,22 @@
+<!--<script>
+    // Nice, but takes too long to load
+    document.getElementsByClassName("main-content")[0].style.display = "none";
+</script>-->
+<!--<script type="text/x-mathjax-config;executed=true">-->
+<script type="text/x-mathjax-config">
+  //  The document is hidden until MathJax is finished, then
+  //   this function runs, making it visible again.
+  // Nice, but takes too long to load
+  /*MathJax.Hub.Queue(function () {
+    document.getElementsByClassName("main-content")[0].style.display = "block";
+  });*/
+  MathJax.Hub.Config({
+    showProcessingMessages: false,
+    //displayAlign: "left",
+    messageStyle: "none",
+    tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+    TeX: { equationNumbers: {autoNumber: "AMS"} }
+  });
+</script>
+
+<script src='https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
