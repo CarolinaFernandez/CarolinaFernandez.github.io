@@ -261,8 +261,8 @@ stress {/* New tag for semantic HTML */
 	border: 1px solid #e9ebec;
 }
 .main-content table td.code, .main-content table td.gutter {
-	padding: 0;
 	border: 0;
+	padding: 0;
 }
 .main-content div.code, .main-content div.gutter {
 	padding: 0;
@@ -272,7 +272,8 @@ stress {/* New tag for semantic HTML */
 	width: 100%;
 	/*overflow: scroll;*/
 }
-.main-content div.code {
+.main-content .code {
+    text-align: left;
 	width: 100%;
 	/*overflow: scroll;*/
 }
