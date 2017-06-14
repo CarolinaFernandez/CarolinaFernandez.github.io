@@ -138,6 +138,7 @@ stress {/* New tag for semantic HTML */
 	padding-top: 2rem;
 	padding-left: 6rem;
 	margin: 0 auto;
+    margin-bottom: 3em;
 	margin-left: 9.5em;
   }
 }
@@ -531,6 +532,10 @@ ul#markdown-toc li:before {
 }
 
 .circled-list {
+}
+
+.MathJax, .MathJax.MathJax_FullWidth {
+    outline: none;
 }
 
 /* Links */

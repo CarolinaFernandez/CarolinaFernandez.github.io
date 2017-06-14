@@ -126,6 +126,9 @@
 .e2-publications {
     margin-top: 2em;
 }
+.e2-publications li {
+    font-size: .95em;
+}
 .e2-research, .e2-business {
 	display: table;
     width: 100%;
@@ -173,6 +176,9 @@
 .course-title a {
     color: #8f7d0f;
     font-weight: bolder;
+}
+.publication-title {
+    font-size: 1em;
 }
 .publication-title,
 .publication-title a {
