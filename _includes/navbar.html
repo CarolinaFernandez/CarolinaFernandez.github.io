@@ -1,0 +1,40 @@
+<div id="navlink-conn-1" class="diag-left-up-line"><div class="diag-right-down-arrow"></div></div>
+
+<ul>
+{% for node in site.pages %}
+  {% if node.url contains "404" or node.url contains "page" or node.url contains "blog" or node.url contains "README" or node.url contains "css" %}
+  {% else %}
+  <li>
+      <a rel="external" href="{{node.url}}" 
+      {% if node.url == "/cv/" %}
+        {% if page.url == node.url %}
+          class="active navlink" title="CV">
+	    {% else %}
+          class="navlink" title="CV">
+	    {% endif %}
+	  {% else %}
+	    {% if page.url != "/cv/" %}
+          class="active navlink" title="Blog">
+	    {% else %}
+          class="navlink" title="Blog">
+	    {% endif %}
+	  {% endif %}
+	  <p class="navbar-text">
+	  {% if node.url == "/cv/" %}
+	    CV
+	  {% else %}
+        Blog
+	  {% endif %}
+      </p>
+      <em aria-hidden="true"
+      {% if node.url == "/cv/" %}
+        class="fa fa-paper-plane-o">
+      {% else %}
+        class="fa fa-pencil">
+      {% endif %}
+      </em>
+    </a>
+  </li>
+  {% endif %}
+{% endfor %}
+</ul>
