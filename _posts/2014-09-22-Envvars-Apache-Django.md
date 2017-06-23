@@ -3,7 +3,7 @@ layout: post
 title:  "Environment variables in Linux with Apache and Django"
 date:   2014-09-22 12:23:10
 categories: development
-tags: [python, django, apache, unix]
+tags: [django, apache, unix]
 comments: true
 ---
 

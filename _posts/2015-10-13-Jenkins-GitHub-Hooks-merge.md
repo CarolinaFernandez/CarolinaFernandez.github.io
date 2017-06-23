@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Jenkins to process updates on branches using Github hooks"
+title:  "Jenkins to trigger branch updates with Git hooks"
 date:   2015-10-13 01:45:04
 categories: ci
 tags: [jenkins, github]

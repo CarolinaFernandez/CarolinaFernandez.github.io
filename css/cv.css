@@ -1,39 +1,49 @@
-#resume {
+#cv {
     text-align: justify;
 }
 
-.resume-section {
+.cv-section {
 	padding-top: 2em;
 }
-#resume-filter em.fa {
+#cv-filter em.fa {
     float: right;
     outline: 0;
     padding: .3em;
 }
-#resume-filter em.filter-menu {
+#cv-filter em.filter-menu {
     font-size: 1.4em;
     margin-left: 1em;
 }
-#resume-filter em.filter-item {
+#cv-filter em.filter-item {
     font-size: 1em;
     margin-top: .5em;
 }
 @media print {
-	#resume-filter em[id^="filter-"] {
+	#cv-filter em[id^="filter-"] {
 		display: none;
 	}
 }
 @media screen and (max-width: 42em) {
-	#resume-filter em[id^="filter-"] {
+	#cv-filter em[id^="filter-"] {
 		display: none;
 	}
-    .resume-section {
+    .cv-section {
         font-size: .85em;
         padding-top: 0em;
     }
 }
-#resume-filter em.fa:focus {
+#cv-filter em.fa:focus {
     background-color: #d7bd1e;
+}
+
+.experience-summary {
+    font-style: italic;
+    padding-bottom: 1em;
+}
+@media screen and (max-width: 42em) {
+    .experience-summary {
+        padding-left: 0em;
+    }
 }
 
 /* Academics */
@@ -133,9 +143,35 @@
 	display: table;
     width: 100%;
 }
+div[class^="e2-"]:nth-child(2) .experience .experience-icon,
+div[class^="e2-"]:nth-child(5) .experience .experience-icon {
+    padding: 0;
+    width: 0%;
+}
+div[class^="e2-"]:nth-child(2) .experience .experience-title,
+div[class^="e2-"]:nth-child(5) .experience .experience-title {
+    min-width: 85%;
+    width: 85%;
+}
+.e2-technical {
+    display: table;
+    width: 100%;
+}
+.e2-technical div {
+    display: table-cell;
+    padding-bottom: 1em;
+    width: 45%;
+}
+@media screen and (max-width: 42em) {
+    .e2-technical, .e2-technical div {
+        display: block;
+        width: auto;
+    }
+}
 .experience,
 .studies {
-	display: table-row;
+	display: table;
+    width: 100%;
 }
 .experience-icon,
 .experience-title,
@@ -155,6 +191,12 @@
 	vertical-align: middle;
 	width: 72%;
 }
+@media screen and (max-width: 42em) {
+    .experience-title {
+	    min-width: 100%;
+	    width: 100%;
+    }
+}
 .experience-length {
 	text-align: right;
 	width: 18%;
@@ -164,8 +206,9 @@
 	text-align: left;
 }
 .studies-institution {
-	width: 100%;
+    font-style: italic;
 	text-align: right;
+	width: 100%;
 }
 .experience a {
     color: #66503b;
@@ -173,7 +216,8 @@
 }
 
 .course-title,
-.course-title a {
+.course-title a,
+.degree-title {
     color: #8f7d0f;
     font-weight: bolder;
 }

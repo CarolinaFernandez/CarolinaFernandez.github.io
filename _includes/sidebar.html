@@ -2,33 +2,6 @@
 <div id="navlink-conn-2" class="diag-right-up-line"><div class="diag-left-down-arrow"></div></div>
 <div id="navlink-conn-3" class="diag-left-up-line"><div class="diag-right-down-arrow"></div></div>
 
-<!--<ul>
-  <li>
-    <a rel="external" href="/" class="navlink" title="Home">
-      <p class="navbar-text">Home</p>
-      <em class="fa fa-map-marker hover" aria-hidden="true"></em>
-    </a>
-  </li>
-  <li>
-    <a rel="external" href="/blog/entries/" class="navlink" title="Blog">
-      <p class="navbar-text">Blog</p>
-      <em class="fa fa-pencil hover" aria-hidden="true"></em>
-    </a>
-  </li>
-  <li>
-    <a rel="external" href="/blog/tags/" class="navlink" title="Tags">
-      <p class="navbar-text">Tags</p>
-      <em class="fa fa-tags" aria-hidden="true"></em>
-    </a>
-  </li>
-  <li>
-    <a rel="external" href="/resume/" class="navlink" title="Resume">
-      <p class="navbar-text">Resume</p>
-      <em class="fa fa-paper-plane-o" aria-hidden="true"></em>
-    </a>
-  </li>
-</ul>-->
-
 <ul>
 {% for node in site.pages %}
   {% if node.url contains "404" or node.url contains "/page" or node.url contains "pages" or node.url contains "README" or node.url contains "css" %}
@@ -63,7 +36,7 @@
         class="fa fa-pencil">
       {% elsif node.url == "/blog/tags/" %}
         class="fa fa-tags">
-      {% elsif node.url == "/resume/" %}
+      {% elsif node.url == "/cv/" %}
         class="fa fa-paper-plane-o">
       {% endif %}
       </em>

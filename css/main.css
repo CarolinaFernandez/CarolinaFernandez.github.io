@@ -355,7 +355,7 @@ stress {/* New tag for semantic HTML */
 }
 @media screen and (min-width: 75em) {
   .site-footer {
-	font-size: .7rem;
+	font-size: .8rem;
   }
 }
 @media screen and (min-width: 42em) and (max-width: 75em) {
