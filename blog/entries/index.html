@@ -6,7 +6,7 @@ title: Blog
 {% for post in site.posts %}
     <h3>{% include post-url-pretty.html %}</h3>
     <p class="post-date">
-        <strong>{{ post.date | date: "%-d/%-m/%Y" }}</strong>
+        <strong>{{ post.date | date: "%-Y/%m/%d" }}</strong>
     </p>
     {{ post.excerpt }}
     <p class="post-more">(...)</p>

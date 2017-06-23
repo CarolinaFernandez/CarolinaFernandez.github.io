@@ -129,9 +129,9 @@ SELECTION-SORT(A)
 
 | Line | Instruction | Cost | Times | Explanation |
 |:----:|:------------|:----:|:------|:------------|
-| 2 | `for i=1 to A.length-1` | $$c_1\$$ | $$n+1\$$ | 1 iteration per item in the loop + last 1 to get out of the loop |
-| 3 | &nbsp; &nbsp; `min = A[i]` | $$c_2\$$ | $$n\$$ | Runs every time within loop above |
-| 4 | &nbsp; &nbsp; `for j=i+1 to A.length-1` | $$c_3\$$ | $$\sum_{j=i+1}^{n} t_j\$$ | Subset of items in the outer loop + last 1 to get out of the loop |
+| 2 | `for i=1 to A.length-1` | $$c_1\$$ | $$n+1\$$ | 1 iteration per item in the outer loop + last 1 to get out of it |
+| 3 | &nbsp; &nbsp; `min = A[i]` | $$c_2\$$ | $$n\$$ | Runs every time in the outer loop |
+| 4 | &nbsp; &nbsp; `for j=i+1 to A.length-1` | $$c_3\$$ | $$\sum_{j=i+1}^{n} t_j\$$ | Subset of items in the outer loop + last 1 to get out of inner loop |
 | 5 | &nbsp; &nbsp; &nbsp; &nbsp; `if A[j] < min` | $$c_4\$$ | $$\sum_{j=i+1}^{n} (t_j-1)\$$ | Worst-case: 1 iteration per item in the inner loop |
 | 6 | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `min = A[j]` | $$c_5\$$ | *Same as L5* | *Same as L5* |
 | 7 | &nbsp; &nbsp; `if A[i] != min` | $$c_6\$$ | $$n\$$ | Worst-case: 1 iteration per item in the outer loop |
@@ -139,7 +139,7 @@ SELECTION-SORT(A)
 
 <p></p>
 
-The worst-case scenario assumes the input array is not sorted or pseudo-random. The algorithm would run as normal.
+The worst-case scenario assumes the input array is not sorted or pseudo-random. The algorithm would perform all steps.
 
 $$
 T(n) = c_1(n+1) + c_2n + c3\sum_{j=i+1}^{n} t_j + (c_4 + c_5)\sum_{j=i+1}^{n} (t_j-1) + (c_6 + c_7)n \\
@@ -149,7 +149,7 @@ T(n) = c_1(n+1) + c_2n + c3\sum_{j=i+1}^{n} t_j + (c_4 + c_5)\sum_{j=i+1}^{n} (t
 \implies O(n^2)
 $$
 
-The best-case scenario assumes the input array is already sorted. The algorithm would still run both loops, yet it should not enter any conditional step.
+The best-case scenario assumes the input array is already sorted. The algorithm would still run both loops and conditional checks, yet it should not enter the latter.
 
 $$
 T(n) = c_1(n+1) + c_2n + c3\sum_{j=i+1}^{n} t_j + c_4\sum_{j=i+1}^{n} (t_j-1) + c_6n \\
@@ -169,3 +169,42 @@ $$
 $$
 
 The running time is quadratic in both cases. Even if some instructions are skipped in the best-case scenario, the cost-related constants are negligible when compared to the order of the terms formalising the iterations.
+
+#### Merge sort
+
+The <a title="Merge sort" href="https://en.wikipedia.org/wiki/Merge_sort" target="_blank">merge sort</a> is an efficient recursive sorting algorithm. It works by diving the array in two halves $$A[l..m], A[m+1..r]\$$, sorting each of them and merge the previous results into a new array $$A[p..r]\$$.
+
+```
+MERGE(l, r)
+  var list result
+  while l.length > 0 and r.length > 0
+      if first(l) &le; first(r)
+          append first(l) to result
+          left = rest(l)
+      else
+          append first(r) to result
+          right = rest(r)
+  if l.length > 0
+      append rest(l) to result
+  if r.length > 0
+      append rest(r) to result
+  return result
+
+MERGESORT(A)
+  var list l, r, result
+  if A.length <= 1
+      return A
+  else
+      m = floor(A.length / 2)
+      for x=l to m-1
+          add A[x] to l
+      for x=m to r
+          add A[x] to r
+      l = MERGESORT(l)
+      r = MERGESORT(r)
+      if last(l) &le; first(r) 
+         append r to l
+         return l
+      result = MERGE(l, r)
+      return result
+```

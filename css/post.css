@@ -2,9 +2,38 @@
     background-color: #e6e67a;
     border-radius: .4em;
     padding: .25em;
+    padding-bottom: .1em;
+    padding-top: .1em;
 }
 
 /* Extract from posts (right after date) should be displayed inline */
+.post-meta {
+	display: inline;
+}
+.post-meta span {
+	color: #81a745;
+	margin-right: .5em;
+}
+.post-meta span .fa {
+    color: #527422;
+}
+.post-meta span:not(:first-child) {
+	margin-left: .5em;
+}
+.post-meta a {
+	border-bottom: none;
+	color: #c8270a;
+}
+@media screen and (max-width: 42em) {
+	.post-meta span {
+		font-size: .9em;
+	}
+}
+
+.post-content {
+	margin-top: 2em;
+}
+
 p.post-date {
     display: inline;
 }

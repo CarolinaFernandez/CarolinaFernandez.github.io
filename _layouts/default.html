@@ -2,15 +2,16 @@
 <html lang="en-us">
   {% include head.html %}
   <body>
+
+    <div class="navbar-content-wrapper">
+      <div class="navbar-content">
+          {% include navbar.html %}
+      </div>
+    </div>
+
     {% include header.html %}
 
     <section class="site-content">
-      <div class="sidebar-content-wrapper">
-        <div class="sidebar-content">
-            {% include sidebar.html %}
-        </div>
-      </div>
-
       <section class="main-content">
           {{ content }}
       </section>
