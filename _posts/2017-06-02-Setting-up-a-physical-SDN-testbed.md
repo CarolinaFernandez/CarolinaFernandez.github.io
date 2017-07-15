@@ -148,4 +148,4 @@ Otherwise, in case or problems; troubleshooting should consider the following (i
 * Wiring check: does the physical setup match to the wiring diagram? If so, are the links up?
 * Ask for help: a pair of external eyes (and knowledge set) provides a different view and focus on the issue
 
-[sample_wiring]: http://i1377.photobucket.com/albums/ah66/sh3r3/Github/Testbed/sample-wiring_zpsjknjig6f.png?style=img-center "Sample wiring diagram"
+[sample_wiring]: /img/post/2017-06-02-Setting-up-a-physical-SDN-testbed/sample-wiring.png?style=img-center "Sample wiring diagram"

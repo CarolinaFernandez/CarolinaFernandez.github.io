@@ -176,6 +176,10 @@ ul.posts li div[class^="entry-"] {
     ul.posts li div.entry-tag {
         display: none;
     }
+    ul.posts li:before {
+        content: "";
+        margin-right: 0em;
+    }
 }
 .entry-tag {
     float: right;
@@ -621,4 +625,10 @@ a.post-tag,
 
 h2 a.link-full {
 	color: #c5270a;
+}
+
+@media screen and (max-width: 42em) {
+  .entry-title *:not(.link-full) {
+    display: none;
+  }
 }
