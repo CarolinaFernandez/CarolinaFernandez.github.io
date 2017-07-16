@@ -256,7 +256,7 @@ ul.posts li div[class^="entry-"] {
 .main-content .highlight pre, .main-content pre {
 	padding: 0.8rem;
 	overflow: auto;
-	max-width: 65em !important;
+	max-width: 91em !important;
 	font-size: 0.9rem;
 	line-height: 1.45;
 	-webkit-overflow-scrolling: touch;
@@ -373,11 +373,24 @@ ul.posts li div[class^="entry-"] {
     border: #bde5f8 1px solid;
     color: #00529B;
 }
+.highlight-warning {
+    background-color: #f8e7bf;
+    border: #f6c342 1px solid;
+    color: #f3bb2c;
+}
+.highlight-error {
+    background-color: #f5ccc2;
+    border: #fca18b 1px solid;
+    color: #f36c4a;
+}
 .highlight-box .fa {
     display: table-cell;
     font-size: 2em;
     padding-right: .4em;
     vertical-align: middle;
+}
+.highlight-box code {
+    background: none !important;
 }
 .highlight-box .highlight-content {
     display: table-cell;
