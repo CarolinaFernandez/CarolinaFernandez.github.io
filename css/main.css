@@ -29,9 +29,28 @@ body::after {
 	position: fixed;
 	right: 0;
 	top: 0;
-    zoom: .5;
+    zoom: .6;
 	z-index: -1;
 }
+@media screen and (min-width: 75em) {
+    body::after {
+        background-color: #fefffa;
+        background-image: url(../img/fox.png);
+        background-image: url(../img/fox.png), linear-gradient(35deg, #ffff23, #fefffa 7em, #fefffa);
+        background-position: left bottom;
+        background-repeat: no-repeat;
+        bottom: 0;
+        content: "";
+        display: block;
+        left: 0;
+        opacity: .7;
+        position: fixed;
+        right: 0;
+        top: 0;
+        z-index: -1;
+    }
+}
+
 @supports (height: 100vh) {
   body {
     background: linear-gradient(to right top, #938379 50%, #eee 40%);
@@ -73,6 +92,14 @@ body::after {
 stress {/* New tag for semantic HTML */
 	text-decoration: underline;
 }
+code {
+    display: inline-block;
+ white-space: pre-wrap;       /* css-3 */
+ white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+ white-space: -pre-wrap;      /* Opera 4-6 */
+ white-space: -o-pre-wrap;    /* Opera 7 */
+ word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
 
 /* Headers and divs */
 
@@ -92,7 +119,6 @@ stress {/* New tag for semantic HTML */
 		linear-gradient(-225deg, #d5edbc 20%, transparent 2%) 0 -10em,
 		linear-gradient(-315deg, #e0ec6f 60%, transparent 2%) 0 0;
     background-repeat: repeat-x;
-
   	height: 1.9em;
 	padding: .1em 0rem;
 	padding-right: .5em;
@@ -104,8 +130,9 @@ stress {/* New tag for semantic HTML */
 	width: 100%;
 }
 .site-header:after {
-    background: linear-gradient(120deg, #fff .15em, transparent 0), linear-gradient(-120deg, #fff .15em, transparent 0);
-    background-position: left-bottom;
+    background:
+        linear-gradient(120deg, #fefffb .15em, transparent 0),
+        linear-gradient(-120deg, #fefffb .15em, transparent 0);
     background-repeat: repeat-x;
     background-size: 32px 32px;
     content: " ";
@@ -135,6 +162,57 @@ stress {/* New tag for semantic HTML */
 	margin-bottom: -.2em;
 	margin-top: 0;
 	text-shadow: 0 0 !important;
+}
+@media screen and (min-width: 75em) {
+	.site-header {
+		background: transparent !important;
+	}
+	.site-header:before {
+		background: transparent !important;
+	}
+	.site-header:after {
+		background: transparent !important;
+	}
+	.navbar-content-wrapper {
+		background:
+			linear-gradient(-45deg, #f8ddc5 25%, transparent 2%) 0 0,
+			linear-gradient(-135deg, #d5edbc 51%, transparent 2%) 0 0,
+			linear-gradient(-225deg, #d5edbc 20%, transparent 2%) 0 0,
+			linear-gradient(-315deg, #e0ec6f 60%, transparent 2%) 0 0;
+	}
+	.navbar-content-wrapper:before {
+		background:
+	        /*linear-gradient(120deg, #cd887d .15em, transparent 20%),
+	        linear-gradient(-120deg, #87b441 .15em, transparent 50%);*/
+	        linear-gradient(120deg, #e3f3d1 .15em, transparent 30%),
+	        linear-gradient(-120deg, #fefffb .15em, transparent 60%);
+	    background-repeat: repeat-x;
+	    background-size: 7em 1em;
+	    content: " ";
+	    display: block;
+	    height: .1em;
+		margin-bottom: 2em;
+	    position: absolute;
+	    bottom: 0px;
+	    left: 0px;
+	    width: 100%;
+	}
+	.navbar-content-wrapper:after {
+	    background:
+	        /*linear-gradient(120deg, #87b441 .15em, transparent 50%),
+	        linear-gradient(-120deg, #cd887d .15em, transparent 20%);*/
+	        linear-gradient(120deg, #fefffb .15em, transparent 60%),
+	        linear-gradient(-120deg, #e0ec6f .15em, transparent 30%);
+	    background-repeat: repeat-x;
+	    background-size: 8em 3em;
+	    content: " ";
+	    display: block;
+	    position: absolute;
+	    bottom: 0px;
+	    left: 0px;
+	    width: 100%;
+	    height: .1em;
+	}
 }
 @-moz-document url-prefix() {
 	.project-name, .project-name a {
@@ -197,11 +275,11 @@ ul.posts li div[class^="entry-"] {
 @media screen and (min-width: 75em) {
   .main-content {
 	max-width: 80%;
-	padding-top: 6rem;
-	padding-left: 3rem;
+	padding-left: 8rem;
+	padding-right: 1rem;
+	padding-top: 3rem;
 	margin: 0 auto;
-    margin-bottom: 3em;
-	margin-left: 7.5em;
+    margin-bottom: 0;
   }
 }
 @media screen and (min-width: 42em) and (max-width: 75em) {
@@ -256,7 +334,7 @@ ul.posts li div[class^="entry-"] {
 .main-content .highlight pre, .main-content pre {
 	padding: 0.8rem;
 	overflow: auto;
-	max-width: 91em !important;
+	max-width: 80em !important;
 	font-size: 0.9rem;
 	line-height: 1.45;
 	-webkit-overflow-scrolling: touch;
@@ -402,7 +480,7 @@ ul.posts li div[class^="entry-"] {
     color: #606c71;
 }
 
-.site-footer {
+.site-social {
     bottom: 0;
     margin-bottom: .4em;
     margin-right: .4em;
@@ -413,38 +491,53 @@ ul.posts li div[class^="entry-"] {
     right: 0;
 }
 @media screen and (max-width: 42em) {
-  .site-footer {
+  .site-social {
     float: right;
     margin-bottom: .4em;
     margin-right: .4em;
     position: relative;
   }
 }
-.site-footer p {
+
+@media screen and (min-width: 42em) {
+	.site-social {
+        bottom: 0;
+        left: .5em;
+        width: 1em;
+        zoom: .8;
+   }
+}
+@media screen and (min-width: 75em) {
+    .site-social {
+        bottom: 15em;
+        zoom: 1;
+   }
+}
+.site-social p {
 	display: inline;
 }
 @media print {
-	.site-footer {
+	.site-social {
 		display: none;
 	}
 }
 @media screen and (min-width: 75em) {
-  .site-footer {
+  .site-social {
 	font-size: .8rem;
   }
 }
 @media screen and (min-width: 42em) and (max-width: 75em) {
-	.site-footer {
+	.site-social {
 		font-size: 1rem;
 	}
 }
 @media screen and (max-width: 42em) {
-	.site-footer {
+	.site-social {
 		font-size: .65rem;
 	}
 }
 
-.site-footer-owner {
+.site-social-owner {
 	display: block;
 	font-weight: bold;
 }
