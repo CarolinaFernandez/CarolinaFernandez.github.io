@@ -91,7 +91,7 @@ Multiple deployment tasks coexist within the deployment project. For instance, t
 
 In this simple scenario, the CD consists of two tasks defined to interact with the Slack hooks and notify users about the status of the deployment (useful for shared usage due to limited deployment capabilities and environments); and of a third one to transfer the codebase and/or files resulted from the previous build plan and stages to the target environment, as well as remote commands to make the component run.
 
-{% capture note-text %}The deployment tasks occur after the build tasks. There are a number of <a href="https://confluence.atlassian.com/bamboo/bamboo-variables-289277087.html" target="_blank" alt="Bamboo variables">Bamboo variables</a> to be used: some are specific to build time, others to deployment, others for releases, etc. Evaluate carefully each of them within the tasks, specially when re-using across build and development stages.
+{% capture note-text %}The deployment tasks occur after the build tasks. There are a number of <a href="https://confluence.atlassian.com/bamboo/bamboo-variables-289277087.html" target="_blank" title="Bamboo variables">Bamboo variables</a> to be used: some are specific to build time, others to deployment, others for releases, etc. Evaluate carefully each of them within the tasks, specially when re-using across build and development stages.
 {% endcapture %}
 {% include highlight-note.html %}
 
