@@ -2,7 +2,7 @@
 layout: post
 brief_title:  "HTTPS and trust chain in Flask"
 title:  "HTTPS and trust chain in Flask"
-date:   2017-09-12 22:12:18
+date:   2017-09-13 20:12:18
 categories: development
 tags: [python, flask]
 comments: true
@@ -75,7 +75,7 @@ Also, there is a minimal change on the call through cURL: the endpoint is provid
 
 ```bash
 $ curl -k https://127.0.0.1:8000/
-Top-level
+Top-level content
 $ curl -k http://127.0.0.1:8000/
 curl: (56) Recv failure: Connection reset by peer
 ```
@@ -111,15 +111,39 @@ This time, cURL expects the client certificate (PKCS#12 or PEM formats); otherwi
 ```bash
 $ curl -k https://127.0.0.1:8000/ -E client/client.pem
 Top-level content
-$ curl -k https://127.0.0.1:8000/
-curl: (35) gnutls_handshake() failed: Handshake failed
 $ curl -k https://127.0.0.1:8000/ -E client/untrusted_client.pem 
 curl: (35) gnutls_handshake() failed: Error in the push function.
+$ curl -k https://127.0.0.1:8000/
+curl: (35) gnutls_handshake() failed: Handshake failed
 ```
 
-### All in one
+### Chain of trust
 
-The three options can be encompassed on a single module which delegates the choice of the behaviour to specific configuration parameters.
+The third option --authenticating both server and client-- is based on the [chain of trust](https://docs.nexcess.net/article/what-is-a-chain-of-ssl-certificates.html) concept. A client will provide its identity through a certificate. If the server trusts the CA entity issuing or signing the certificate of the client, then the server will also trust the client.
+
+The steps provided [here](https://kb.op5.com/pages/viewpage.action?pageId=19073746#sthash.QrTgcrZX.dpbs) enable a straightforward setup of a CA and signed client certificates, to be used in conjuction with the server above implemented.
+
+```bash
+# Generate CA certificate (no password)
+openssl genrsa -out root_ca.key 2048
+openssl req -x509 -new -nodes -key root_ca.key -sha256 -days 1024 -out root_ca.crt
+
+# Generate client request and sign it by the CA
+openssl genrsa -out client.key 2048
+openssl req -new -key client.key -out client.csr
+openssl x509 -req -in client.csr -CA root_ca.crt -CAkey root_ca.key -CAcreateserial -out client.crt -days 1024 -sha256
+
+# Define the PEM files for CA and client
+cat root_ca.crt root_ca.key > root_ca.pem
+cat client.crt client.key > client.pem
+```
+
+### Altogether
+
+The three options can be encompassed on a single module which delegates the choice of the behaviour to specific configuration parameters (`HTTPS_ENABLED`, `VERIFY_USER`) such that each serving type can be defined by a specific combination:
+* HTTP: *HTTPS_ENABLED = False*, *VERIFY_USER = False*
+* HTTPS (server): *HTTPS_ENABLED = True*, *VERIFY_USER = False*
+* HTTPS (server and client): *HTTPS_ENABLED = True*, *VERIFY_USER = True*
 
 ```python
 #!/usr/bin/env python
@@ -176,23 +200,4 @@ $ tree .
 │   └── client.pem
 ├── server.crt
 └── server.key
-```
-
-### Chain of trust
-
-The third option --authenticating both server and client-- is based on the [chain of trust](https://docs.nexcess.net/article/what-is-a-chain-of-ssl-certificates.html) concept. A client will provide its identity through a certificate. If the server trusts the CA entity issuing or signing the certificate of the client, then the server will also trust the client.
-
-The steps provided [here](https://kb.op5.com/pages/viewpage.action?pageId=19073746#sthash.QrTgcrZX.dpbs) enable a straightforward setup of a CA and signed client certificates, to be used in conjuction with the server above implemented.
-
-```bash
-openssl genrsa -out root_ca.key 2048
-openssl req -x509 -new -nodes -key root_ca.key -sha256 -days 1024 -out root_ca.crt
-
-openssl genrsa -out client.key 2048
-openssl req -new -key client.key -out client.csr
-
-openssl x509 -req -in client.csr -CA root_ca.crt -CAkey root_ca.key -CAcreateserial -out client.crt -days 1024 -sha256
-
-cat root_ca.crt root_ca.key > root_ca.pem
-cat client.crt client.key > client.pem
 ```
