@@ -1,6 +1,5 @@
 ---
 layout: post
-brief_title:  "HTTPS and trust chain in Flask"
 title:  "HTTPS and trust chain in Flask"
 date:   2017-09-13 20:12:18
 categories: development
@@ -18,6 +17,10 @@ comments: true
 ### Serving types
 
 Flask can serve requests in different ways; either unsecured (plain HTTP) or secured (HTTPS). The latter form can be tuned to allow different granularity and protocol-related options onthe security aspects.
+
+{% capture note-text %}The following code has been tested with <em>Python 3.5.2</em>. Previous versions will probably require modifications in the code. See below for differences.
+{% endcapture %}
+{% include highlight-warning.html %}
 
 #### HTTP
 
@@ -145,6 +148,10 @@ The three options can be encompassed on a single module which delegates the choi
 * HTTPS (server): *HTTPS_ENABLED = True*, *VERIFY_USER = False*
 * HTTPS (server and client): *HTTPS_ENABLED = True*, *VERIFY_USER = True*
 
+#### Latest version
+
+This snippet requires *Python 3.5.2*. The built-in [*ssl*](https://docs.python.org/3.5/library/ssl.html) module is used to set-up the secure context.
+
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -188,6 +195,58 @@ if HTTPS_ENABLED:
 serving.run_simple(
     API_HOST, API_PORT, app, ssl_context=context)
 ```
+
+#### Legacy version
+
+Very similar to he above one, yet relying on *Python 2.7.3* and [*pyOpenSSL 0.14*](https://pyopenssl.org/en/release-0.14/).
+
+```
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+from flask import Flask
+from OpenSSL import SSL
+from werkzeug import serving
+
+import ssl
+import sys
+
+
+HTTPS_ENABLED = True
+VERIFY_USER = True
+
+API_HOST = "0.0.0.0"
+API_PORT = 8000
+API_CRT = "server.crt"
+API_KEY = "server.key"
+API_CA_T = "ca.crt"
+
+app = Flask(__name__)
+
+
+@app.route("/")
+def main():
+    return "Top-level content"
+
+
+context = None
+if HTTPS_ENABLED:
+    context = SSL.Context(SSL.TLSv1_METHOD)
+    if VERIFY_USER:
+        context.verify_mode = ssl.CERT_REQUIRED
+        context.load_verify_locations(API_CA_T)
+    try:
+        context.use_certificate_file(API_CRT)
+        context.use_privatekey_file(API_KEY)
+    except Exception as e:
+        sys.exit("Error starting flask server. " +
+            "Missing cert or key. Details: {}"
+            .format(e))
+
+serving.run_simple(
+    API_HOST, API_PORT, app, ssl_context=context)
+```
+
 
 Note that the sample cURL calls performed above expect the following minimal structure in disk:
 
