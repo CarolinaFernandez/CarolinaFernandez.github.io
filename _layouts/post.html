@@ -4,7 +4,7 @@ comments: true
 ---
 <h2>{{ page.title }}</h2>
 
-<p class="post-meta">
+<div class="post-meta">
 	<span>
 		<em aria-hidden="true" class="fa fa-clock-o"></em>
 		{{ page.date | date: "%-Y/%-m/%-d" }}
@@ -19,11 +19,11 @@ comments: true
 		<em aria-hidden="true" class="fa fa-folder-open"></em>
 		{{ page.categories }}
 	</span>
-</p>
+</div>
 
-<p class="post-content">
+<div class="post-content">
 {{ content }}
-</p>
+</div>
 
 {% if page.comments and site.author.disqus %}
   {% include comments.html %}
