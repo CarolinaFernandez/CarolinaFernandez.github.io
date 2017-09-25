@@ -349,6 +349,11 @@ ul.posts li div[class^="entry-"] {
     border-bottom-right-radius: 0.2rem;
 	width: 90% !important;
 }
+/* Do not count lines in case of unespecified language */
+.highlighter-rouge:not([class^="language-"]) .gl {
+    visibility: hidden;
+    width: 0% !important;
+}
 @media screen and (max-width: 42em) {
 	.main-content .highlight pre, .main-content pre {
 		font-size: .75rem;
@@ -713,7 +718,7 @@ ul#markdown-toc li:before {
 a {
 	color: #987134;
 	text-decoration: none;
-	border-bottom: 3px double;
+    border-bottom: 1px dashed;
 }
 .code a {
     color: #567482;
