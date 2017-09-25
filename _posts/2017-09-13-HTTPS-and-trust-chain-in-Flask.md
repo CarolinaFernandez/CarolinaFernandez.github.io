@@ -43,7 +43,7 @@ Other commonly used minimal applications directly use `app.run()` ([example](htt
 
 Pointing [cURL](https://ec.haxx.se/cmdline-options.html) to the exposed endpoint will return in the expected output:
 
-```bash
+```console
 $ curl -k http://127.0.0.1:8000/
 Top-level content
 ```
@@ -76,7 +76,7 @@ The context can be defined in simpler ways; for instance:
 
 Also, there is a minimal change on the call through cURL: the endpoint is provided through a secure connection now. Note that it is not possible anymore to connect through the plain HTTP endpoint:
 
-```bash
+```console
 $ curl -k https://127.0.0.1:8000/
 Top-level content
 $ curl -k http://127.0.0.1:8000/
@@ -111,7 +111,7 @@ serving.run_simple("0.0.0.0", 8000, app, ssl_context=context)
 
 This time, cURL expects the client certificate (PKCS#12 or PEM formats); otherwise connection will not take place. Naturally, incoming connections from untrusted clients will result in rejected connections.
 
-```bash
+```console
 $ curl -k https://127.0.0.1:8000/ -E client/client.pem
 Top-level content
 $ curl -k https://127.0.0.1:8000/ -E client/untrusted_client.pem 
@@ -126,7 +126,7 @@ The third option --authenticating both server and client-- is based on the [chai
 
 The steps provided [here](https://kb.op5.com/pages/viewpage.action?pageId=19073746#sthash.QrTgcrZX.dpbs) enable a straightforward setup of a CA and signed client certificates, to be used in conjuction with the server above implemented.
 
-```bash
+```console
 # Generate CA certificate (no password)
 openssl genrsa -out root_ca.key 2048
 openssl req -x509 -new -nodes -key root_ca.key -sha256 -days 1024 -out root_ca.crt
@@ -200,7 +200,7 @@ serving.run_simple(
 
 Very similar to he above one, yet relying on *Python 2.7.3* and [*pyOpenSSL 0.14*](https://pyopenssl.org/en/release-0.14/).
 
-```
+```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
@@ -250,7 +250,7 @@ serving.run_simple(
 
 Note that the sample cURL calls performed above expect the following minimal structure in disk:
 
-```bash
+```console
 $ tree .
 .
 ├── api.py

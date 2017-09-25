@@ -116,7 +116,7 @@ def insertion_sort(A):
 
 The pseudo-code can be used to analyse the running time in both worst and best cases:
 
-```
+```js
 SELECTION-SORT(A)
   for i=1 to A.length-1
     min = A[i]
@@ -174,7 +174,7 @@ The running time is quadratic in both cases. Even if some instructions are skipp
 
 The <a title="Merge sort" href="https://en.wikipedia.org/wiki/Merge_sort" target="_blank">merge sort</a> is an efficient recursive sorting algorithm. It works by diving the array in two halves $$A[l..m], A[m+1..r]\$$, sorting each of them and merge the previous results into a new array $$A[p..r]\$$.
 
-```
+```js
 MERGE(l, r)
   var list result
   while l.length > 0 and r.length > 0

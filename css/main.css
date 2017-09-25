@@ -349,8 +349,9 @@ ul.posts li div[class^="entry-"] {
     border-bottom-right-radius: 0.2rem;
 	width: 90% !important;
 }
-/* Do not count lines in case of unespecified language */
-.highlighter-rouge:not([class^="language-"]) .gl {
+/* Disable line count on unespecified language or console */
+.highlighter-rouge:not([class^="language-"]) .gl,
+.highlighter-rouge.language-console .gl {
     visibility: hidden;
     width: 0% !important;
 }

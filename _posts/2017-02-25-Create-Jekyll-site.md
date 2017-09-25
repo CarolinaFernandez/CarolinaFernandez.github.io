@@ -22,7 +22,7 @@ The [installation](https://jekyllrb.com/docs/installation/) process expects a Li
 
 The files can now be built and served locally by a thin server. The [`--incremental`](http://idratherbewriting.com/2015/11/04/jekyll-30-released-incremental-regeneration-rocks/) flag allows to re-build just the content modified. The result of the building process will be available in the shell where these commands are executed.
 
-```shell
+```console
 jekyll build
 jekyll serve --incremental
 ```
@@ -36,7 +36,7 @@ Starting a site with Jekyll should start with the following items, in order:
 
 After those are all set-up, the basic structure for the site is all set-up. From that point you can start filling with specific styles and layouts, use common [includes](https://jekyllrb.com/docs/includes/) files or static pages. An example of a working tree with all the aforementioned would be as follows:
 
-```shell
+```console
 .
 ├── _config.yml
 ├── _includes
