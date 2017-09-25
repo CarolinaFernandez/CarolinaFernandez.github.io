@@ -87,13 +87,6 @@ s2user=user2
 s2key=~/.ssh/id_s2
 s2ip=213.0.0.30
 
-# Details for private host
-prip=10.10.0.10
-prport=8000
-
-# Details for localhost
-loport=8001
-
 # General form
 ssh -p${s1port} -i${s1key} ${s1user}@${s1ip} -t ssh -p${s2port} -i ${s2key} ${s2user}@${s2ip}
 
@@ -149,29 +142,3 @@ scp -o ProxyCommand="ssh -p9998 user1@175.0.0.20 nc 213.0.0.30 9999" \
 ```
 
 Note that this scenario is different to the one above: even if server2 is only accessible from server1, localhost must be authorised to access server2 (that is, the *"~/.ssh/id_s2"* must be located in localhost).
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
