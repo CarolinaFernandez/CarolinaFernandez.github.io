@@ -1,14 +1,24 @@
 a.social-icon {
-    border-bottom: 0;
-    font-size: 2em;
+	border-bottom: 0;
+	font-size: 2em;
 }
 a.social-icon em {
-    border-radius: .2em;
-    color: #fefffa;
-    opacity: .7;
-    padding: .15em;
-    text-align: center;
-    width: 1em;
+	border-radius: .2em;
+	color: #fefffa;
+	opacity: .8;
+	padding: .15em;
+	text-align: center;
+	width: 1em;
+}
+a.social-icon em:hover {
+	-webkit-filter: saturate(.2);
+	-webkit-filter: hue-rotate(190deg);
+	-webkit-transition: all .5s ease;
+	-moz-transition: all .5s ease;
+	-o-transition: all .5s ease;
+	-ms-transition: all .5s ease;
+	transform: rotate(10deg);
+	transition: all .5s ease;
 }
 a.social-icon em#linkedin-icon {
 	background-color: #0077b5;
@@ -19,8 +29,11 @@ a.social-icon em#google-scholar-icon {
 a.social-icon em#github-icon {
 	background-color: #24292e;
 }
+a.social-icon em#twitter-icon {
+	background-color: #339ff9;
+}
 a.social-icon em:hover {
-    opacity: .9;
+	opacity: .9;
 }
 
 .site-credits {
@@ -35,14 +48,14 @@ a.social-icon em:hover {
 }
 
 #disqus_thread {
-    border-top: .1em dashed #66503b;
-    margin-bottom: 2em;
-    margin-top: 5em;
-    padding-top: 1em;
+	border-top: .1em dashed #66503b;
+	margin-bottom: 2em;
+	margin-top: 5em;
+	padding-top: 1em;
 }
 
 @media screen and (max-width: 42em) {
-    #disqus_thread {
-        margin-bottom: 0;
-    }
+	#disqus_thread {
+		margin-bottom: 0;
+	}
 }
