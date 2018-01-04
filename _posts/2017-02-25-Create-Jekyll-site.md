@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Create a site with Jekyll"
+description: "Guide with common steps to create a new site with Jekyll"
 date:   2017-02-25 22:15:23
 categories: development
 tags: [jekyll, github]

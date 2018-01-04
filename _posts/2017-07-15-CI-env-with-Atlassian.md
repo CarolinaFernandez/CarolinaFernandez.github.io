@@ -2,6 +2,7 @@
 layout: post
 brief_title:  "CI and CD with Atlassian stack"
 title:  "Continuous Integration and Delivery with Atlassian stack"
+description: "Configure Bitbucket and Bamboo to manage development and deploy"
 date:   2017-07-15 15:53:11
 categories: ci
 tags: [bitbucket, bamboo, slack]

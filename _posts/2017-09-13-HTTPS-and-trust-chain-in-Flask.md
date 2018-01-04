@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "HTTPS and trust chain in Flask"
+description: "Different ways to set-up HTTP and HTTPS connection with a Flask-based server"
 date:   2017-09-13 20:12:18
 categories: development
 tags: [python, flask]

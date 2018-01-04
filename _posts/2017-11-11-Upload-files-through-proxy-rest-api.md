@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Upload files through intermediate REST API"
+description: "Snippet to introduce an intermediate REST API and forward files to another REST API"
 date:   2017-11-11 21:32:04
 categories: development
 tags: [flask, python, rest]

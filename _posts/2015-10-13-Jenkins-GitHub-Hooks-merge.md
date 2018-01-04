@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Triggering Git branch updates with Jenkins"
+description: "Configure Jenkins to detect updates on a branch and automatically merge against another"
 date:   2015-10-13 01:45:04
 categories: ci
 tags: [jenkins, github]

@@ -2,6 +2,7 @@
 layout: post
 brief_title:  "Linux envvars with Apache and Django"
 title:  "Linux environment variables with Apache and Django"
+description: "Use Linux environment variables to use in Apache and Django configuration files"
 date:   2014-09-22 12:23:10
 categories: development
 tags: [django, apache, unix]

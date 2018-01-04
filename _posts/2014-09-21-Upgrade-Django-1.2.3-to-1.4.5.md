@@ -2,6 +2,7 @@
 layout: post
 brief_title:  "Upgrading Django from 1.2.3 to 1.4.5"
 title:  "Quickly upgrade Django from 1.2.3 to 1.4.5"
+description: "Brief guide to keep compatibility when upgrading Django from 1.2.3 to 1.4.5"
 date:   2014-09-21 17:33:00
 categories: development
 tags: [python, django]

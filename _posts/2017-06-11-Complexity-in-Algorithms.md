@@ -1,6 +1,7 @@
 ---
 layout: post-math
 title:  "Complexity in Algorithms"
+description: "Basic concepts on the complexity in algorithms"
 date:   2017-06-11 20:13:38
 categories: theory
 tags: [algorithms]

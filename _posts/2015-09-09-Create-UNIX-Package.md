@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Creating a UNIX package"
+description: "Steps to create a UNIX package on Debian and RedHat based distributions"
 date:   2015-09-09 08:47:16
 categories: deployment
 tags: unix

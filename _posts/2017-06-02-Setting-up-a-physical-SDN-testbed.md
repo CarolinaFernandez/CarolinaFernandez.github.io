@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Setting up a physical SDN testbed"
+description: "Guidelines to follow when defining an SDN testbed from scratch"
 date:   2017-06-02 18:31:23
 categories: infrastructure
 tags: [sdn, networks]

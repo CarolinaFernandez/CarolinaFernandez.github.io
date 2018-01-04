@@ -2,6 +2,7 @@
 layout: post
 brief_title:  "IptabLex/IptabLes XOR.DDoS on UNIX"
 title:  "IptabLex/IptabLes XOR.DDoS attack on UNIX"
+description: "Some actions to mitigate the effects of the IptabLex/IptabLes XOR.DDoS attack"
 date:   2015-03-16 15:32:45
 categories: security
 tags: [unix, botnet]

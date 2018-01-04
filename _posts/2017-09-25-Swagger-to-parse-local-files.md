@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Swagger to parse local files"
+description: "Structure and configuration to provide a locally hosted Swagger API"
 date:   2017-09-25 16:09:23
 categories: development
 tags: [flask, python, docs]

@@ -1,6 +1,7 @@
 ---
 layout: post
 title:  "Tunneling and SSH hops"
+description: "Steps to perform double jumps for SSH and SCP"
 date:   2017-09-17 20:12:18
 categories: deployment
 tags: [unix, networks]
