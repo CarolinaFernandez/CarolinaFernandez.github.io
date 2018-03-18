@@ -1,33 +1,31 @@
-<div id="navlink-conn-1" class="diag-left-up-line"><div class="diag-right-down-arrow"></div></div>
-
 <ul>
 {% for node in site.pages %}
   {% if node.url contains "404" or node.url contains "page" or node.url contains "blog" or node.url contains "README" or node.url contains "css" %}
   {% else %}
   <li>
       <a rel="external" href="{{node.url}}" 
-      {% if node.url == "/cv/" %}
+      {% if node.url == "/resources/" %}
         {% if page.url == node.url %}
-          class="active navlink" title="CV">
+          class="active navlink" title="Resources">
 	    {% else %}
-          class="navlink" title="CV">
+          class="navlink" title="Resources">
 	    {% endif %}
 	  {% else %}
-	    {% if page.url != "/cv/" %}
+	    {% if page.url != "/resources/" %}
           class="active navlink" title="Blog">
 	    {% else %}
           class="navlink" title="Blog">
 	    {% endif %}
 	  {% endif %}
 	  <p class="navbar-text">
-	  {% if node.url == "/cv/" %}
-	    CV
+	  {% if node.url == "/resources/" %}
+	    Resources
 	  {% else %}
         Blog
 	  {% endif %}
       </p>
       <em aria-hidden="true"
-      {% if node.url == "/cv/" %}
+      {% if node.url == "/resources/" %}
         class="fa fa-paper-plane-o">
       {% else %}
         class="fa fa-pencil">

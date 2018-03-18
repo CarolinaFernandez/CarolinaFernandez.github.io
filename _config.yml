@@ -22,6 +22,8 @@ gems:
   - jekyll-paginate
   - rouge
 
+exclude: ["cv"]
+
 # Post configuration
 excerpt_separator: <!--more-->
 

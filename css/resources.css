@@ -1,0 +1,137 @@
+#resources {
+    text-align: justify;
+}
+
+.resources-section {
+	padding-top: 2em;
+}
+#resources-filter em.fa {
+    float: right;
+    outline: 0;
+    padding: .3em;
+}
+#resources-filter em.filter-menu {
+    font-size: 1.4em;
+    margin-left: 1em;
+}
+#resources-filter em.filter-item {
+    font-size: 1em;
+    margin-top: .5em;
+}
+@media print {
+	#resources-filter em[id^="filter-"] {
+		display: none;
+	}
+}
+@media screen and (max-width: 42em) {
+	#resources-filter em[id^="filter-"] {
+		display: none;
+	}
+    .resources-section {
+        font-size: .85em;
+        padding-top: 0em;
+    }
+}
+#resources-filter em.fa:focus {
+    background-color: #d7bd1e;
+}
+
+.experience-summary {
+    font-style: italic;
+    padding-bottom: 1em;
+}
+@media screen and (max-width: 42em) {
+    .experience-summary {
+        padding-left: 0em;
+    }
+}
+
+/* Publications */
+#filter-publications:focus ~ div:not(.e1-academics),
+#filter-publications:focus ~ div .e2-studies {
+    display: none;
+}
+#filter-publications:focus ~ div .e2-publications {
+    display: block;
+}
+
+.acro {
+	background-color: #f7ead9;
+}
+.e2-publications {
+    margin-top: 2em;
+}
+.e2-publications li {
+    font-size: .95em;
+}
+.e2-research, .e2-business {
+	display: table;
+    width: 100%;
+}
+.experience,
+.studies {
+	display: table;
+    width: 100%;
+}
+.experience-icon,
+.experience-title,
+.experience-length,
+.studies-title,
+.studies-institution {
+	display: table-cell;
+}
+.experience-icon {
+	min-width: 10%;
+    padding-right: 1em;
+    width: 10%;
+}
+.experience-title {
+	min-width: 72%;
+	text-align: left;
+	vertical-align: middle;
+	width: 72%;
+}
+@media screen and (max-width: 42em) {
+    .experience-title {
+	    min-width: 100%;
+	    width: 100%;
+    }
+}
+.experience-length {
+	text-align: right;
+	width: 18%;
+}
+.studies-title {
+	min-width: 17em;
+	text-align: left;
+}
+.studies-institution {
+    font-style: italic;
+	text-align: right;
+	width: 100%;
+}
+.experience a {
+    color: #66503b;
+    font-weight: bolder;
+}
+
+.course-title,
+.course-title a,
+.degree-title {
+    color: #8f7d0f;
+    font-weight: bolder;
+}
+.publication-title {
+    font-size: 1em;
+}
+.publication-title,
+.publication-title a {
+    color: #51920f;
+    font-weight: bolder;
+}
+.studies a,
+.experience a,
+.publication-title a {
+    border: none;
+    text-decoration: underline;
+}
