@@ -4,7 +4,7 @@ title:  "Find and remove veth's used for LXC"
 description: "Find and remove virtual interfaces used for Linux containers"
 date:   2018-03-11 18:52:04
 categories: deployment
-tags: [ansible, openstack, networking]
+tags: [ansible, unix, networks]
 comments: true
 ---
 
@@ -134,12 +134,6 @@ Check against the virtual interfaces and bridges in the system. These can be fou
 110: b78dc1c8_eth0@vethBMO7RR: <NO-CARRIER,BROADCAST,MULTICAST,UP,M-DOWN> mtu 1500 qdisc noqueue master lxcbr0 state LOWERLAYERDOWN qlen 1000
     link/ether fe:df:b0:e3:a5:2e brd ff:ff:ff:ff:ff:ff
 ...
-```
-
-```
-# brctl show
-bridge name	bridge id		STP enabled	interfaces
-lxcbr0		8000.feeec5451826	no		b78dc1c8_eth0
 ```
 
 ---
