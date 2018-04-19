@@ -4,7 +4,7 @@ title:  "Find and remove veth's used for LXC"
 description: "Find and remove virtual interfaces used for Linux containers"
 date:   2018-03-11 18:52:04
 categories: deployment
-tags: [ansible, unix, networks]
+tags: [ansible, centos, networks]
 comments: true
 ---
 
