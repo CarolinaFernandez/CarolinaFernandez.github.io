@@ -7,22 +7,44 @@ excerpt: ""
 <!DOCTYPE html>
 <html lang="en-us">
   {% include head.html %}
-  <body>
-    {% include header.html %}
+  <body class="is-preload">
 
-    <section class="site-content">
-      <div class="navbar-content-wrapper">
-        <div class="navbar-content">
-            {% include navbar.html %}
-        </div>
-      </div>
+    <!-- Wrapper -->
+        <div id="wrapper">
+		<!-- Header -->
+		{% include header.html %}
 
-      <section class="main-content">
-          <h2>Was there something here?</h2>
-          <p>Probably not anymore. Getting you back to the start page...</p>
-      </section>
-    </section>
+		<!-- Menu -->
+		{% include menu.html %}
 
-    {% include analytics.html %}
+		<div id="main">
+			<article class="post">
+				<header>
+					<div class="title">
+						<h2>Nothing here</h2>
+					</div>
+				</header>
+				<div>
+					<p>
+						<em>(At least not anymore)</em>
+					</p>
+					<p>
+						Getting you back to the start page
+					</p>
+				</div>
+			</article>
+
+		</div>
+		<!-- Sidebar -->
+		{% include sidebar.html %}
+
+	<!-- Scripts -->
+	<script src="/assets/js/jquery.min.js"></script>
+	<script src="/assets/js/colours.js"></script>
+	<script src="/assets/js/browser.min.js"></script>
+	<script src="/assets/js/breakpoints.min.js"></script>
+	<script src="/assets/js/util.js"></script>
+	<script src="/assets/js/main.js"></script>
+
   </body>
 </html>
