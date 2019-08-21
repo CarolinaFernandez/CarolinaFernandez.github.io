@@ -293,9 +293,16 @@ input, select, textarea {
 
 		pre code {
 			display: block;
+			font-size: 1em;
 			line-height: 1.75em;
 			padding: 0;
 			overflow-x: auto;
+		}
+
+		@media screen and (max-width: 736px) {
+			pre code {
+				font-size: 1.3em !important;
+			}
 		}
 
 		pre code table {
@@ -2191,7 +2198,7 @@ input, select, textarea {
 		input[type="checkbox"] + label,
 		input[type="radio"] + label {
 			text-decoration: none;
-			color: #646464;
+			color: #414141;
 			cursor: pointer;
 			display: inline-block;
 			font-size: 1em;
@@ -2770,9 +2777,9 @@ input, select, textarea {
 		padding: 3em 3em 1em 3em ;
 		background: #ffffff;
 		border: solid 1px rgba(160, 160, 160, 0.3);
-		margin: 0 0 3em 0;
-		max-width: 66em;
+		margin: 0 2em 3em 2em;
 		position: relative;
+		width: 96%;
 	}
 
 		[data-theme="dark"] .post {
@@ -2780,9 +2787,9 @@ input, select, textarea {
 		}
 
 		.post img[src$="img-center"] {
-	    display: block;
-	    margin: 0 auto;
-	    max-width: 80%;
+			display: block;
+			margin: 0 auto;
+			max-width: 80%;
 		}
 
 		.post > header {
@@ -3231,6 +3238,9 @@ input, select, textarea {
 				color: #af3c3c !important;
 				font-style: italic;
 		}
+			[data-theme="dark"] nav.links li a.active {
+				color: #ec5252 !important;
+			}
 
 			#header .links ul li {
 				border-left: solid 1px rgba(160, 160, 160, 0.3);
@@ -3247,12 +3257,16 @@ input, select, textarea {
 
 				#header .links ul li a {
 					border-bottom: 0;
+					color: #111;
 					font-family: "Raleway", Helvetica, sans-serif;
 					font-size: 0.7em;
 					font-weight: 400;
 					letter-spacing: 0.25em;
 					text-transform: uppercase;
 				}
+					[data-theme="dark"] #header .links ul li a {
+						color: #cbcbcb;
+					}
 
 					#header .links ul li a.theme-switcher {
 						font-size: 1.1em;
@@ -3519,7 +3533,7 @@ input, select, textarea {
 		}
 
 	#intro header h2 {
-		font-size: 2em;
+		ont-size: 2em;
 		font-weight: 900;
 	}
 

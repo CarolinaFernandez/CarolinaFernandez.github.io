@@ -17,15 +17,22 @@ a.icon.brands.fa-twitter {
 
 /* Disqus comments */
 .post-comments {
-  padding: 1em 1em 1em 1em ;
-  background: #ffffff;
+  padding: 1em 3em 1em 3em;
+  background: #fafafa;
   border: solid 1px rgba(160, 160, 160, 0.3);
-  margin: 0 0 3em 0;
-  max-width: 66em;
+  margin: 0 2em 3em 2em;
   position: relative;
+  width: 96%;
 }
   [data-theme="dark"] .post-comments {
     background-color: #333;
+  }
+  @media screen and (max-width: 736px) {
+    .post-comments {
+      padding: 1.5em 1.5em 0.1em 1.5em ;
+      left: -1.5em;
+      margin: 0 0 2em 0;
+      width: calc(100% + (1.5em * 2));
   }
 #disqus_thread {
   margin: 0;
