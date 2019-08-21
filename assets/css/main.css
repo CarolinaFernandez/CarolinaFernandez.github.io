@@ -191,12 +191,21 @@ input, select, textarea {
 
 		a:hover {
 			border-bottom-color: transparent;
-			color: #2ebaae !important;
+			color: #b8530c !important;
 		}
 
 			a:hover:before {
-				color: #2ebaae !important;
+				color: #b8530c !important;
 			}
+
+				[data-theme="dark"] a:hover {
+					border-bottom-color: transparent;
+					color: #f4af15 !important;
+				}
+
+					[data-theme="dark"] a:hover:before {
+						color: #f4af15 !important;
+					}
 
 	strong, b {
 		color: #3c3b3b;
@@ -1927,9 +1936,18 @@ input, select, textarea {
 		input[type="button"]:hover,
 		button:hover,
 		.button:hover {
-			box-shadow: inset 0 0 0 1px #2ebaae;
-			color: #2ebaae !important;
+			box-shadow: inset 0 0 0 1px #b8530c !important;
+			color: #b8530c !important;
 		}
+
+			[data-theme="dark"] input[type="submit"]:hover,
+			[data-theme="dark"] input[type="reset"]:hover,
+			[data-theme="dark"] input[type="button"]:hover,
+			[data-theme="dark"] button:hover,
+			[data-theme="dark"] .button:hover {
+				box-shadow: inset 0 0 0 1px #e5742b !important;
+				color: #e5742b !important;
+			}
 
 			input[type="submit"]:hover:active,
 			input[type="reset"]:hover:active,
@@ -2779,7 +2797,6 @@ input, select, textarea {
 		border: solid 1px rgba(160, 160, 160, 0.3);
 		margin: 0 3em 3em 1.5em;
 		position: relative;
-		/*width: 96%;*/
 	}
 
 		[data-theme="dark"] .post {
@@ -3457,8 +3474,17 @@ input, select, textarea {
 		-ms-flex-grow: 1;
 		flex-grow: 1;
 		-ms-flex: 1;
-		width: 100%;
+		max-width: 80%;
 	}
+
+	@media screen and (max-width: 1280px) {
+
+		#main {
+			max-width: 100%;
+			width: 100%;
+		}
+
+  }
 
 /* Sidebar */
 
