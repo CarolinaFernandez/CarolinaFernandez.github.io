@@ -40,7 +40,7 @@ def main():
 serving.run_simple("0.0.0.0", 8000, app)
 ```
 
-Other commonly used minimal applications directly use `app.run()` ([example](https://gist.github.com/cedbeu/5596158)).
+Other commonly used minimal applications directly use <code>app.run()</code> ([example](https://gist.github.com/cedbeu/5596158)).
 
 Pointing [cURL](https://ec.haxx.se/cmdline-options.html) to the exposed endpoint will return in the expected output:
 
@@ -73,7 +73,7 @@ serving.run_simple("0.0.0.0", 8000, app, ssl_context=context)
 
 The context can be defined in simpler ways; for instance:
 * Using a tuple of cert and key ([see this](http://flask.pocoo.org/snippets/111/)). However, the option to define the protocol and version is lost
-* Defining and "adhoc" context (`ssl_context="adhoc"`). The dynamic change of the server identity on each new start is not recommended if the server is to be tracked and trusted by someone else
+* Defining and "adhoc" context (<code>ssl_context="adhoc"</code>). The dynamic change of the server identity on each new start is not recommended if the server is to be tracked and trusted by someone else
 
 Also, there is a minimal change on the call through cURL: the endpoint is provided through a secure connection now. Note that it is not possible anymore to connect through the plain HTTP endpoint:
 
@@ -115,7 +115,7 @@ This time, cURL expects the client certificate (PKCS#12 or PEM formats); otherwi
 ```console
 $ curl -k https://127.0.0.1:8000/ -E client/client.pem
 Top-level content
-$ curl -k https://127.0.0.1:8000/ -E client/untrusted_client.pem 
+$ curl -k https://127.0.0.1:8000/ -E client/untrusted_client.pem
 curl: (35) gnutls_handshake() failed: Error in the push function.
 $ curl -k https://127.0.0.1:8000/
 curl: (35) gnutls_handshake() failed: Handshake failed
@@ -144,7 +144,7 @@ cat client.crt client.key > client.pem
 
 ### Altogether
 
-The three options can be encompassed on a single module which delegates the choice of the behaviour to specific configuration parameters (`HTTPS_ENABLED`, `VERIFY_USER`) such that each serving type can be defined by a specific combination:
+The three options can be encompassed on a single module which delegates the choice of the behaviour to specific configuration parameters (<code>HTTPS_ENABLED</code>, <code>VERIFY_USER</code>) such that each serving type can be defined by a specific combination:
 * HTTP: *HTTPS_ENABLED = False*, *VERIFY_USER = False*
 * HTTPS (server): *HTTPS_ENABLED = True*, *VERIFY_USER = False*
 * HTTPS (server and client): *HTTPS_ENABLED = True*, *VERIFY_USER = True*

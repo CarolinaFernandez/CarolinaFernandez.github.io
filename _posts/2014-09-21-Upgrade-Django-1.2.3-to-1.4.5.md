@@ -12,8 +12,8 @@ comments: true
 * TOC
 {:toc}
 
-As a Django/Python developer or maintainer, you may need at some point to upgrade one of your legacy applications or tools to a more recent or complete version of the framework. This was our case, as one of our stacks was written in Python2.6 and leveraged on Django 1.2.3. We required (1) a smooth migration and (2) provide backwards compatibility with 1.2. <!--more-->While the ideal scenario at this point in time was to directly upgrading to Django 1.6, migration was too cumbersome: e.g., it is mandatory to change paths for [many generic views](https://docs.djangoproject.com/en/1.4/topics/generic-views-migration/) and not every functionality seems to be there (e.g. the `get_model_and_form_class` method from the `create_update` view).
-As a Django/Python developer or maintainer, you may need at some point to upgrade one of your legacy applications or tools to a more recent or complete version of the framework. This was our case, as one of our stacks was written in Python2.6 and leveraged on Django 1.2.3. We required (1) a smooth migration and (2) provide backwards compatibility with 1.2. While the ideal scenario at this point in time was to directly upgrading to Django 1.6, migration was too cumbersome: e.g., it is mandatory to change paths for [many generic views](https://docs.djangoproject.com/en/1.4/topics/generic-views-migration/) and not every functionality seems to be there (e.g. the `get_model_and_form_class` method from the `create_update` view).
+As a Django/Python developer or maintainer, you may need at some point to upgrade one of your legacy applications or tools to a more recent or complete version of the framework. This was our case, as one of our stacks was written in Python2.6 and leveraged on Django 1.2.3. We required (1) a smooth migration and (2) provide backwards compatibility with 1.2. <!--more-->While the ideal scenario at this point in time was to directly upgrading to Django 1.6, migration was too cumbersome: e.g., it is mandatory to change paths for [many generic views](https://docs.djangoproject.com/en/1.4/topics/generic-views-migration/) and not every functionality seems to be there (e.g. the <code>get_model_and_form_class</code> method from the <code>create_update</code> view).
+As a Django/Python developer or maintainer, you may need at some point to upgrade one of your legacy applications or tools to a more recent or complete version of the framework. This was our case, as one of our stacks was written in Python2.6 and leveraged on Django 1.2.3. We required (1) a smooth migration and (2) provide backwards compatibility with 1.2. While the ideal scenario at this point in time was to directly upgrading to Django 1.6, migration was too cumbersome: e.g., it is mandatory to change paths for [many generic views](https://docs.djangoproject.com/en/1.4/topics/generic-views-migration/) and not every functionality seems to be there (e.g. the <code>get_model_and_form_class</code> method from the <code>create_update</code> view).
 
 Note that these generic views are already introduce in 1.4, but its use is not enforced. Similarly, there are many other modifications (see [Django 1.4 release notes](https://docs.djangoproject.com/en/1.5/releases/1.4/)) that are introduced in this version but its use is <u>not enforced</u>.
 
@@ -23,7 +23,7 @@ Below you will find a short guide in order perform a quick migration. Note that 
 
 #### DATABASES structure
 
-In our case, we provide settings files to be modified by the user. The `DATABASES` structure should be added into your app's static settings, far away from any potential modification from the user's side. In any case, the user is not interested in this structure, right?
+In our case, we provide settings files to be modified by the user. The <code>DATABASES</code> structure should be added into your app's static settings, far away from any potential modification from the user's side. In any case, the user is not interested in this structure, right?
 
 ```python
 DATABASES = {
@@ -62,7 +62,7 @@ TEMPLATE_LOADERS = [
 
 #### XMLField
 
-This field, once present in Django 1.2.3, is no longer supported. It must be changed to a `TextField` to work under Django 1.4.5. This field already existed under Django, therefore this change shall not affect your app, whether it runs under 1.2.3 or 1.4.5.
+This field, once present in Django 1.2.3, is no longer supported. It must be changed to a <code>TextField</code> to work under Django 1.4.5. This field already existed under Django, therefore this change shall not affect your app, whether it runs under 1.2.3 or 1.4.5.
 
 ```python
 from django.db import models

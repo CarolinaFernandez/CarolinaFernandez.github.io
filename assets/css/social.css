@@ -1,0 +1,37 @@
+/* Icons */
+a.icon.brands.fa-linkedin {
+  color: #0077b5;
+}
+a.ai.ai-google-scholar {
+  color: #4285f4;
+}
+a.icon.brands.fa-github {
+  color: #24292e;
+}
+  [data-theme="dark"] a.icon.brands.fa-github {
+    color: #bbb;
+  }
+a.icon.brands.fa-twitter {
+  color: #339ff9;
+}
+
+/* Disqus comments */
+.post-comments {
+  padding: 1em 1em 1em 1em ;
+  background: #ffffff;
+  border: solid 1px rgba(160, 160, 160, 0.3);
+  margin: 0 0 3em 0;
+  max-width: 66em;
+  position: relative;
+}
+  [data-theme="dark"] .post-comments {
+    background-color: #333;
+  }
+#disqus_thread {
+  margin: 0;
+  padding: 1em;
+}
+[data-theme="dark"] #disqus_thread {
+  background: #aaa;
+  color: #cbcbcb;
+}

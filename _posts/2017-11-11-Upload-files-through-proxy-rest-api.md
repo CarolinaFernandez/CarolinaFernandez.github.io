@@ -11,7 +11,7 @@ comments: true
 * TOC
 {:toc}
 
-Say you have a method that uploads a file via POST (`-F`) to a specific endpoint in a REST API (here, using Flask). Now, you want to add some logic to this process before POSTing the file, but without modifying the original API. So you create an intermediate REST API. How to allow POSTING the file through this intermediate API?
+Say you have a method that uploads a file via POST (<code>-F</code>) to a specific endpoint in a REST API (here, using Flask). Now, you want to add some logic to this process before POSTing the file, but without modifying the original API. So you create an intermediate REST API. How to allow POSTING the file through this intermediate API?
 
 <!--more-->
 
@@ -36,8 +36,8 @@ Finally, both interfaces will run in localhost (could be located anywhere as lon
 
 The intermediate or proxy API incorporates the new logic for validating the POSTed file. The endpoint at this interface can be defined in several ways, as best fit, for instance accepting the POSTed file:
 
-* As a value in a form, acting as a *simple proxy* (example in cURL: `-F "somefile=@/path/to/file"`)
-* As a dictionary value, with *different kind of paths* (example in cURL: `-H "Content-Type: application/json" -X POST -d '{"somefile": "/path/to/file"}'`)
+* As a value in a form, acting as a *simple proxy* (example in cURL: <code>-F "somefile=@/path/to/file"</code>)
+* As a dictionary value, with *different kind of paths* (example in cURL: <code>-H "Content-Type: application/json" -X POST -d '{"somefile": "/path/to/file"}'</code>)
 
 
 #### Simple proxy

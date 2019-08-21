@@ -18,9 +18,9 @@ One of the basic issues any software developer or maintainer may face at some po
 
 If you are running a Django app on top of Apache, you may have at least 3 different files:
 
-* `/etc/apache2/sites-available/some_app.conf`
-* `/etc/apache2/conf.d/some_app-vhosts.conf`
-* `/path/to/some_app/django.wsgi`
+* <code>/etc/apache2/sites-available/some_app.conf</code>
+* <code>/etc/apache2/conf.d/some_app-vhosts.conf</code>
+* <code>/path/to/some_app/django.wsgi</code>
 
 Let us assume the following points:
 
@@ -32,7 +32,7 @@ In this specific case, the configuration inside the first file is tightly couple
 
 ---
 
-To solve that, let us take the first configuration file (`/etc/apache2/sites-available/some_app.conf`) as an example:
+To solve that, let us take the first configuration file (<code>/etc/apache2/sites-available/some_app.conf</code>) as an example:
 
 ```apache
 Listen 5555
@@ -41,17 +41,17 @@ WSGIDaemonProcess monitor
 WSGIScriptAlias / /path/to/some_app/wsgi/django.wsgi process-group=monitor application-group=%{GLOBAL}
 ```
 
-The highlighted lines indicate the dependencies, where the physical structure (`/path/to/some_app`) is referenced. To change that, one method would be to use environment variables.
+The highlighted lines indicate the dependencies, where the physical structure (<code>/path/to/some_app</code>) is referenced. To change that, one method would be to use environment variables.
 
 ### Environment vars in Apache
 
-Apache uses its own env vars which can be set (1) either using the [`SetEnv`](http://httpd.apache.org/docs/2.0/mod/mod_env.html#setenv) directive into your vhost configuration file (check an [example](http://stackoverflow.com/questions/10902433/setting-environment-variables-for-accessing-in-php)) or (2) exporting the env var directly from Apache's configuration files.
+Apache uses its own env vars which can be set (1) either using the [<code>SetEnv</code>](http://httpd.apache.org/docs/2.0/mod/mod_env.html#setenv) directive into your vhost configuration file (check an [example](http://stackoverflow.com/questions/10902433/setting-environment-variables-for-accessing-in-php)) or (2) exporting the env var directly from Apache's configuration files.
 
-I opted for the second, since the vhost configuration file was not to be touched. The file is located at `/etc/apache2/envvars`, and variables can be exported like in any other Unix script.
+I opted for the second, since the vhost configuration file was not to be touched. The file is located at <code>/etc/apache2/envvars</code>, and variables can be exported like in any other Unix script.
 
 <u>Referencing an Apache env var</u> from its configuration files is easy: just replace the path to the app for the variable, surrounded by braces.
 
-That is, first add the environment variable to `/etc/apache2/envvars`.
+That is, first add the environment variable to <code>/etc/apache2/envvars</code>.
 
 ```shell
 # envvars - default environment variables for apache2ctl
@@ -116,14 +116,14 @@ OK, you may need variables within the Apache environment because some configurat
 
 Because you may need to access those variables from within your application code. This can naturally be circumvented by using relative paths within your app, and I personally think that's a neater way. If you did it, feel free to skip this section and go for the final result.
 
-There may be multiple ways to do this. The one I chose was to create a new script under `/etc/profile.d` and export a variable with the path to the app. Note that this method has at least one **rawback**: the data inside the script is only evaluated after the user logs in. This means that any change in this file needs to re-enter the user's session.
+There may be multiple ways to do this. The one I chose was to create a new script under <code>/etc/profile.d</code> and export a variable with the path to the app. Note that this method has at least one **rawback**: the data inside the script is only evaluated after the user logs in. This means that any change in this file needs to re-enter the user's session.
 
 You should assess how much this operation is likely to happen in your system and choose the option best suited for you. In this case, this option seemed good enough.
 
-To <u>access the Unix env vars from Python</u> (e.g. from your Django app), just pass the env var's name to the [`os.getenv`](https://docs.python.org/2/library/os.html#os.getenv) module from within your Python code and you are done.
+To <u>access the Unix env vars from Python</u> (e.g. from your Django app), just pass the env var's name to the [<code>os.getenv</code>](https://docs.python.org/2/library/os.html#os.getenv) module from within your Python code and you are done.
 
 
-In order to do that, add the same value to a global env var in `/etc/profile.d/some_app.sh`.
+In order to do that, add the same value to a global env var in <code>/etc/profile.d/some_app.sh</code>.
 
 ```shell
 #!/bin/bash

@@ -27,7 +27,7 @@ The following files are defined or modified:
 
 #### Java classes
 
-First, the `SimpleMappingExceptionResolver` is extended to handle any exception and process any output in the "ModelAndView" object. This class can be registered later in the configuration of the web application so that it acts as the default resolver.
+First, the <code>SimpleMappingExceptionResolver</code> is extended to handle any exception and process any output in the "ModelAndView" object. This class can be registered later in the configuration of the web application so that it acts as the default resolver.
 
 **CustomSimpleMappingExceptionResolver.java**
 
@@ -329,6 +329,6 @@ src/main/webapp/WEB-INF/
 <g:error />
 ```
 
-With this, any error defined in `CustomSimpleMappingExceptionResolver.java` (that is, any exception or HTTP code or any other servlet request or response) and which can be caught (e.g., errors in JSTL templates are likely to **not** be intercepted) will be handled and a specific error page will be displayed instead of the custom web server error page.
+With this, any error defined in <code>CustomSimpleMappingExceptionResolver.java</code> (that is, any exception or HTTP code or any other servlet request or response) and which can be caught (e.g., errors in JSTL templates are likely to **not** be intercepted) will be handled and a specific error page will be displayed instead of the custom web server error page.
 
 Finally, a possibly good measure to combine with this is to turn off the debugging in the web server (e.g., [example for Tomcat](https://stackoverflow.com/questions/794329/disable-all-default-http-error-response-content-in-tomcat)), so even under unexpected errors there will be no traces of information provided to the end user.

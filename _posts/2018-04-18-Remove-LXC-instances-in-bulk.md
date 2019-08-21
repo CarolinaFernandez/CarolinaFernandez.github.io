@@ -28,7 +28,7 @@ Container is not defined
 
 ### Solution
 
-Simple bash scripting and iterating on them is enough. There is just a caveat: if trying to use the listing command (`lxc-ls`, for CentOS); it will not directly work.
+Simple bash scripting and iterating on them is enough. There is just a caveat: if trying to use the listing command (<code>lxc-ls</code>, for CentOS); it will not directly work.
 
 Instead, you may just as well use the directories storing the container data; as these share name. Not that you need to slightly adapt commands for a non-CentOS system.
 
@@ -48,4 +48,4 @@ do
 done
 ```
 
-Further outputs of `lxc-ls` should render no more the "filtered" LXC instances.
+Further outputs of <code>lxc-ls</code> should render no more the "filtered" LXC instances.

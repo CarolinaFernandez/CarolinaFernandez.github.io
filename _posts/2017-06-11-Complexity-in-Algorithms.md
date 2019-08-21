@@ -102,7 +102,7 @@ def swap(A, x, y):
     aux = A[x]
     A[x] = A[y]
     A[y] = aux
-    return A 
+    return A
 
 def insertion_sort(A):
     for i in range(len(A)):
@@ -130,13 +130,13 @@ SELECTION-SORT(A)
 
 | Line | Instruction | Cost | Times | Explanation |
 |:----:|:------------|:----:|:------|:------------|
-| 2 | `for i=1 to A.length-1` | $$c_1\$$ | $$n+1\$$ | 1 iteration per item in the outer loop + last 1 to get out of it |
-| 3 | &nbsp; &nbsp; `min = A[i]` | $$c_2\$$ | $$n\$$ | Runs every time in the outer loop |
-| 4 | &nbsp; &nbsp; `for j=i+1 to A.length-1` | $$c_3\$$ | $$\sum_{j=i+1}^{n} t_j\$$ | Subset of items in the outer loop + last 1 to get out of inner loop |
-| 5 | &nbsp; &nbsp; &nbsp; &nbsp; `if A[j] < min` | $$c_4\$$ | $$\sum_{j=i+1}^{n} (t_j-1)\$$ | Worst-case: 1 iteration per item in the inner loop |
-| 6 | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; `min = A[j]` | $$c_5\$$ | *Same as L5* | *Same as L5* |
-| 7 | &nbsp; &nbsp; `if A[i] != min` | $$c_6\$$ | $$n\$$ | Worst-case: 1 iteration per item in the outer loop |
-| 8 | &nbsp; &nbsp; &nbsp; &nbsp; `swap(min, A[i])` | $$c_7\$$ | *Same as L7* | *Same as L7* |
+| 2 | <code>for i=1 to A.length-1</code> | $$c_1\$$ | $$n+1\$$ | 1 iteration per item in the outer loop + last 1 to get out of it |
+| 3 | &nbsp; &nbsp; <code>min = A[i]</code> | $$c_2\$$ | $$n\$$ | Runs every time in the outer loop |
+| 4 | &nbsp; &nbsp; <code>for j=i+1 to A.length-1</code> | $$c_3\$$ | $$\sum_{j=i+1}^{n} t_j\$$ | Subset of items in the outer loop + last 1 to get out of inner loop |
+| 5 | &nbsp; &nbsp; &nbsp; &nbsp; <code>if A[j] < min</code> | $$c_4\$$ | $$\sum_{j=i+1}^{n} (t_j-1)\$$ | Worst-case: 1 iteration per item in the inner loop |
+| 6 | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <code>min = A[j]</code> | $$c_5\$$ | *Same as L5* | *Same as L5* |
+| 7 | &nbsp; &nbsp; <code>if A[i] != min</code> | $$c_6\$$ | $$n\$$ | Worst-case: 1 iteration per item in the outer loop |
+| 8 | &nbsp; &nbsp; &nbsp; &nbsp; <code>swap(min, A[i])</code> | $$c_7\$$ | *Same as L7* | *Same as L7* |
 
 <p></p>
 
@@ -203,7 +203,7 @@ MERGESORT(A)
           add A[x] to r
       l = MERGESORT(l)
       r = MERGESORT(r)
-      if last(l) &le; first(r) 
+      if last(l) &le; first(r)
          append r to l
          return l
       result = MERGE(l, r)

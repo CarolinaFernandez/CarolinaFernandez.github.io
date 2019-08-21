@@ -2,29 +2,47 @@
 layout: default
 comments: true
 ---
-<h2>{{ page.title }}</h2>
+<article class="post">
+	<header>
+		<div class="title">
+			<h3>{{ page.title }}</h3>
+		</div>
+		<div class="meta">
+			<div class="post-meta">
+					<time class="published" datetime="{{ page.date }}">
+						<em aria-hidden="true" class="fa fa-clock"></em>
+						{{ page.date | date: "%-Y/%-m/%-d" }}
+					</time>
+			</div>
+		</div>
+	</header>
 
-<div class="post-meta">
-	<span>
-		<em aria-hidden="true" class="fa fa-clock-o"></em>
-		{{ page.date | date: "%-Y/%-m/%-d" }}
-	</span>
-	<span>
-		<em aria-hidden="true" class="fa fa-tags"></em>
-		{% for tag in page.tags %}
-			<a href="/blog/tags/#{{ tag | slugify }}">{{ tag }}</a>{% unless forloop.last %},{% endunless %}
-		{% endfor %}
-	</span>
-	<span>
-		<em aria-hidden="true" class="fa fa-folder-open"></em>
-		{{ page.categories }}
-	</span>
-</div>
+	<div class="post-content">
+	{{ content }}
+	</div>
 
-<div class="post-content">
-{{ content }}
-</div>
+	<footer>
+		<ul class="stats">
+			<li>
+				<span>
+					<em aria-hidden="true" class="fa fa-tags"></em>
+					{% for tag in page.tags %}
+						<a href="/blog/tags/#{{ tag | slugify }}">{{ tag }}</a>{% unless forloop.last %},{% endunless %}
+					{% endfor %}
+				</span>
+			</li>
+			<li>
+				<span>
+					<em aria-hidden="true" class="fa fa-folder-open"></em>
+					{{ page.categories }}
+				</span>
+			</li>
+		</ul>
+	</footer>
+</article>
 
-{% if page.comments and site.author.disqus %}
-  {% include comments.html %}
-{% endif %}
+<article class="post-comments">
+	{% if page.comments and site.author.disqus %}
+	  {% include comments.html %}
+	{% endif %}
+</article>

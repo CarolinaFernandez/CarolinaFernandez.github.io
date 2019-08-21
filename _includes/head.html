@@ -1,8 +1,8 @@
 <head>
-  <meta charset="UTF-8">
   <title>{{ page.title | default: site.title }}</title>
+  <meta charset="utf-8" />
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <meta name="theme-color" content="#157878">
   <meta name="description"
   {% if page.description %}
@@ -12,26 +12,20 @@
   {% endif %}
   />
   <link href="/img/favicon.ico" rel="icon" type="image/x-icon">
+  <link rel="stylesheet" href="/assets/css/main.css" />
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="/feed.xml">
-  <!-- Fonts and Google APIs -->
-  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Lobster+Two&effect=static">
-  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Quicksand">
-  <!-- Font-awesome -->
-  <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.css">
-  <!-- Academicons -->
-  <link rel="stylesheet" href="/css/academicons/css/academicons.css"/>
-  <!-- Themes -->
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="stylesheet" href="/css/navbar.css">
-  <link rel="stylesheet" href="/css/resources.css">
-  <link rel="stylesheet" href="/css/post.css">
-  <link rel="stylesheet" href="/css/social.css">
-  <!-- Syntax highlighting -->
-  <link rel="stylesheet" href="/css/highlight.css">
   <!-- Redirect for 404 -->
   {% if page.url contains "404" %}
       <meta http-equiv="refresh" content="3; url=/">
   {% endif %}
   {% include analytics.html %}
+
+  <!-- Academicons -->
+  <link rel="stylesheet" href="/assets/css/academicons/css/academicons.css"/>
+  <link rel="stylesheet" href="/assets/css/resources.css">
+  <link rel="stylesheet" href="/assets/css/post.css">
+  <link rel="stylesheet" href="/assets/css/tags.css">
+  <link rel="stylesheet" href="/assets/css/social.css">
+  <link rel="stylesheet" href="/assets/css/highlight.css">
+  <link rel="stylesheet" href="/assets/css/code.css">
 </head>

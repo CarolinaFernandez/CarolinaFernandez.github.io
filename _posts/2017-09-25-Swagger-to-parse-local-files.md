@@ -57,13 +57,13 @@ Two files will be in use here:
 
 #### UI
 
-Get the [index.html](https://github.com/swagger-api/swagger-ui/blob/master/dist/index.html) file from the *swagger-ui* project and rename it as `index-ui.html`.
+Get the [index.html](https://github.com/swagger-api/swagger-ui/blob/master/dist/index.html) file from the *swagger-ui* project and rename it as <code>index-ui.html</code>.
 
 ```console
 wget https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/index.html -O index-ui.html
 ```
 
-Fetch the required javascript and css files from the [dist](https://github.com/swagger-api/swagger-ui/tree/master/dist) folder from the *swagger-ui* project and place these under the `dist` folder:
+Fetch the required javascript and css files from the [dist](https://github.com/swagger-api/swagger-ui/tree/master/dist) folder from the *swagger-ui* project and place these under the <code>dist</code> folder:
 
 ```console
 wget https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/swagger-ui-bundle.js
@@ -74,13 +74,13 @@ mv *.css *.js dist/
 
 #### Editor
 
-Get the [index.html](https://github.com/swagger-api/swagger-editor/blob/master/index.html) file from the *swagger-editor* project and rename it as `index-editor.html`.
+Get the [index.html](https://github.com/swagger-api/swagger-editor/blob/master/index.html) file from the *swagger-editor* project and rename it as <code>index-editor.html</code>.
 
 ```console
 wget https://raw.githubusercontent.com/swagger-api/swagger-editor/master/index.html -O index-editor.html
 ```
 
-Fetch the required javascript and css files from the [dist](https://github.com/swagger-api/swagger-ui/tree/master/dist) folder from the *swagger-ui* project and place these under the `dist` folder:
+Fetch the required javascript and css files from the [dist](https://github.com/swagger-api/swagger-ui/tree/master/dist) folder from the *swagger-ui* project and place these under the <code>dist</code> folder:
 
 ```console
 wget https://raw.githubusercontent.com/swagger-api/swagger-editor/master/dist/swagger-editor-bundle.js
@@ -93,7 +93,7 @@ mv *.css *.js dist/
 
 Swagger may load by default the sample *petstore* API specification -- the same it does the online version. This works well for remotely hosted specification files, but not for the local files. Because of this it is needed to modify the html files in order to load a local resource. The steps here presented follow the solution presented on this [solution from StackOverflow](https://stackoverflow.com/a/38319895/2186237).
 
-To ensure the load of a local specification, download the [api-with-examples.yaml](https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v2.0/yaml/api-with-examples.yaml) file and rename it as `swagger.yaml`.
+To ensure the load of a local specification, download the [api-with-examples.yaml](https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v2.0/yaml/api-with-examples.yaml) file and rename it as <code>swagger.yaml</code>.
 
 ```console
 wget https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v2.0/yaml/api-with-examples.yaml -O swagger.yaml
@@ -133,7 +133,7 @@ The asterisks denote a placeholder for the values "*editor*" or "*ui*", dependin
 
 ### Server
 
-Once all the css, js, yaml and html files are in place, it is time to develop a minimal server to present these. The following code will expose two endpoints: */editor* and */ui*, each to accommodate a different layout for the swagger documentation -- that is, with and without editor panel. Save it as `server.py` in the root folder.
+Once all the css, js, yaml and html files are in place, it is time to develop a minimal server to present these. The following code will expose two endpoints: */editor* and */ui*, each to accommodate a different layout for the swagger documentation -- that is, with and without editor panel. Save it as <code>server.py</code> in the root folder.
 
 ```python
 #!/usr/bin/env python

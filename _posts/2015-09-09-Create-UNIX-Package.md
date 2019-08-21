@@ -34,7 +34,7 @@ tar --ignore-failed-read -pczf ${package_name}_${package_version}.tar.gz ${packa
 export DEBFULLNAME=$name
 
 # Note that "--yes" may be not accepted by your dh_make application
-# This will generate the control files under "debian/". Make sure to edit them as needed and 
+# This will generate the control files under "debian/". Make sure to edit them as needed and
 # to place sources under "debian/contents", following the same directory tree these will have
 # when the package installs them on the final file system
 dh_make --yes -n -$package_class -c $copyright -e $email -p ${package_name}_${package_version} -f $path_to_package.tar.gz
@@ -47,7 +47,7 @@ export DH_COMPAT=5
 
 Does not seem complicated, until trying to figure out where to put every file and, sometimes, which values to use for seemingly trivial parameters, as license/copyright, architecture, etc. Yet, as with most stuff, expertise comes with practise.
 
-There are a myriad of configuration possibilities in the Debian control files, located under `debian/control`. For instance, you can define the behaviour before and after installing or uninstalling the package.
+There are a myriad of configuration possibilities in the Debian control files, located under <code>debian/control</code>. For instance, you can define the behaviour before and after installing or uninstalling the package.
 
 ### RPM package
 
@@ -63,7 +63,7 @@ useradd $unixpackage_user -m -s /bin/bash
 # Create specific structure for package
 mkdir {RPMS,SRPMS,BUILD,SOURCES,SPECS}
 
-# Create the SPEC file (SPEC/$package_name.spec) following a template or example 
+# Create the SPEC file (SPEC/$package_name.spec) following a template or example
 # (see https://fedoraproject.org/wiki/How_to_create_an_RPM_package#Examples), then
 # place sources under "SOURCES", following the same directory tree these will have
 # when the package installs them on the final file system

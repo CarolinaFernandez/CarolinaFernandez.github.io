@@ -35,14 +35,14 @@ lxc-start: tools/lxc_start.c: main: 372 Additional information can be obtained b
 
 ### Solution
 
-Here, the interfaces were automatically defined and configured by `OpenStack-Ansible` and placed in configuration of each LXC instance (and its interfaces).
+Here, the interfaces were automatically defined and configured by OpenStack-Ansible and placed in configuration of each LXC instance (and its interfaces).
 
 To avoid the failure in future runs, identify all the previously created interfaces (now producing failures) and remove them.
 Note that this step can be cumbersome; so it is quicker to run the following script rather tan manually removing all related links.
 
 #### For every LXC
 
-The automated approach (recommended for this deployment, as 40+ interfaces are defined). This script iterates over each interface attached to any LXC instance (defined as `lxc.network.veth.pair = ` in the "config" file of each LXC); then deletes it from the network configuration.
+The automated approach (recommended for this deployment, as 40+ interfaces are defined). This script iterates over each interface attached to any LXC instance (defined as <code>lxc.network.veth.pair = </code> in the "config" file of each LXC); then deletes it from the network configuration.
 
 ```bash
 #!/bin/bash
@@ -71,7 +71,7 @@ drwxr-xr-x. 3 root root 4096 Mar 11 13:44 aio1_cinder_api_container-b78dc1c8
 ...
 ```
 
-Check its configuration: generic (`config`) and per-interface (`eno{X}`).
+Check its configuration: generic (<code>config</code>) and per-interface (<code>eno{X}</code>).
 
 ```
 # ls -lah /var/lib/lxc/aio1_cinder_api_container-b78dc1c8
@@ -91,7 +91,7 @@ lxc.network.veth.pair = b78dc1c8_eth0
 lxc.network.link = lxcbr0
 ...
 
-# cat /var/lib/lxc/aio1_cinder_api_container-b78dc1c8/eno1.ini 
+# cat /var/lib/lxc/aio1_cinder_api_container-b78dc1c8/eno1.ini
 ...
 # Create a veth pair within the container
 lxc.network.type = veth
@@ -105,7 +105,7 @@ lxc.network.veth.pair = b78dc1c8_eno1
 lxc.network.link = br-mgmt
 ...
 
-# cat /var/lib/lxc/aio1_cinder_api_container-b78dc1c8/eno2.ini 
+# cat /var/lib/lxc/aio1_cinder_api_container-b78dc1c8/eno2.ini
 # Create a veth pair within the container
 lxc.network.type = veth
 # Network device within the container
@@ -121,10 +121,10 @@ lxc.network.link = br-storage
 
 Check against the virtual interfaces and bridges in the system. These can be found through multiple commands:
 
-* network configuration (`ip a s`)
-* bridge info (`brctl show`)
-* `/proc/net/dev` file
-* configuration of each LXC (`/var/lib/lxc/${container_name}/config`)
+* network configuration (<code>ip a s</code>)
+* bridge info (<code>brctl show</code>)
+* <code>/proc/net/dev</code> file
+* configuration of each LXC (<code>/var/lib/lxc/${container_name}/config</code>)
 
 ```
 # ip a s
@@ -172,15 +172,15 @@ The network configuration is also correct now: the pair of virtual interfaces is
 ...
 392: b78dc1c8_eth0@if391: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master lxcbr0 state UP qlen 1000
     link/ether fe:78:f5:46:3b:5a brd ff:ff:ff:ff:ff:ff link-netnsid 0
-    inet6 fe80::fc78:f5ff:fe46:3b5a/64 scope link 
+    inet6 fe80::fc78:f5ff:fe46:3b5a/64 scope link
        valid_lft forever preferred_lft forever
 394: b78dc1c8_eno1@if393: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-mgmt state UP qlen 1000
     link/ether fe:b8:30:90:41:66 brd ff:ff:ff:ff:ff:ff link-netnsid 0
-    inet6 fe80::fcb8:30ff:fe90:4166/64 scope link 
+    inet6 fe80::fcb8:30ff:fe90:4166/64 scope link
        valid_lft forever preferred_lft forever
 396: b78dc1c8_eno2@if395: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue master br-storage state UP qlen 1000
     link/ether fe:8f:f0:6d:62:7c brd ff:ff:ff:ff:ff:ff link-netnsid 0
-    inet6 fe80::fc8f:f0ff:fe6d:627c/64 scope link 
+    inet6 fe80::fc8f:f0ff:fe6d:627c/64 scope link
        valid_lft forever preferred_lft forever
 
 # brctl show

@@ -57,11 +57,15 @@ p.post-more + a>h2 {
     padding-right: .1em;
 }
 .post-tag {
-    background: #e6e67a;
+    background: #dfdfdf;
+    border-bottom: 0;
     border-radius: .3em;
     margin: .1em;
-    padding: .2em;
+    padding: .3em;
 }
+  [data-theme="dark"] .post-tag {
+    background: #555;
+  }
 .post-tag:hover {
     text-decoration: none;
     opacity: .7;

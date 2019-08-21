@@ -14,7 +14,7 @@ comments: true
 
 For almost a year now, I have had the opportunity to work with a small network of machines part of a high-speed network and publicly facing the Internet - thus consequently reachable by everyone. During the last quarter of the previous year (around November 2014) and the first quarter of the current one (around February 2015), these machines were targeted by Chinese attackers. They gained access to some of the machines, probably by brute-force attacks via SSH, and placed a couple of binaries that infected the machine to -I assume- send continuous traffic to a set of targeted locations. <!--more-->At the end of the day, this is nothing new: if you have machines connected to the Internet that are not properly maintained or secured (e.g. weak passwords, default SSH port, allowing access as root, lacking a firewall, etc) is music to the attacker's ears.
 
-This comes after I firstly noticed strange behaviours on a number of machines: `top` showed a strange process called *IptabLex* (or a random sequence of characters, in later attacks) consuming tons of CPU. Apparently, this process forced the machine to be part of a DDoS-based botnet. The first wave of the attack is commented in the [CSO blog](http://www.csoonline.com/article/2600353/malware-cybercrime/new-botnet-research-from-prolexic-research-team.html) and analysed in ["Malware Must Die!"](http://blog.malwaremustdie.org/2014_06_01_archive.html). As for the second wave, [a detailed explanation is given in this post](https://www.fireeye.com/blog/threat-research/2015/02/anatomy_of_a_brutef.html), among a description of its variants and the rootkit (XOR.DDoS) used by the attackers.
+This comes after I firstly noticed strange behaviours on a number of machines: <code>top</code> showed a strange process called *IptabLex* (or a random sequence of characters, in later attacks) consuming tons of CPU. Apparently, this process forced the machine to be part of a DDoS-based botnet. The first wave of the attack is commented in the [CSO blog](http://www.csoonline.com/article/2600353/malware-cybercrime/new-botnet-research-from-prolexic-research-team.html) and analysed in ["Malware Must Die!"](http://blog.malwaremustdie.org/2014_06_01_archive.html). As for the second wave, [a detailed explanation is given in this post](https://www.fireeye.com/blog/threat-research/2015/02/anatomy_of_a_brutef.html), among a description of its variants and the rootkit (XOR.DDoS) used by the attackers.
 
 In this post I'll summarise what a colleague and me found on the matter. If you fear your machine is infected, you could get a glimpse of the attack here, but be aware that the attack may be further improved by the time you read this.
 
@@ -60,7 +60,7 @@ drwxr-xr-x 21 root root    4096 Sep 27 13:33 ..
 
 These are the paths of the infected files in my machines, corresponding to the first and second attack, respectively. Note that their locations may vary for future attacks and maybe in different machines.
 
-Besides, you should also check `top`:
+Besides, you should also check <code>top</code>:
 
 ```console
 # top
@@ -90,7 +90,7 @@ First things first: you have to get the machine off the public network. Do you h
 
 #### Basic attack understanding
 
-Look first for the process with the random name that is consuming most of the machine's CPU (*djaafnvlvv* for this iteration). You should perform a `lsof -p $process_pid`. This will give you the physical location of the files used to run the process. Alternatively, you could directly scan the filesystem for it:
+Look first for the process with the random name that is consuming most of the machine's CPU (*djaafnvlvv* for this iteration). You should perform a <code>lsof -p $process_pid</code>. This will give you the physical location of the files used to run the process. Alternatively, you could directly scan the filesystem for it:
 
 ```console
 # find / -name "djaafnvlvv"
@@ -108,8 +108,8 @@ Then, have a look at the content of the files, for instance, the file under */et
 # description: djaafnvlvv
 ### BEGIN INIT INFO
 # Provides:		djaafnvlvv
-# Required-Start:	
-# Required-Stop:	
+# Required-Start:
+# Required-Stop:
 # Default-Start:	1 2 3 4 5
 # Default-Stop:		
 # Short-Description:	djaafnvlvv
@@ -126,7 +126,7 @@ stop)
 esac
 ```
 
-The file */etc/init.d/djaafnvlvv* is an [initscript](http://www.linux.com/learn/tutorials/442412-managing-linux-daemons-with-init-scripts) that starts the infected ELF binary file (*/usr/bin/djaafnvlvv*). You could try `strings $binary_file` to see the strings, the human-readable text. As an example, here are the 6 last lines of one of the original infected binaries, */root/2862ashui8u* - which, if I remember correctly, copied itself under */lib/libgcc4.4.so*:
+The file */etc/init.d/djaafnvlvv* is an [initscript](http://www.linux.com/learn/tutorials/442412-managing-linux-daemons-with-init-scripts) that starts the infected ELF binary file (*/usr/bin/djaafnvlvv*). You could try <code>strings $binary_file</code> to see the strings, the human-readable text. As an example, here are the 6 last lines of one of the original infected binaries, */root/2862ashui8u* - which, if I remember correctly, copied itself under */lib/libgcc4.4.so*:
 
 ```console
 # strings /root/2862ashui8u | tail -n 6
@@ -140,9 +140,9 @@ CAk[S
 
 The first IP matches against an open connection, opened by one of the attacker's processes. Some lines before that, there's a dynamic library, *libgcc4.4.so*, that replaces the one in the system and is executed afterwards. That behaviour is really fishy and *alarms should be blaring by now*. You can find [an interesting and more complete analysis of this attack here](https://www.fireeye.com/blog/threat-research/2015/02/anatomy_of_a_brutef.html). You may notice in the previous post that the *BB2FA36AAA9541F0* XOR key also appears. This is another indicator of an infected machine, in this case corresponding to the variant no. 2 of the attack.
 
-Coming back to the analysis of the files, checking the strings in the */root/aiziwen* file (`strings /root/aiziwen | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}`) returned tons of IPs, among them, several belonging to CHINANET and another located in California. 
+Coming back to the analysis of the files, checking the strings in the */root/aiziwen* file (<code>strings /root/aiziwen | grep -E -o "([0-9]{1,3}[\.]){3}[0-9]{1,3}</code>) returned tons of IPs, among them, several belonging to CHINANET and another located in California.
 
-So far, it seems that the two initial files were downloaded into the machine and executed, then, an infected version of *libgcc4.4.so* is placed under */lib* and executed as well. After killing the process with a SIGKILL signal (`kill -9 <pid>`) to the active process (e.g. *djaafnvlvv* for this round), another process with a similarly random name starts to run after a while. There's something looking on the background for this kind of signal. Also, after removing the */lib/libgcc4.4.so* library, it appears after some minutes.
+So far, it seems that the two initial files were downloaded into the machine and executed, then, an infected version of *libgcc4.4.so* is placed under */lib* and executed as well. After killing the process with a SIGKILL signal (<code>kill -9 <pid></code>) to the active process (e.g. *djaafnvlvv* for this round), another process with a similarly random name starts to run after a while. There's something looking on the background for this kind of signal. Also, after removing the */lib/libgcc4.4.so* library, it appears after some minutes.
 
 Now, open the */etc/crontab* file with your preferred editor. We saw the following entry at the end of the file:
 
@@ -158,7 +158,7 @@ Although the name of the file may vary in different attacks, the behaviour is th
 
 This step is not that useful to clean your system, but it is interesting to know which location is your infected machine trying to flood, or from where it is downloading the infected files. The next step deals with cleaning the system, so you may just skip there.
 
-Looking at the open connections (`lsof -i tcp`) related to the infected files, we found the server from where the two infected files mentioned in the first step were being downloaded:
+Looking at the open connections (<code>lsof -i tcp</code>) related to the infected files, we found the server from where the two infected files mentioned in the first step were being downloaded:
 
 ```console
 # curl -I -L http://222.186.134.6:6678
@@ -167,7 +167,7 @@ Content-Type: text/html
 Content-Length: 5402
 Accept-Ranges: bytes
 Server: HFS 2.3 beta
-Set-Cookie: HFS_SID=0.327055824687704; path=/; 
+Set-Cookie: HFS_SID=0.327055824687704; path=/;
 Cache-Control: no-cache, no-store, must-revalidate, max-age=-1
 ```
 
@@ -334,22 +334,22 @@ Someone who is not a sysadmin, or at least not fully devoted to it :), may be be
 You must [change the attributes of the files back to mutable](http://unix.stackexchange.com/a/29904/90930) before being able to delete them.
 
 ```console
-chattr -i -a  /root/aiziwen 
-rm /root/aiziwen 
-chattr -i -a  /root/2862ashui8u 
-rm /root/2862ashui8u 
+chattr -i -a  /root/aiziwen
+rm /root/aiziwen
+chattr -i -a  /root/2862ashui8u
+rm /root/2862ashui8u
 ```
 
 Use the previous as a side note to consider during the clean up process. I copy here and adapt the clean process described by [Serhii](http://superuser.com/users/27571/serhii) in the SuperUser's *["DDoS Virus infection (as a unix service) on a Debian 8 VM Webserver"](http://superuser.com/questions/863997/ddos-virus-infection-as-a-unix-service-on-a-debian-8-vm-webserver/868147#868147")* thread:
 
 1. Remove the line in */etc/crontab* that calls to an infected script every 3 minutes.
-1. Identify the parent process of the virus (`top`, then `f`, then `b`). Stop it (do not kill it, as this signal triggers a respawn), e.g. with `kill -STOP 1632`.
-1. Check that only the parent infected process lives (e.g. `ps aux`). The children should die quickly.
-1. Delete the infected files under */usr/bin/*, */etc/init.d/*, */root/*, */boot/* and so on. Leave the */lib/libgcc4.4.so* for the moment! To identify any lately modified file (such as the binaries for `kill`, `top`, `ps`, etc), list the files in that folder like this: `ls -latr` and you'll see the recently modified files at the bottom.
+1. Identify the parent process of the virus (<code>top</code>, then <code>f</code>, then <code>b</code>). Stop it (do not kill it, as this signal triggers a respawn), e.g. with <code>kill -STOP 1632</code>.
+1. Check that only the parent infected process lives (e.g. <code>ps aux</code>). The children should die quickly.
+1. Delete the infected files under */usr/bin/*, */etc/init.d/*, */root/*, */boot/* and so on. Leave the */lib/libgcc4.4.so* for the moment! To identify any lately modified file (such as the binaries for <code>kill</code>, <code>top</code>, <code>ps</code>, etc), list the files in that folder like this: <code>ls -latr</code> and you'll see the recently modified files at the bottom.
 1. Remove the infected cron script in */etc/cron.hourly/udev.sh* (name may vary) and the */lib/libgcc4.4.so* files.
 1. Kill completely the infected process.
 
-After cleaning, I recommend you to spend some time looking at `top` (to see the most-consuming CPU processes), `uptime` to see the system load average during the last 1, 5 and 15 minutes. See that these numbers correspond to your usage, and not to the virus. Look thoroughly for any other modified files that may be dampering your vision for the overall system status, such as the aforementioned system binaries for `top` or `ps`.
+After cleaning, I recommend you to spend some time looking at <code>top</code> (to see the most-consuming CPU processes), <code>uptime</code> to see the system load average during the last 1, 5 and 15 minutes. See that these numbers correspond to your usage, and not to the virus. Look thoroughly for any other modified files that may be dampering your vision for the overall system status, such as the aforementioned system binaries for <code>top</code> or <code>ps</code>.
 
 #### Update, patch and secure
 

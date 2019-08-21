@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Tags
+title: Blog tags
 description: Tags for blog entries
 ---
 
@@ -8,7 +8,10 @@ description: Tags for blog entries
 Due credit to: https://codinfox.github.io/dev/2015/03/06/use-tags-and-categories-in-your-jekyll-based-github-pages/
 {% endcomment %}
 
+<article class="post">
+<h3 id="{{ tag | slugify }}">List of tags</h3>
 {% include tag-list.html %}
+</article>
 
 {% comment %}
 =======================
@@ -17,6 +20,7 @@ The purpose of this snippet is to list all your posts posted with a certain tag.
 {% endcomment %}
 
 {% for tag in tags %}
+<article class="post">
 	<h3 id="{{ tag | slugify }}">{{ tag }}</h3>
 	<ul>
 	 {% for post in site.posts %}
@@ -25,4 +29,5 @@ The purpose of this snippet is to list all your posts posted with a certain tag.
 		 {% endif %}
 	 {% endfor %}
 	</ul>
+</article>
 {% endfor %}

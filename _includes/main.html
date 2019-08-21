@@ -1,0 +1,29 @@
+<!-- Posts -->
+<article class="post">
+  <header>
+		<div class="title">
+			<h2>Blog</h2>
+		</div>
+	</header>
+
+  <ul class="posts">
+    {% for post in site.posts %}
+      <li>
+        <div class="entry-title">
+          <strong>{{ post.date | date: "%-Y/%m/%d" }}</strong> &raquo; {% include post-url-pretty.html %}
+        </div>
+        {% for tag in post.tags %}
+          <div class="entry-tag">
+            <a class="post-tag" href="/blog/tags/#{{ tag | slugify }}"><em class="fa fa-tag" aria-hidden="true"></em> {{ tag }}</a>
+          </div>
+        {% endfor %}
+      </li>
+    {% endfor %}
+  </ul>
+</article>
+
+<!-- Pagination -->
+<!-- <ul class="actions pagination">
+  <li><a href="" class="disabled button large previous">Previous Page</a></li>
+  <li><a href="#" class="button large next">Next Page</a></li>
+</ul> -->

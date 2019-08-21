@@ -46,7 +46,7 @@ The SDN testbed must consist of the following planes or layers:
 * **Data plane**: perform the forwarding of the (user's) data packets
 * **Management plane**: operate (configure or monitor) the devices
 
-More information can be found <a title="What the hell is SDN" href="http://packetlife.net/blog/2013/may/2/what-hell-sdn/" target="_blank">here</a>, <a title="Management, control and data planes" href="http://blog.ipspace.net/2013/08/management-control-and-data-planes-in.html" target="_blank">here</a> or <a title="Difference between control plane, data plane and management plane" href="https://networkengineering.stackexchange.com/questions/38573/difference-between-control-plane-data-plane-and-management-plane" target="_blank">here</a>. 
+More information can be found <a title="What the hell is SDN" href="http://packetlife.net/blog/2013/may/2/what-hell-sdn/" target="_blank">here</a>, <a title="Management, control and data planes" href="http://blog.ipspace.net/2013/08/management-control-and-data-planes-in.html" target="_blank">here</a> or <a title="Difference between control plane, data plane and management plane" href="https://networkengineering.stackexchange.com/questions/38573/difference-between-control-plane-data-plane-and-management-plane" target="_blank">here</a>.
 
 In practice, allowing the operations provided by each plane implies: (i) wiring the devices in a specific manner so that these are reachable from the SDN controller, (ii) provide a separate network for packet forwarding, spanning all network devices and (iii) allowing access to the operator and tools to configure and monitor the network devices.
 
@@ -93,7 +93,7 @@ This is only to be expected. The wiring may not work at first; successive iterat
 
 After each iteration, remember to keep the diagram up-to-date with the changes and ideally do version and backup it; then make available to other operators and network administrators. This will save time to react upon failures in the wiring configuration.
 
-The following comment is one of the data centre mantras, afaik: avoid <a title="Avoiding spaghetti syndrome managing your data centers' cabling" href="https://blog.wsol.com/avoiding-spaghetti-syndrome-managing-your-data-centers-cabling" target="_blank">spaghetti cabling</a> by all means. While it is not mandatory to provide <a title="Beaufitul DC cabling" href="https://www.reddit.com/r/cableporn/" target="_blank">beautiful cabling</a> arrangements, the following should be pursued (by subjective decreasing order of preference):
+The following comment is one of the data centre mantras, afaik: avoid <a title="Avoiding spaghetti syndrome managing your data centers' cabling" href="https://blog.wsol.com/avoiding-spaghetti-syndrome-managing-your-data-centers-cabling" target="_blank">spaghetti cabling</a> by all means. While it is not mandatory to provide <a title="Beautiful DC cabling" href="https://www.reddit.com/r/cableporn/" target="_blank">beautiful cabling</a> arrangements, the following should be pursued (by subjective decreasing order of preference):
 
 * **Labelling**: whether it is a cable paper label or wire marker; labelling the source endpoint with its destination is extremely helpful, as it saves the time to follow each cable during troubleshooting. Of course, labelling should as well be extended to devices and servers
 * **Grouping**: if the above is achieved, cable bridle rings could be used to group these into something manageable. Ungrouped cables are more prone to detach from their endpoint and be a nuisance when managing other devices
@@ -101,16 +101,16 @@ The following comment is one of the data centre mantras, afaik: avoid <a title="
 
 ### Configuring the devices
 
-The configuration step differs largely based on the firmware provided by the vendor. If available, check your operation's guide or just browse through the CLI or configuration GUIs of the devices. Common steps require  to ``enable`` the device and enter configuration/operation/cli (``configure``) mode. Remember to ``save`` the configurations before exiting.
+The configuration step differs largely based on the firmware provided by the vendor. If available, check your operation's guide or just browse through the CLI or configuration GUIs of the devices. Common steps require to <code>enable</code> the device and enter configuration/operation/cli (<code>configure</code>) mode. Remember to <code>save</code> the configurations before exiting.
 
 #### Controller connectivity
 
-The devices must be configured to point to its SDN controller, as well as a list of related configuration parameters. Assuming the usage of OpenFlow, this configuration is typically achieved by entering the ``openflow`` mode and defining the IP and port (defaults to ``6633`` for all controllers, whilst ``6653`` is also supported by newer ones).
+The devices must be configured to point to its SDN controller, as well as a list of related configuration parameters. Assuming the usage of OpenFlow, this configuration is typically achieved by entering the <code>openflow</code> mode and defining the IP and port (defaults to <code>6633</code> for all controllers, whilst <code>6653</code> is also supported by newer ones).
 
 A more comprehensive list of what can be configured in the SDN-enabled switches is below:
 
-* **Primary controller address**: ``IP:port`` of the main controller where the switch should connect to
-* **Backup controller address**: ``IP:port`` of a secondary/backup controller to use in case of connectivity failures with the primary one
+* **Primary controller address**: <code>IP:port</code> of the main controller where the switch should connect to
+* **Backup controller address**: <code>IP:port</code> of a secondary/backup controller to use in case of connectivity failures with the primary one
 * **OpenFlow version**: depending on the support of the device, a version will be chosen here
 * **VLAN ID(s)**: VLAN tags available to the SDN controller for forwarding packets
 * **DPID**: set custom identifier for the device

@@ -11,7 +11,7 @@ comments: true
 * TOC
 {:toc}
 
-As any other language supporting web frameworks, Java (and specifically the Java API for RESTful services, `javax.ws`) provides tools to define REST APIs in a very convenient way. Among these APIs, it is common to operate with data in JSON.
+As any other language supporting web frameworks, Java (and specifically the Java API for RESTful services, <code>javax.ws</code>) provides tools to define REST APIs in a very convenient way. Among these APIs, it is common to operate with data in JSON.
 
 This post provides a sample (**non-comprehensive, non-working example** that you may need to adapt) of a REST endpoint that consumes some JSON structure and produces an output in the same format.
 
@@ -92,7 +92,7 @@ curl -X  POST -v --include -H "X-token:424862d3-5ea4-429b-9a39-d783e9607543 " -H
 
 ### Client side
 
-The client side is responsible for interfacing with the API to retrieve the data (`RestClient.java`). This data can be parsed in the same client (`UserController.java` and related validation in `UserValidator.java`) or in the rest of the software that uses the client to communicate with the core side.
+The client side is responsible for interfacing with the API to retrieve the data (<code>RestClient.java</code>). This data can be parsed in the same client (<code>UserController.java</code> and related validation in <code>UserValidator.java</code>) or in the rest of the software that uses the client to communicate with the core side.
 
 **RestClient.java**
 

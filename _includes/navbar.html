@@ -1,38 +1,19 @@
-<ul>
 {% for node in site.pages %}
-  {% if node.url contains "404" or node.url contains "page" or node.url contains "blog" or node.url contains "README" or node.url contains "css" %}
+  {% if node.url contains "404" or node.url contains "page" or node.url contains "blog" or node.url contains "README" or node.url contains "assets" %}
   {% else %}
   <li>
-      <a rel="external" href="{{node.url}}" 
-      {% if node.url == "/resources/" %}
-        {% if page.url == node.url %}
-          class="active navlink" title="Resources">
+      <a rel="external" href="{{node.url}}"
+      {% if node.url == page.url %}
+          class="active navlink changing-hover-css">
 	    {% else %}
-          class="navlink" title="Resources">
-	    {% endif %}
-	  {% else %}
-	    {% if page.url != "/resources/" %}
-          class="active navlink" title="Blog">
-	    {% else %}
-          class="navlink" title="Blog">
-	    {% endif %}
-	  {% endif %}
-	  <p class="navbar-text">
-	  {% if node.url == "/resources/" %}
-	    Resources
-	  {% else %}
-        Blog
-	  {% endif %}
-      </p>
-      <em aria-hidden="true"
-      {% if node.url == "/resources/" %}
-        class="fa fa-paper-plane-o">
-      {% else %}
-        class="fa fa-pencil">
+      >
       {% endif %}
-      </em>
+      {% if node.url == "/" %}
+        Blog
+      {% else %}
+        {{ node.url | remove: "/" | capitalize }}
+      {% endif %}
     </a>
   </li>
   {% endif %}
 {% endfor %}
-</ul>

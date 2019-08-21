@@ -1,0 +1,18 @@
+ul.posts li {
+    margin-bottom: .25em;
+}
+ul.posts li div[class^="entry-"] {
+    display: inline;
+}
+@media screen and (max-width: 42em) {
+    ul.posts li div.entry-tag {
+        display: none;
+    }
+    ul.posts li:before {
+        content: "";
+        margin-right: 0em;
+    }
+}
+.entry-tag {
+    float: right;
+}
