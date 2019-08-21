@@ -2,7 +2,7 @@
 layout: default
 comments: true
 ---
-<article class="post">
+<article class="post post-{{ page.url | remove_first: "/" | split: "/" | first }}">
 	<header>
 		<div class="title">
 			<h3>{{ page.title }}</h3>

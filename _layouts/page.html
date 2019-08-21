@@ -2,7 +2,7 @@
 layout: default
 ---
 
-<article class="post">
+<article class="post post-{{ page.url | remove_first: "/" | split: "/" | first }}">
 
 	<header>
 		<div class="title">
