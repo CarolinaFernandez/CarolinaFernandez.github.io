@@ -2,16 +2,22 @@
   {% if node.url contains "404" or node.url contains "page" or node.url contains "blog" or node.url contains "README" or node.url contains "assets" %}
   {% else %}
   <li>
-      <a rel="external" href="{{node.url}}"
+      <a rel="external"
+      {% if node.url == "/" %}
+          title="Blog"
+      {% else %}
+          title="{{ node.url | remove: '/' | capitalize }}"
+      {% endif %}
+          href="{{node.url}}"
       {% if node.url == page.url %}
           class="active navlink changing-hover-css">
 	    {% else %}
       >
       {% endif %}
       {% if node.url == "/" %}
-        Blog
+          Blog
       {% else %}
-        {{ node.url | remove: "/" | capitalize }}
+          {{ node.url | remove: "/" | capitalize }}
       {% endif %}
     </a>
   </li>

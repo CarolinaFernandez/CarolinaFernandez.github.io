@@ -225,7 +225,7 @@ input, select, textarea {
 	}
 
 	h1, h2, h3, h4, h5, h6 {
-		color: #b87171;
+		color: #7a4c4c;
 		font-family: "Raleway", Helvetica, sans-serif;
 		font-weight: 800;
 		letter-spacing: 0.25em;
@@ -237,7 +237,7 @@ input, select, textarea {
     [data-theme="dark"] h1, [data-theme="dark"] h2,
 		[data-theme="dark"] h3, [data-theme="dark"] h4,
 		[data-theme="dark"] h5, [data-theme="dark"] h6 {
-			color: #b28f8f;
+			color: #fab0b0;
 		}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -1945,8 +1945,8 @@ input, select, textarea {
 			[data-theme="dark"] input[type="button"]:hover,
 			[data-theme="dark"] button:hover,
 			[data-theme="dark"] .button:hover {
-				box-shadow: inset 0 0 0 1px #e5742b !important;
-				color: #e5742b !important;
+				box-shadow: inset 0 0 0 1px #f8b856 !important;
+				color: #f8b856 !important;
 			}
 
 			input[type="submit"]:hover:active,
@@ -1966,9 +1966,20 @@ input, select, textarea {
 		button:after,
 		.button:before,
 		.button:after {
-			color: #aaaaaa;
+			color: #525050;
 			position: relative;
 		}
+			[data-theme="dark"] input[type="submit"]:before, input[type="submit"]:after,
+			[data-theme="dark"] input[type="reset"]:before,
+			[data-theme="dark"] input[type="reset"]:after,
+			[data-theme="dark"] input[type="button"]:before,
+			[data-theme="dark"] input[type="button"]:after,
+			[data-theme="dark"] button:before,
+			[data-theme="dark"] button:after,
+			[data-theme="dark"] .button:before,
+			[data-theme="dark"] .button:after {
+				color: #aaaaaa;
+			}
 
 		input[type="submit"]:before,
 		input[type="reset"]:before,
@@ -2280,24 +2291,36 @@ input, select, textarea {
 	}
 
 	::-webkit-input-placeholder {
-		color: #aaaaaa !important;
+		color: #525050 !important;
 		opacity: 1.0;
 	}
+		[data-theme="dark"] ::-webkit-input-placeholder {
+			color: #aaaaaa !important;
+		}
 
 	:-moz-placeholder {
-		color: #aaaaaa !important;
+		color: #525050 !important;
 		opacity: 1.0;
 	}
+		[data-theme="dark"] :-moz-placeholder {
+			color: #aaaaaa !important;
+		}
 
 	::-moz-placeholder {
-		color: #aaaaaa !important;
+		color: #525050 !important;
 		opacity: 1.0;
 	}
+		[data-theme="dark"] ::-moz-placeholder {
+			color: #aaaaaa !important;
+		}
 
 	:-ms-input-placeholder {
-		color: #aaaaaa !important;
+		color: #525050 !important;
 		opacity: 1.0;
 	}
+		[data-theme="dark"] :-ms-input-placeholder {
+			color: #aaaaaa !important;
+		}
 
 /* Icon */
 
@@ -2836,6 +2859,9 @@ input, select, textarea {
 					font-weight: 900;
 					font-size: 1.5em;
 				}
+				.post-development > header .title h2 {
+					font-size: 1em;
+				}
 				.post > header .title h3 {
 					font-size: 1em;
 				}
@@ -2865,7 +2891,7 @@ input, select, textarea {
 				}
 
 				.post > header .meta .published {
-					color: #3c3b3b;
+					color: #ffdcdc;
 					display: block;
 					font-family: "Raleway", Helvetica, sans-serif;
 					font-size: 0.7em;
@@ -2918,6 +2944,7 @@ input, select, textarea {
 
 			.post > footer .stats {
 				cursor: default;
+				font-size: 1.2em;
 				list-style: none;
 				padding: 0;
 			}
@@ -3262,7 +3289,7 @@ input, select, textarea {
 				font-style: italic;
 		}
 			[data-theme="dark"] nav.links li a.active {
-				color: #ec5252 !important;
+				color: #f6b57b !important;
 			}
 
 			#header .links ul li {
@@ -3321,12 +3348,15 @@ input, select, textarea {
 					#header .main ul li > a {
 						text-decoration: none;
 						border-bottom: 0;
-						color: #aaaaaa;
+						color: #525050;
 						overflow: hidden;
 						position: relative;
 						text-indent: 4em;
 						width: 4em;
 					}
+						[data-theme="dark"] #header .main ul li > a {
+							color: #aaaaaa;
+																}
 
 						#header .main ul li > a:before {
 							-moz-osx-font-smoothing: grayscale;
@@ -3621,19 +3651,26 @@ input, select, textarea {
 		text-align: center;
 	}
 
+	#footer p {
+		margin-bottom: 0em;
+	}
+
 	#footer .icons {
 		color: #aaaaaa;
 		font-size: 1.5em;
 	}
 
 	#footer .copyright {
-		color: #aaaaaa;
+		color: #525050;
 		font-family: "Raleway", Helvetica, sans-serif;
-		font-size: 0.5em;
+		font-size: 0.7em;
 		font-weight: 400;
 		letter-spacing: 0.25em;
 		text-transform: uppercase;
 	}
+		[data-theme="dark"] #footer .copyright {
+			color: #aaaaaa;
+		}
 
 	body.single #footer {
 		text-align: center;

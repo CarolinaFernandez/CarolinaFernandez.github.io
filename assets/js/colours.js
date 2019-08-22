@@ -30,7 +30,7 @@ function toggleThemeIcon(themeSwitcher, themeName) {
   } else {
     $(themeSwitcher).removeClass("fa-moon");
     $(themeSwitcher).addClass("fa-sun");
-    $(themeSwitcher).css("color", "#e5742b");
+    $(themeSwitcher).css("color", "#f8b856");
   }
 }
 function toggleTheme(themeSwitcher) {
