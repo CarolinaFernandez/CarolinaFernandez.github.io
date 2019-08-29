@@ -77,6 +77,11 @@ article[class*=" post-"] > header .title h2 {
 		background-color: #682626;
 	}
 
+.image-legend {
+    margin-top: -1.5em;	
+    text-align: center;
+}
+
 /* Tags */
 .main-content a.post-tag {
     background-color: #e6e67a;
