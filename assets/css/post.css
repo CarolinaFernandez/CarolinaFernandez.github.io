@@ -51,9 +51,15 @@ p.post-more + a>h2 {
 .post > header .title h3 {
     color: #ffdcdc;
 }
+article[class*=" post-"] > header .title h2 {
+    font-size: 1.2em;
+}
 	[data-theme="dark"] .post > header .title h2,
 	[data-theme="dark"] .post > header .title h3 {
 		color: #ecb4b4;
+	}
+	[data-theme="dark"] article[class*=" post-"] > header .title h2 {
+		font-size: 1.2em;
 	}
 
 .post-resources > header {
@@ -93,7 +99,7 @@ p.post-more + a>h2 {
     padding: .3em;
 }
   [data-theme="dark"] .post-tag {
-    background-color: #353535;
+    background-color: #4b4b4b;
     color: #ccc9c9;
   }
 .post-tag:hover {

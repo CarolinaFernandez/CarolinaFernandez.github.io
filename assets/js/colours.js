@@ -1,17 +1,3 @@
-function colorLink() {
-  var colours = [];
-  let coloursLight = ["#ed8648", "#af3c3c", "#043174", "#e5742b", "#410000", "#4f0c47", "#7c2164"];
-  let coloursDark = ["#ed8648", "#af3c3c", "#649ff6", "#e5742b", "#f45353", "#f6c245", "#eb5dc5"];
-  const htmlTag = $("body");
-  const htmlTagAttr = htmlTag.attr("data-theme");
-  if (typeof htmlTagAttr !== typeof undefined && htmlTagAttr !== false && htmlTagAttr == "dark") {
-    colours = coloursDark;
-  } else {
-    colours = coloursLight;
-  }
-  var colour = colours[Math.floor(Math.random()*colours.length)];
-  return colour;
-}
 function applyInitialTheme(themeSwitcher) {
   const theme = window.localStorage.getItem("site-theme");
   if (theme !== null) {
@@ -48,18 +34,10 @@ function toggleTheme(themeSwitcher) {
 
 $(document).ready(function() {
   applyInitialTheme($("a.theme-switcher"));
-  var colour = $("a").css("color");
-  $("a.changing-hover-css").hover(function() {
-    $(this).css("color", colorLink());
-  },
-  function() {
-  });
-
   $("a.theme-switcher").click(function() {
     toggleTheme($(this));
     return false;
   });
-
   // Update style and text of the .theme-switcher button in the menu
   // so that it looks like a button and provides text
   $("ul.actions a.theme-switcher").addClass("button large fit");
