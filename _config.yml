@@ -4,7 +4,6 @@ description:  "Technical guides, publications and snippets for easy deployment a
 tagline:      ""
 baseurl:      ""
 url:          CarolinaFernandez.github.io
-paginate:     1
 
 # About/contact
 author:
@@ -16,6 +15,9 @@ author:
   linkedin:         cfermart
   google_scholar:   JgfJktkAAAAJ
   twitter:          cfermart
+
+paginate:      10
+paginate_path: "/blog/:num/"
 
 # Gems
 gems:

@@ -7,7 +7,7 @@
 	</header>
 
   <ul class="posts">
-    {% for post in site.posts %}
+    {% for post in paginator.posts %}
       <li>
         <div class="entry-title">
           <strong>{{ post.date | date: "%-Y/%m/%d" }}</strong> &raquo; {% include post-url-pretty.html %}
@@ -23,7 +23,25 @@
 </article>
 
 <!-- Pagination -->
-<!-- <ul class="actions pagination">
-  <li><a href="" class="disabled button large previous">Previous Page</a></li>
-  <li><a href="#" class="button large next">Next Page</a></li>
-</ul> -->
+<ul class="actions pagination">
+  <li><a href="{{ paginator.previous_page_path }}" class="
+                  {% if paginator.previous_page %}{% else %}disabled{% endif %}
+		  button large previous">Newer (
+		  {% if paginator.previous_page %}
+		    {{ paginator.page | plus: -1 }}
+                  {% else %}
+		    {{ paginator.page }}
+                  {% endif %}
+		  / {{ paginator.total_pages }}
+		  )</a></li>
+  <li><a href="{{ paginator.next_page_path }}" class="
+                  {% if paginator.next_page %}{% else %}disabled{% endif %}
+		  button large next">Older (
+		  {% if paginator.next_page %}
+                    {{ paginator.page | plus: 1 }}
+                  {% else %}
+                    {{ paginator.page}}
+                  {% endif %}
+                  / {{ paginator.total_pages }}
+                  )</a></li>
+</ul>

@@ -2832,7 +2832,7 @@ input, select, textarea {
 		.post img[src$="img-center"] {
 			display: block;
 			margin: 0 auto;
-			max-width: 80%;
+			max-width: 100%;
 		}
 
 		.post > header {
@@ -3134,6 +3134,13 @@ input, select, textarea {
 					}
 
 		}
+
+/* Pagination */
+
+.pagination {
+    margin: 0 3em 3em 0.5em !important;
+    padding: 0em 3em 1em 0em;
+}
 
 /* Section/Article */
 
