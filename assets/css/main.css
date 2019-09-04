@@ -3138,16 +3138,29 @@
 
 	/* Pagination */
 
-	.pagination {
+	ul.actions.pagination {
+	    display: table;
 	    margin: 0 3em 0em 0.5em !important;
-	    padding: 0em 3em 0em 0em;
+	    padding: 0em 3.5em 0em 0em;
+	    width: 100%;
 	}
+
+		ul.actions.pagination li {
+			display: table-cell;
+		}
+		ul.actions.pagination li:nth-child(1) {
+			text-align: left;
+		}
+		ul.actions.pagination li:nth-child(2) {
+			text-align: right;
+		}
 
 	@media screen and (max-width: 480px) {
 		ul.actions.pagination:not(.fixed) {
 			-moz-flex-direction: row;
 			-webkit-flex-direction: row;
 			-ms-flex-direction: row;
+			display: inline-flex;
 			flex-direction: row;
 			margin: 0em 0em 0em 0em !important;
 		}
@@ -3159,7 +3172,6 @@
 				padding: 0em 1em 0em 1em;
 			}
 	}
-
 
 	/* Section/Article */
 
