@@ -35,7 +35,6 @@ Whilst this is documented in the [OpenStack's nova guide](https://docs.openstack
 openstack server create --availability-zone $ZONE ... $SERVER_ID
 openstack server create --availability-zone $ZONE:$HOST ... $SERVER_ID
 openstack server create --availability-zone $ZONE::$NODE ... $SERVER_ID
-
 ```
 
 #### Finding the zone, the host and the node
@@ -81,7 +80,7 @@ As introduced above, there are different options to force this deployment on the
 As explained in [this thread](https://ask.openstack.org/en/question/1104/how-do-i-disable-a-nova-compute-node/), it should also be theoretically possible to disable the host(s) you would not wish to deploy to by using the following:
 
 ```bash
-nova service-disable <host_name> nova-compute
+nova service-disable $HOST_NAME nova-compute
 ```
 
 This approach did not work for me, but again; I have not access to the Nova configuration to investigate why that would be overridden by any other setting.
