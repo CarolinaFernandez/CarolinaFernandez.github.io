@@ -1,10 +1,13 @@
 @media screen and (max-width: 42em) {
   .highlighter-rouge {
-	font-size: .7rem !important;
+    font-size: .7rem !important;
   }
 }
+.highlighter-rouge {
+    max-width: 44em !important;
+}
 .main-content .highlight {
-	margin-bottom: 1rem;
+    margin-bottom: 1rem;
     max-width: 95%;
 }
 @media screen and (max-width: 75em) {
@@ -13,19 +16,19 @@
   }
 }
 .main-content .highlight pre {
-	margin-bottom: 0;
-	word-break: normal;
+    margin-bottom: 0;
+    word-break: normal;
 }
 .main-content div.highlight pre.highlight {
-	padding: 0em;
+    padding: 0em;
 }
 .main-content .highlight pre, .main-content pre {
-	padding: 0.8rem;
-	overflow: auto;
-	max-width: 80em !important;
-	font-size: 0.9rem;
-	line-height: 1.45;
-	-webkit-overflow-scrolling: touch;
+    padding: 0.8rem;
+    overflow: auto;
+    max-width: 80em !important;
+    font-size: 0.9rem;
+    line-height: 1.45;
+    -webkit-overflow-scrolling: touch;
 }
 .main-content .highlight .gutter pre,
 .main-content .highlight .rouge-gutter pre {
@@ -35,14 +38,18 @@
 }
 .main-content .highlight .code pre,
 .main-content .highlight .rouge-code pre {
-	border: 1rem;
+    border: 1rem;
     border-top-right-radius: 0.2rem;
     border-bottom-right-radius: 0.2rem;
-	width: 90% !important;
+    width: 90% !important;
 }
 .main-content .highlight .rouge-code pre {
-	border: 0;
-	width: 100% !important;
+    border: 0;
+    width: 100% !important;
+}
+/* Pre blocks inside a row with such sort of classes are used for code: no margin expected */
+td[class^="rouge"] > pre {
+    margin: 0;
 }
 /* Disable line count on unespecified language or console */
 .highlighter-rouge:not([class^="language-"]) .gl,
@@ -51,96 +58,96 @@
     width: 0% !important;
 }
 @media screen and (max-width: 42em) {
-	.main-content .highlight pre, .main-content pre {
-		font-size: .75rem;
-		max-width: 100%;
-	}
+    .main-content .highlight pre, .main-content pre {
+        font-size: .75rem;
+        max-width: 100%;
+    }
 
 }
 .highlighter-rouge .code pre {
-	background-color: #f8f5eb !important;
-	border: #ddd5bc solid .05rem !important;
-	border-color: #ddd5bc !important;
-	border-radius: .2rem;
+    background-color: #f8f5eb !important;
+    border: #ddd5bc solid .05rem !important;
+    border-color: #ddd5bc !important;
+    border-radius: .2rem;
 }
 .main-content pre code, .main-content pre tt {
-	display: inline;
-	max-width: initial;
-	padding: 0;
-	margin: 0;
-	overflow: initial;
-	line-height: inherit;
-	word-wrap: normal;
-	background-color: transparent;
-	border: 0;
+    display: inline;
+    max-width: initial;
+    padding: 0;
+    margin: 0;
+    overflow: initial;
+    line-height: inherit;
+    word-wrap: normal;
+    background-color: transparent;
+    border: 0;
 }
 .main-content pre code:before, .main-content pre code:after, .main-content pre tt:before, .main-content pre tt:after {
-	content: normal;
+    content: normal;
 }
 .main-content blockquote {
-	padding: 0 1rem;
-	margin-left: 0;
-	color: #819198;
-	border-left: 0.3rem solid #dce6f0;
+    padding: 0 1rem;
+    margin-left: 0;
+    color: #819198;
+    border-left: 0.3rem solid #dce6f0;
 }
 .main-content blockquote > :first-child {
-	margin-top: 0;
+    margin-top: 0;
 }
 .main-content blockquote > :last-child {
-	margin-bottom: 0;
+    margin-bottom: 0;
 }
 .main-content table {
     margin-left: auto;
     margin-right: auto;
-	overflow: auto;
+    overflow: auto;
     text-align: center;
-	word-break: normal;
-	word-break: keep-all;
-	-webkit-overflow-scrolling: touch;
+    word-break: normal;
+    word-break: keep-all;
+    -webkit-overflow-scrolling: touch;
 }
 .main-content table th {
     background: #eef4af;
-	font-weight: bold;
+    font-weight: bold;
 }
 .main-content table th, .main-content table td {
-	padding: 0.5rem 1rem;
-	border: 1px solid #e9ebec;
+    padding: 0.5rem 1rem;
+    border: 1px solid #e9ebec;
 }
 .main-content table td.code, .main-content table td.gutter,
 .main-content table td.rouge-code, .main-content table td.rouge-gutter,
 .main-content div.code, .main-content div.gutter,
 .main-content div.rouge-code, .main-content div.rouge-gutter {
-	border: 0;
-	padding: 0;
+    border: 0;
+    padding: 0;
 }
 .main-content table td.code,
 .main-content table td.rouge-code {
     text-align: left;
-	width: 100%;
+    width: 100%;
 }
 .main-content .code,
 .main-content .rouge-code {
-	width: 100%;
+    width: 100%;
 }
 .main-content dl {
-	padding: 0;
+    padding: 0;
 }
 .main-content dl dt {
-	padding: 0;
-	margin-top: 1rem;
-	font-size: 1rem;
-	font-weight: bold;
+    padding: 0;
+    margin-top: 1rem;
+    font-size: 1rem;
+    font-weight: bold;
 }
 .main-content dl dd {
-	padding: 0;
-	margin-bottom: 1rem;
+    padding: 0;
+    margin-bottom: 1rem;
 }
 .main-content hr {
-	height: 2px;
-	padding: 0;
-	margin: 1rem 0;
-	background-color: #eff0f1;
-	border: 0;
+    height: 2px;
+    padding: 0;
+    margin: 1rem 0;
+    background-color: #eff0f1;
+    border: 0;
 }
 
 /* Notes */
