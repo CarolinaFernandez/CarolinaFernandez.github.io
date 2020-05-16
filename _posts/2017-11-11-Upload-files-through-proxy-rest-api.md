@@ -203,6 +203,7 @@ Pointing [cURL](https://ec.haxx.se/cmdline-options.html) to the exposed endpoint
 
 ```console
 $ rest1_ip="https://127.0.0.1:8000"
+# In case of self-signed certificates, force the insecure "-k" flag
 $ curl -ik ${rest1_ip}/upload1 -X POST -F "somefile=@/opt/test/file.tar.gz"
 $ curl -ik ${rest1_ip}/upload2 -H "Content-Type: application/json" -X POST -d '{"somefile": "/opt/test/file.tar.gz"}'
 $ curl -ik ${rest1_ip}/upload2 -H "Content-Type: application/json" -X POST -d '{"somefile": "://path/to/remote/file.tar.gz"}'

@@ -45,7 +45,7 @@ Other commonly used minimal applications directly use <code>app.run()</code> ([e
 Pointing [cURL](https://ec.haxx.se/cmdline-options.html) to the exposed endpoint will return in the expected output:
 
 ```console
-$ curl -k http://127.0.0.1:8000/
+$ curl http://127.0.0.1:8000/
 Top-level content
 ```
 
@@ -78,10 +78,12 @@ The context can be defined in simpler ways; for instance:
 Also, there is a minimal change on the call through cURL: the endpoint is provided through a secure connection now. Note that it is not possible anymore to connect through the plain HTTP endpoint:
 
 ```console
+$ curl http://127.0.0.1:8000/
+curl: (56) Recv failure: Connection reset by peer
+
+# In case of self-signed certificates, force the insecure "-k" flag
 $ curl -k https://127.0.0.1:8000/
 Top-level content
-$ curl -k http://127.0.0.1:8000/
-curl: (56) Recv failure: Connection reset by peer
 ```
 
 #### HTTPS (server and client)
@@ -113,6 +115,7 @@ serving.run_simple("0.0.0.0", 8000, app, ssl_context=context)
 This time, cURL expects the client certificate (PKCS#12 or PEM formats); otherwise connection will not take place. Naturally, incoming connections from untrusted clients will result in rejected connections.
 
 ```console
+# In case of self-signed certificates, force the insecure "-k" flag
 $ curl -k https://127.0.0.1:8000/ -E client/client.pem
 Top-level content
 $ curl -k https://127.0.0.1:8000/ -E client/untrusted_client.pem
