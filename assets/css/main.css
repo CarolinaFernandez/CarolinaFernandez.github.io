@@ -3697,6 +3697,10 @@
 			margin-bottom: 1em;
 		}
 
+		#footer .icons li {
+			padding: 0.3em;
+		}
+
 		#footer .copyright {
 			color: #525050;
 			font-family: "Raleway", Helvetica, sans-serif;

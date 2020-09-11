@@ -7,14 +7,15 @@ url:          CarolinaFernandez.github.io
 
 # About/contact
 author:
-  name:             Carolina Fernandez
+  name:             Carolina Fern&aacute;ndez
   url:              CarolinaFernandez.github.io
   github:           CarolinaFernandez
   google_analytics: UA-92777337-1
   disqus:           cf-github
   linkedin:         cfermart
-  google_scholar:   JgfJktkAAAAJ
   twitter:          cfermart
+  orcid:            0000-0003-1865-7177
+  google_scholar:   JgfJktkAAAAJ
 
 paginate:      10
 paginate_path: "/blog/:num/"
