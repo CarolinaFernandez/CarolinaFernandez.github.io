@@ -146,29 +146,29 @@ std::string encode_value(uint16_t value, size_t bitwidth) {
 
 Given an encoded value, this method will:
 
-1. For each N-th position in the string, shift #{length-N-1} positions to the left
+1. For each N-th position in the string, shift $$length(string)-N-1$$ positions to the left
 1. Run an OR (or "sum") of each iterated contents
 
-For instance, the obtained string with value "000010" and length 6 will go through the following process:
+For instance, the string with value "000010" and length 6 will go through the following process:
 
-position=i $$\rightarrow string_{bi}$$ << length-i-1 = $$value_{bi}$$ << 6-i-1
+position=i $$\rightarrow string[b_i] << length(string)-i-1 = string[b_i] << 6-i-1 $$
 
 Where each iteration will be sumed/OR-ed:
 
-$$\sum_{i=0}^{k=length-1} {string_i} * 2^{k-i}\$$
+$$\sum_{i=0}^{k=length-1} {string[b_i]} * 2^{k-i}\$$
 
 And the final summed value can be converted to an unsigned integer.
 
-Some example iteration on the value "2" (note that the X's are empty positions to be filled/padded with zeros):
+The full set of iterations expected for this value (note that the X's are empty positions to be filled/padded with zeros):
 
 | Position | String digit | Positions to shift to left | Value for iteration |
 |:----:|:------------|:----:|:------|:------------|
-| 0 | $$string_{b0}$$ = 0 | 6-0-1 = 5 | 000000 |
-| 1 | $$string_{b1}$$ = 0 | 6-1-1 = 4 | X00000 $$\rightarrow$$ 000000 |
-| 2 | $$string_{b2}$$ = 0 | 6-2-1 = 3 | XX0000 $$\rightarrow$$ 000000 |
-| 3 | $$string_{b3}$$ = 0 | 6-3-1 = 2 | XXX000 $$\rightarrow$$ 000000 |
-| 4 | $$string_{b4}$$ = 1 | 6-4-1 = 1 | XXXX10 $$\rightarrow$$ 000010 |
-| 5 | $$string_{b5}$$ = 0 | 6-5-1 = 0 | XXXXX0 $$\rightarrow$$ 000000 |
+| 0 | $$string[b_0]$$ = 0 | 6-0-1 = 5 | 000000 |
+| 1 | $$string[b_1]$$ = 0 | 6-1-1 = 4 | X00000 $$\rightarrow$$ 000000 |
+| 2 | $$string[b_2]$$ = 0 | 6-2-1 = 3 | XX0000 $$\rightarrow$$ 000000 |
+| 3 | $$string[b_3]$$ = 0 | 6-3-1 = 2 | XXX000 $$\rightarrow$$ 000000 |
+| 4 | $$string[b_4]$$ = 1 | 6-4-1 = 1 | XXXX10 $$\rightarrow$$ 000010 |
+| 5 | $$string[b_5]$$ = 0 | 6-5-1 = 0 | XXXXX0 $$\rightarrow$$ 000000 |
 
 Sum of all the iterations/positions = 000010 $$\rightarrow$$ 2
 

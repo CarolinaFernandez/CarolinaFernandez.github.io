@@ -89,6 +89,8 @@ Commonly used to define the best-case running time; formalised by its lower boun
 
 Identifying the running time(s) of an algorithm can be done by looking at its behaviour (number of iterations, conditions on loops, specifics of the algorithm, etc) and computing its rate of growth; or by detailedly evaluating each step. The following examples aim to perform the latter procedure.
 
+The following analysis will target a simple, iterative algorithm.
+
 #### Selection sort
 
 The <a title="Selection sort" href="https://en.wikipedia.org/wiki/Selection_sort" target="_blank">selection sort</a> is an inefficient sorting in-place algorithm. It works by iterating each time from a position $$i\$$ to $$n\$$ in an array $$A[1 \hspace{.2em} .. \hspace{.2em} n]\$$, finding the minimum element contained at $$A[i+1 \hspace{.2em} .. \hspace{.2em} n]\$$ and exchanging it with $$A[i]\$$.
@@ -98,13 +100,13 @@ The "*<a title="Introduction to Algorithms" href="http://www.goodreads.com/book/
 A Python3 implementation would be as follows:
 
 ```python
-def swap(A, x, y):
+def swap(A: list, x: int, y: int) -> list
     aux = A[x]
     A[x] = A[y]
     A[y] = aux
     return A
 
-def insertion_sort(A):
+def insertion_sort(A: list) -> list:
     for i in range(len(A)):
         min = i
         for j in range(i+1, len(A)):
