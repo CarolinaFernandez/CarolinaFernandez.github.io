@@ -4,7 +4,7 @@ title:  "Lessons learnt from P4Runtime"
 description: "Lessons learnt from implementing a P4Runtime-based Control Plane"
 date:   2020-08-05 19:23:05
 categories: development
-tags: [p4, c++, python]
+tags: [p4, c++]
 comments: true
 ---
 
