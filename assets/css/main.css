@@ -3227,6 +3227,10 @@
 				border-bottom: solid 2px rgba(160, 160, 160, 0.3);
 			}
 
+			[data-theme="dark"] thead th {
+				color: #eee;
+			}
+
 			table tfoot {
 				border-top: solid 2px rgba(160, 160, 160, 0.3);
 			}

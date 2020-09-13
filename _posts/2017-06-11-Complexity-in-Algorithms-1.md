@@ -1,7 +1,7 @@
 ---
 layout: post-math
-title:  "Complexity in Algorithms"
-description: "Basic concepts on the complexity in algorithms"
+title:  "Complexity in algorithms (I)"
+description: "Complexity of iterative algorithms"
 date:   2017-06-11 20:13:38
 categories: theory
 tags: [algorithms]
@@ -170,42 +170,3 @@ $$
 $$
 
 The running time is quadratic in both cases. Even if some instructions are skipped in the best-case scenario, the cost-related constants are negligible when compared to the order of the terms formalising the iterations.
-
-#### Merge sort
-
-The <a title="Merge sort" href="https://en.wikipedia.org/wiki/Merge_sort" target="_blank">merge sort</a> is an efficient recursive sorting algorithm. It works by diving the array in two halves $$A[l..m], A[m+1..r]\$$, sorting each of them and merge the previous results into a new array $$A[p..r]\$$.
-
-```js
-MERGE(l, r)
-  var list result
-  while l.length > 0 and r.length > 0
-      if first(l) &le; first(r)
-          append first(l) to result
-          left = rest(l)
-      else
-          append first(r) to result
-          right = rest(r)
-  if l.length > 0
-      append rest(l) to result
-  if r.length > 0
-      append rest(r) to result
-  return result
-
-MERGESORT(A)
-  var list l, r, result
-  if A.length <= 1
-      return A
-  else
-      m = floor(A.length / 2)
-      for x=l to m-1
-          add A[x] to l
-      for x=m to r
-          add A[x] to r
-      l = MERGESORT(l)
-      r = MERGESORT(r)
-      if last(l) &le; first(r)
-         append r to l
-         return l
-      result = MERGE(l, r)
-      return result
-```
