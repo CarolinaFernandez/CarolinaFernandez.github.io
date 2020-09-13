@@ -99,7 +99,7 @@ These have to be **encoded** when sending from the client to the server and **de
 
 Given a numeric value (note: here, 16 bits / 2 bytes) and the length it should take, this method will:
 
-1. Retrieve each digit, from its most (left) to least (right) (e.g., $$b_N...b_1b_0$$) and convert to bit
+1. Retrieve each digit, from its most (left) to least (right) (e.g., {% raw %}$$b_N...b_1b_0$${% endraw %}) and convert to bit
 1. Get the number of bits taken to represent this information
 1. Introduce zero padding (as most-significant bits); that is, append to the left N 0's so that the length of the bitstring equals the expected bitwidth
 
@@ -107,10 +107,10 @@ Some examples (note that the X's are empty positions to be filled/padded with ze
 
 | Value | Binary value | Bitwidth for field | Padded value |
 |:----:|:------------|:----:|:------|:------------|
-| 2 | 10 | 7 | XXXXX10 $$\rightarrow$$ 0000010 |
-| 78 | 1001110 | 8 | X1001110 $$\rightarrow$$ 01001110 |
+| 2 | 10 | 7 | XXXXX10 {% raw %}$$\rightarrow$${% endraw %} 0000010 |
+| 78 | 1001110 | 8 | X1001110 {% raw %}$$\rightarrow$${% endraw %} 01001110 |
 | 254 | 11111110 | 8 | 11111110 |
-| 00:00:00:00:00:02 | 10 | 48 | XXXXXXXX XXXXXXXX XXXXXXXX XXXXXXXX XXXXXXXX XXXXXX10 $$\rightarrow$$ 00000000 00000000 00000000 00000000 00000000 00000010 |
+| 00:00:00:00:00:02 | 10 | 48 | XXXXXXXX XXXXXXXX XXXXXXXX XXXXXXXX XXXXXXXX XXXXXX10 {% raw %}$$\rightarrow$${% endraw %} 00000000 00000000 00000000 00000000 00000000 00000010 |
 
 ```cpp
 std::string encode_value(uint16_t value, size_t bitwidth) {
@@ -146,16 +146,16 @@ std::string encode_value(uint16_t value, size_t bitwidth) {
 
 Given an encoded value, this method will:
 
-1. For each N-th position in the string, shift $$length(string)-N-1$$ positions to the left
-1. Run an OR (or "sum") of each iterated contents
+1. For each N-th position in the string, shift {% raw %}$$length(string)-N-1$${% endraw %} positions to the left
+1. Run an OR (or "sum") of each iterated content
 
 For instance, the string with value "000010" and length 6 will go through the following process:
 
-position=i $$\rightarrow string[b_i] << length(string)-i-1 = string[b_i] << 6-i-1 $$
+{% raw %}$$position=i \rightarrow string[b_i] << length(string)-i-1 = string[b_i] << 6-i-1 $${% endraw %}
 
 Where each iteration will be sumed/OR-ed:
 
-$$\sum_{i=0}^{k=length-1} {string[b_i]} * 2^{k-i}\$$
+{% raw %}$$\sum_{i=0}^{k=length-1} {string[b_i]} * 2^{k-i}\$${% endraw %}
 
 And the final summed value can be converted to an unsigned integer.
 
@@ -163,14 +163,14 @@ The full set of iterations expected for this value (note that the X's are empty 
 
 | Position | String digit | Positions to shift to left | Value for iteration |
 |:----:|:------------|:----:|:------|:------------|
-| 0 | $$string[b_0]$$ = 0 | 6-0-1 = 5 | 000000 |
-| 1 | $$string[b_1]$$ = 0 | 6-1-1 = 4 | X00000 $$\rightarrow$$ 000000 |
-| 2 | $$string[b_2]$$ = 0 | 6-2-1 = 3 | XX0000 $$\rightarrow$$ 000000 |
-| 3 | $$string[b_3]$$ = 0 | 6-3-1 = 2 | XXX000 $$\rightarrow$$ 000000 |
-| 4 | $$string[b_4]$$ = 1 | 6-4-1 = 1 | XXXX10 $$\rightarrow$$ 000010 |
-| 5 | $$string[b_5]$$ = 0 | 6-5-1 = 0 | XXXXX0 $$\rightarrow$$ 000000 |
+| 0 | {% raw %}$$string[b_0]$${% endraw %} = 0 | 6-0-1 = 5 | 000000 |
+| 1 | {% raw %}$$string[b_1]$${% endraw %} = 0 | 6-1-1 = 4 | X00000 {% raw %}$$\rightarrow$${% endraw %} 000000 |
+| 2 | {% raw %}$$string[b_2]$${% endraw %} = 0 | 6-2-1 = 3 | XX0000 {% raw %}$$\rightarrow$${% endraw %} 000000 |
+| 3 | {% raw %}$$string[b_3]$${% endraw %} = 0 | 6-3-1 = 2 | XXX000 {% raw %}$$\rightarrow$${% endraw %} 000000 |
+| 4 | {% raw %}$$string[b_4]$${% endraw %} = 1 | 6-4-1 = 1 | XXXX10 {% raw %}$$\rightarrow$${% endraw %} 000010 |
+| 5 | {% raw %}$$string[b_5]$${% endraw %} = 0 | 6-5-1 = 0 | XXXXX0 {% raw %}$$\rightarrow$${% endraw %} 000000 |
 
-Sum of all the iterations/positions = 000010 $$\rightarrow$$ 2
+Sum of all the iterations/positions = 000010 {% raw %}$$\rightarrow$${% endraw %} 2
 
 ```cpp
 uint16_t decode_value(const std::string value) {

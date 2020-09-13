@@ -19,13 +19,13 @@ Although complexity of algorithms is a theoretical subject that is 99.9% of the 
 
 #### Input
 
-The input to an algorithm, typically defined by $$n\$$. The size of the input is defined based on the type of data: *number of items* for arrays, *number of bits* for files, or characterisation of graphs or trees and so on.
+The input to an algorithm, typically defined by {% raw %}$$n\$${% endraw %}. The size of the input is defined based on the type of data: *number of items* for arrays, *number of bits* for files, or characterisation of graphs or trees and so on.
 
 #### Running time
 
-The **running time** or <a title="Time complexity" href="https://en.wikipedia.org/wiki/Time_complexity" target="_blank">**time complexity**</a> of an algorithm estimates the time taken to run the algorithm based on the size of a particular input. It is common to define the running time as a function of the size of its input, or $$T(n)\$$.
+The **running time** or <a title="Time complexity" href="https://en.wikipedia.org/wiki/Time_complexity" target="_blank">**time complexity**</a> of an algorithm estimates the time taken to run the algorithm based on the size of a particular input. It is common to define the running time as a function of the size of its input, or {% raw %}$$T(n)\$${% endraw %}.
 
-Examples of the formula defined by the running time can be $$T(n) = 2T(\frac{n}{2}) + cn\$$ or $$T(n) = (n-1)T(n-1) + bn + c\$$.
+Examples of the formula defined by the running time can be {% raw %}$$T(n) = 2T(\frac{n}{2}) + cn\$${% endraw %} or {% raw %}$$T(n) = (n-1)T(n-1) + bn + c\$${% endraw %}.
 
 To better identify the implications of an algorithm, it is common to analyse how it behaves under <a title="Best, worst and average case" href="https://en.wikipedia.org/wiki/Best,_worst_and_average_case" target="_blank">best, average and worst case scenarios</a> (all of them quite dependant on the algorithm):
 
@@ -39,19 +39,19 @@ Some of the most common running times, in increasing order of time, are describe
 
 | Name | Running time |
 | ---- |:------------:|
-| Logarithmic | $$\theta(lg \hspace{0.5em} n)\$$ |
-| Constant | $$\theta(1)\$$ |
-| Linear | $$\theta(n)\$$ |
-| Quadratic | $$\theta(n^2)\$$ |
-| Cubic | $$\theta(n^3)\$$ |
-| Exponential | $$2^{\theta(n)}\$$ |
-| Factorial | $$\theta(n!)\$$ |
+| Logarithmic | {% raw %}$$\theta(lg \hspace{0.5em} n)\$${% endraw %} |
+| Constant | {% raw %}$$\theta(1)\$${% endraw %} |
+| Linear | {% raw %}$$\theta(n)\$${% endraw %} |
+| Quadratic | {% raw %}$$\theta(n^2)\$${% endraw %} |
+| Cubic | {% raw %}$$\theta(n^3)\$${% endraw %} |
+| Exponential | {% raw %}$$2^{\theta(n)}\$${% endraw %} |
+| Factorial | {% raw %}$$\theta(n!)\$${% endraw %} |
 
 ##### Rate of growth
 
-The *order/rate of growth* $$\theta(n)$$ of the running time performs a simple estimation of the algorithm's efficiency. This is obtained by considering the leading terms of the formula from the running time and ignoring lower-order terms and constants, which are negligible in comparison.
+The *order/rate of growth* {% raw %}$$\theta(n)$${% endraw %} of the running time performs a simple estimation of the algorithm's efficiency. This is obtained by considering the leading terms of the formula from the running time and ignoring lower-order terms and constants, which are negligible in comparison.
 
-Examples of the formula defined by the rate of growth of the running time can be $$\theta(n\hspace{.2em}lg(n))\$$ or $$\theta(n^2)\$$.
+Examples of the formula defined by the rate of growth of the running time can be {% raw %}$$\theta(n\hspace{.2em}lg(n))\$${% endraw %} or {% raw %}$$\theta(n^2)\$${% endraw %}.
 
 #### Space complexity
 
@@ -63,17 +63,17 @@ Though it does not seem as popular as the time complexity analysis, identifying 
 
 The **asymptotic efficiency** of an algorithm analyses the trend of the running time when as the size of the input increases without bond, to a limit. This concept also operates over mathematical functions and is depicted plotting different functions over a bi-dimensional graph (X=size of input, Y=running time).
 
-These asymptotic notation is used to formalise the running time of an algorithm. Each notation provides different bounds $$g(n)\$$ to a given function $$f(n)\$$, so analysis is performed for different scenarios and input sizes. The upper and lower bound represent the lowest (best) and highest (worst) running times, specifically. More details <a title="Asymptotic Notations" href="http://www.geeksforgeeks.org/analysis-of-algorithms-set-3asymptotic-notations/" target="_blank">here</a> and <a title="Asymptotic Notations" href="http://faculty.ycp.edu/~dbabcock/PastCourses/cs360/lectures/lecture03.html" target="_blank">here</a>.
+These asymptotic notation is used to formalise the running time of an algorithm. Each notation provides different bounds {% raw %}$$g(n)\$${% endraw %} to a given function {% raw %}$$f(n)\$${% endraw %}, so analysis is performed for different scenarios and input sizes. The upper and lower bound represent the lowest (best) and highest (worst) running times, specifically. More details <a title="Asymptotic Notations" href="http://www.geeksforgeeks.org/analysis-of-algorithms-set-3asymptotic-notations/" target="_blank">here</a> and <a title="Asymptotic Notations" href="http://faculty.ycp.edu/~dbabcock/PastCourses/cs360/lectures/lecture03.html" target="_blank">here</a>.
 
-* **$$\theta\$$-notation**: provides upper and lower asymptotically tight bounds; so that $$ c_1 g(n) \geq f(n) \geq c_2 g(n) \geq 0 \hspace{1em} \forall n \geq n_0, \hspace{1em} c_1, c_2, n_0 \geq 0\$$
-* **O-notation**: provides a non-necessarily asymptotically tight upper bound; so that $$ c g(n) \geq f(n) \geq 0 \hspace{1em} \forall n \geq n_0, \hspace{1em} c, n_0 \geq 0\$$
-* **$$\Omega\$$-notation**: provides a non-necessarily asymptotically tight lower bound; so that $$ c g(n) \leq f(n) \geq 0 \hspace{1em} \forall n \geq n_0, \hspace{1em} c, n_0 \geq 0\$$
+* **{% raw %}$$\theta\$$-notation{% endraw %}**: provides upper and lower asymptotically tight bounds; so that {% raw %}$$ c_1 g(n) \geq f(n) \geq c_2 g(n) \geq 0 \hspace{1em} \forall n \geq n_0, \hspace{1em} c_1, c_2, n_0 \geq 0\$${% endraw %}
+* **O-notation**: provides a non-necessarily asymptotically tight upper bound; so that {% raw %}$$ c g(n) \geq f(n) \geq 0 \hspace{1em} \forall n \geq n_0, \hspace{1em} c, n_0 \geq 0\$${% endraw %}
+* **{% raw %}$$\Omega\$${% endraw %}-notation**: provides a non-necessarily asymptotically tight lower bound; so that {% raw %}$$ c g(n) \leq f(n) \geq 0 \hspace{1em} \forall n \geq n_0, \hspace{1em} c, n_0 \geq 0\$${% endraw %}
 * **o-notation**: similar to *O-notation*, providing a non-asymptotically tight upper bound
-* **$$\omega\$$-notation**: similar to *$$\Omega\$$-notation*, providing a non-asymptotically tight lower bound
+* **{% raw %}$$\omega\$${% endraw %}-notation**: similar to *{% raw %}$$\Omega\$${% endraw %}-notation*, providing a non-asymptotically tight lower bound
 
 The <a title="Big-O Cheat Sheet" href="http://bigocheatsheet.com/" target="_blank">Big-O cheat sheet</a> provides a useful reference to check best, average and worst cases for time complexity and worst case for space complexity, based on common algorithms.
 
-#### $$\theta\$$-notation
+#### {% raw %}$$\theta\$${% endraw %}-notation
 
 This notation has been already used to define the rate of growth for an algorithm, based on its running time.
 
@@ -81,7 +81,7 @@ This notation has been already used to define the rate of growth for an algorith
 
 Also called "*Big-O*". Commonly used to define the worst-case running time. Some <a title="A beginner's guide to Big O notation" href="https://rob-bell.net/2009/06/a-beginners-guide-to-big-o-notation/" target="_blank">basics about Big-O</a> can complement with examples.
 
-#### $$\Omega\$$-notation
+#### {% raw %}$$\Omega\$${% endraw %}-notation
 
 Commonly used to define the best-case running time; formalised by its lower bound.
 
@@ -89,11 +89,11 @@ Commonly used to define the best-case running time; formalised by its lower boun
 
 Identifying the running time(s) of an algorithm can be done by looking at its behaviour (number of iterations, conditions on loops, specifics of the algorithm, etc) and computing its rate of growth; or by detailedly evaluating each step. The following examples aim to perform the latter procedure.
 
-The following analysis will target a simple, iterative algorithm.
+The following analysis will target a simple, iterative algorithm. For the recursive example, check the [second part](/theory/2020/07/18/Complexity-in-Algorithms-2).
 
 #### Selection sort
 
-The <a title="Selection sort" href="https://en.wikipedia.org/wiki/Selection_sort" target="_blank">selection sort</a> is an inefficient sorting in-place algorithm. It works by iterating each time from a position $$i\$$ to $$n\$$ in an array $$A[1 \hspace{.2em} .. \hspace{.2em} n]\$$, finding the minimum element contained at $$A[i+1 \hspace{.2em} .. \hspace{.2em} n]\$$ and exchanging it with $$A[i]\$$.
+The <a title="Selection sort" href="https://en.wikipedia.org/wiki/Selection_sort" target="_blank">selection sort</a> is an inefficient sorting in-place algorithm. It works by iterating each time from a position {% raw %}$$i\$${% endraw %} to {% raw %}$$n\$${% endraw %} in an array {% raw %}$$A[1 \hspace{.2em} .. \hspace{.2em} n]\$${% endraw %}, finding the minimum element contained at {% raw %}$$A[i+1 \hspace{.2em} .. \hspace{.2em} n]\$${% endraw %} and exchanging it with {% raw %}$$A[i]\$${% endraw %}.
 
 The "*<a title="Introduction to Algorithms" href="http://www.goodreads.com/book/show/108986.Introduction_to_Algorithms" target="_blank">Introduction to Algorithms, 3rd edition</a>*" book provides exercise 2.2-2, asking for the analysis of the running time in best and worst case for such algorithm. The answer is based on the analysis provided on the same book for insertion-sort (check <a title="How to find the cost of pseudocode with a nested loop and a nested if statement?" href="https://cs.stackexchange.com/questions/21829/how-to-find-the-cost-of-pseudocode-with-a-nested-loop-and-a-nested-if-statement" target="_blank">here</a> for information on conditional steps).
 
@@ -132,43 +132,43 @@ SELECTION-SORT(A)
 
 | Line | Instruction | Cost | Times | Explanation |
 |:----:|:------------|:----:|:------|:------------|
-| 2 | <code>for i=1 to A.length-1</code> | $$c_1\$$ | $$n+1\$$ | 1 iteration per item in the outer loop + last 1 to get out of it |
-| 3 | &nbsp; &nbsp; <code>min = A[i]</code> | $$c_2\$$ | $$n\$$ | Runs every time in the outer loop |
-| 4 | &nbsp; &nbsp; <code>for j=i+1 to A.length-1</code> | $$c_3\$$ | $$\sum_{j=i+1}^{n} t_j\$$ | Subset of items in the outer loop + last 1 to get out of inner loop |
-| 5 | &nbsp; &nbsp; &nbsp; &nbsp; <code>if A[j] < min</code> | $$c_4\$$ | $$\sum_{j=i+1}^{n} (t_j-1)\$$ | Worst-case: 1 iteration per item in the inner loop |
-| 6 | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <code>min = A[j]</code> | $$c_5\$$ | *Same as L5* | *Same as L5* |
-| 7 | &nbsp; &nbsp; <code>if A[i] != min</code> | $$c_6\$$ | $$n\$$ | Worst-case: 1 iteration per item in the outer loop |
-| 8 | &nbsp; &nbsp; &nbsp; &nbsp; <code>swap(min, A[i])</code> | $$c_7\$$ | *Same as L7* | *Same as L7* |
+| 2 | <code>for i=1 to A.length-1</code> | {% raw %}$$c_1\$${% endraw %} | {% raw %}$$n+1\$${% endraw %} | 1 iteration per item in the outer loop + last 1 to get out of it |
+| 3 | &nbsp; &nbsp; <code>min = A[i]</code> | {% raw %}$$c_2\$${% endraw %} | {% raw %}$$n\$${% endraw %} | Runs every time in the outer loop |
+| 4 | &nbsp; &nbsp; <code>for j=i+1 to A.length-1</code> | {% raw %}$$c_3\$${% endraw %} | {% raw %}$$\sum_{j=i+1}^{n} t_j\$${% endraw %} | Subset of items in the outer loop + last 1 to get out of inner loop |
+| 5 | &nbsp; &nbsp; &nbsp; &nbsp; <code>if A[j] < min</code> | {% raw %}$$c_4\$${% endraw %} | {% raw %}$$\sum_{j=i+1}^{n} (t_j-1)\$${% endraw %} | Worst-case: 1 iteration per item in the inner loop |
+| 6 | &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <code>min = A[j]</code> | {% raw %}$$c_5\$${% endraw %} | *Same as L5* | *Same as L5* |
+| 7 | &nbsp; &nbsp; <code>if A[i] != min</code> | {% raw %}$$c_6\$${% endraw %} | {% raw %}$$n\$${% endraw %} | Worst-case: 1 iteration per item in the outer loop |
+| 8 | &nbsp; &nbsp; &nbsp; &nbsp; <code>swap(min, A[i])</code> | {% raw %}$$c_7\$${% endraw %} | *Same as L7* | *Same as L7* |
 
 <p></p>
 
 The worst-case scenario assumes the input array is not sorted or pseudo-random. The algorithm would perform all steps.
 
-$$
+{% raw %}$$
 T(n) = c_1(n+1) + c_2n + c3\sum_{j=i+1}^{n} t_j + (c_4 + c_5)\sum_{j=i+1}^{n} (t_j-1) + (c_6 + c_7)n \\
 = c_1 + (c_1 + c_2 + c_6 + c_7)n + c3\sum_{j=i+1}^{n} t_j + (c_4 + c_5)\sum_{j=i+1}^{n} (t_j-1) \\
 = c_1 + (c_1 + c_2 + c_6 + c_7)n + c3\frac{n(n+1)}{2}-i + (c_4 + c_5)\frac{n(n-i)}{2} \\
 = n + n^2 + n + n^2 - n = 2n^2 + n \\
 \implies O(n^2)
-$$
+$${% endraw %}
 
 The best-case scenario assumes the input array is already sorted. The algorithm would still run both loops and conditional checks, yet it should not enter the latter.
 
-$$
+{% raw %}$$
 T(n) = c_1(n+1) + c_2n + c3\sum_{j=i+1}^{n} t_j + c_4\sum_{j=i+1}^{n} (t_j-1) + c_6n \\
 = c_1 + (c_1 + c_2 + c_6)n + c3\sum_{j=i+1}^{n} t_j + c_4\sum_{j=i+1}^{n} (t_j-1) \\
 = c_1 + (c_1 + c_2 + c_6)n + c3\frac{n(n+1)}{2}-i + c_4\frac{n(n-i)}{2} \\
 = n + c3\frac{n(n+1)}{2}-i + c_4\frac{n(n-i)}{2} \\
 = n + n^2 + n + n^2 - n = 2n^2 + n \\
 \implies \Omega(n^2)
-$$
+$${% endraw %}
 
-Note that the constants $$c_i\$$, numeric constants and variables can be ignored to simplify the equation; as these do not lead the running time.
+Note that the constants {% raw %}$$c_i\$${% endraw %}, numeric constants and variables can be ignored to simplify the equation; as these do not lead the running time.
 Also, the summations have been replaced using the formula to sum elements in an <a title="Arithmetic progression" href="https://en.wikipedia.org/wiki/Arithmetic_progression" target="_blank">arithmetic progression</a>:
 
-$$
+{% raw %}$$
 \sum_{j=i+1}^{n} j = \frac{n(n+1)}{2}-i \\
 \sum_{j=i+1}^{n} (j-1) = \frac{n(n-i)}{2}
-$$
+$${% endraw %}
 
 The running time is quadratic in both cases. Even if some instructions are skipped in the best-case scenario, the cost-related constants are negligible when compared to the order of the terms formalising the iterations.
