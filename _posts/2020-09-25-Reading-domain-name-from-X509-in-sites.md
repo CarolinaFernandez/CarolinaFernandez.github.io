@@ -17,10 +17,6 @@ In some specific setups you might need to retrieve the Fully Qualified Domain Na
 
 In this Java class, this is done in a simple, minimal way. The code comes from multiple sources -referenced inline- and is slightly modified to return a list of FQDN names.
 
-It will first establish an SSL connection (using [this source](https://www.xinotes.net/notes/note/1088/)) so it can load the chain of certificates. Typically, the first one will be the server one, and the subsequent ones are CAs which signed the "next" one in the chain (or the one "above", if we assume that the "mother CA" is at the root).
-
-After loading the chain of X509 certificates, as described in [this source](https://stackoverflow.com/a/41441860/2186237), it attempts to retrieve first the FQDN value from the DNS name. In a decoded X509 certificate, this would be located under "*X509v3 extensions*" and then inside "*X509v3 Subject Alternative Name*". If nothing is there, it will just default to the value inside the "*Common Name*" field of the issuer (as [described here](https://stackoverflow.com/a/5527171/2186237)).
-
 ### The DNS entry in the X509 certificate
 
 First of all, it is useful to check the decoded X509 certificate directly from the site we would like to read from. Using this command and filling in the expected IP in the "ipv4" variable, we can read all the fields of the certificate:
@@ -90,13 +86,24 @@ Certificate:
     ...
 ```
 
-Given this, it seems that the "*X509v3 extensions:*" > "*X509v3 Subject Alternative Name*" field is the one providing better detail. Some DNS entries provide values that we may not be that interested in, so the assumption here made is that the a DNS entry with a wildcard (thus, allowing subdomains) is the most adequate for our needs. This does not need to hold true, of course; but this is tailored to a specific environment.
+Given this, it seems that the "*X509v3 extensions:*" > "*X509v3 Subject Alternative Name*" field is the one providing better detail. Some DNS entries provide values that we may not be that interested in, so the assumption here made is that the a DNS entry with a wildcard (thus, allowing subdomains) is the most adequate for our needs. This does not need to hold true, of course; but this is tailored to a specific environment. In the unlikely case the subject alternative name is not enough, the "*Subject*" > "*CN*" can be retrieved (note that this is different to the issuer one).
 
-In case the subject alternative name is not enough (unlikely, though), the "*Subject*" > "*CN*" can be retrieved (note that this is different to the issuer one).
+**Note**: you can generate such a certificate with X509v3 extensions by adapting this command ([source here](https://security.stackexchange.com/a/183973/46852)):
+
+```bash
+fqdn="core.service.local"; openssl req \
+    -addext "subjectAltName = DNS:${fqdn}" \
+    -newkey rsa:4096 -x509 -sha256 -days 3650 \
+    -nodes -out ${fqdn}.crt -keyout ${fqdn}.key
+```
 
 ### Retrieve the FQDN value
 
 Given the findings above obtained, the following code can be implemented.
+
+It will first establish an SSL connection (using [this source](https://www.xinotes.net/notes/note/1088/)) so it can load the chain of certificates. Typically, the first one will be the server one, and the subsequent ones are CAs which signed the "next" one in the chain (or the one "above", if we assume that the "mother CA" is at the root).
+
+After loading the chain of X509 certificates, as described in [this source](https://stackoverflow.com/a/41441860/2186237), it attempts to retrieve first the FQDN value from the DNS name. In a decoded X509 certificate, this would be located under "*X509v3 extensions*" and then inside "*X509v3 Subject Alternative Name*". If nothing is there, it will just default to the value inside the "*Common Name*" field of the issuer (as [described here](https://stackoverflow.com/a/5527171/2186237)).
 
 ```java
 import org.bouncycastle.asn1.x500.RDN;
@@ -132,8 +139,10 @@ public class CertificateUtils {
 
     private static final Logger logger = new Logger(CertificateUtils.class);
 
-    // Source from https://www.xinotes.net/notes/note/1088/
-    // Create custom trust manager to ignore trust paths
+    /**
+     * Custom Trust Manager to ignore trust paths.
+     * Source from https://www.xinotes.net/notes/note/1088/
+     */
     static TrustManager trm = new X509TrustManager() {
         public X509Certificate[] getAcceptedIssuers() {
             return null;
@@ -146,7 +155,18 @@ public class CertificateUtils {
         }
     };
 
-    // Get chain of certificates (source from https://www.xinotes.net/notes/note/1088/)
+    /**
+     * Retrieves chain of certificates from a given site.
+     * Source from https://www.xinotes.net/notes/note/1088
+     *
+     * @param host Host IP
+     * @param port Numeric port
+     * @return Array with X509 certificates
+     * @throws NoSuchAlgorithmException when an SSL instance cannot be retrieved
+     * @throws IOException              when SSL socket cannot be created, closed, or cannot establish handshake;
+     *                                  as well as when session cannot retrieve the peer certificates
+     * @throws KeyManagementException   when SSL context cannot be initialised
+     */
     public static Certificate[] getCertificateChain(String host, int port) throws
             NoSuchAlgorithmException, IOException, KeyManagementException {
         SSLContext sc = SSLContext.getInstance("SSL");
@@ -160,12 +180,35 @@ public class CertificateUtils {
         return serverCerts;
     }
 
+    /**
+     * Retrieves chain of certificates from a given site.
+     * Port defaults to the typical SSL connection port (443).
+     *
+     * @param host Host IP
+     * @return Array with X509 certificates
+     * @throws NoSuchAlgorithmException when an SSL instance cannot be retrieved
+     * @throws IOException              when SSL socket cannot be created, closed, or cannot establish handshake;
+     *                                  as well as when session cannot retrieve the peer certificates
+     * @throws KeyManagementException   when SSL context cannot be initialised
+     */
     public static Certificate[] getCertificateChain(String host) throws
             NoSuchAlgorithmException, IOException, KeyManagementException {
-        // By default an SSL connection will be exposed in port 443
         return getCertificateChain(host, 443);
     }
 
+    /**
+     * Retrieves DNS or CN from a given chain of X509 certificates.
+     * This iterates through the chain of certificates and for each of them it will try:
+     * 1) fetch the DNS in the alternative names,
+     * 2) otherwise fetch the CN
+     * From the returned list, typically the first entry (entries) correspond to the server certificate.
+     *
+     * @param chain Array with X509 certificates
+     * @return List with DNSs or CNs for each of the certificates in the chain
+     * @throws CertificateException when certificate cannot be retrieved, a certificate factory cannot get an X509
+     *                              instance or generate a certificate; as well as when a a JCAX509 certificate
+     *                              cannot be created
+     */
     public static ArrayList<String> getCNsFromChain(Certificate[] chain) throws CertificateException {
         ArrayList<String> chainCNs = new ArrayList<>();
         // The first certificate will be the one for the exposed service. Going up in the chain reaches the top CAs
