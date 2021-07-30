@@ -23,23 +23,7 @@ Just two files, each of them containing a list of "key=value" assignments:
  * A template: a file that defines the structutre of the resulting file. It contains lines with "someVar=$some_var (i.e., values of the assignment are Unix-like variables)
  * An environment variables file: a file that provides a list of values, where these are read from. It contains lines with "some_var=50" (i.e., values of the assignment are real, final values)
 
-#### Templates
-
-For instance, a template for configuration of the users, in the "common/cfg/users.cfg.tpl" file:
-
-```properties
-userDefaultRole = ${STACK_USER_ROLE_DEFAULT}
-numberOfMaxUsers = ${STACK_USER_NUMBER_MAX}
-```
-
-#### Environment variables file
-
-And this is an example for the "env/development/env.vars" file:
-
-```properties
-STACK_USER_ROLE_DEFAULT=guest
-STACK_USER_NUMBER_MAX=50
-```
+Then, a Unix command will allow the substiution of the values of the environment variables into the template.
 
 That's it.
 
