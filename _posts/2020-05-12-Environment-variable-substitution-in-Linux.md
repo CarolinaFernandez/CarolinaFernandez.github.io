@@ -29,7 +29,7 @@ That's it.
 
 ### Testing
 
-### Structure and pieces
+#### Structure and pieces
 
 First, the basics.
 
@@ -55,7 +55,7 @@ EOF
 
 We will create now a replacement script, which can follow a more simple or complex approach, based on your needs.
 
-### Simple approach
+#### Simple approach
 
 Use this for casual replacements, like a single environment variable files or with simple values assigned.
 
@@ -84,7 +84,7 @@ chmod u+x replace.sh
 diff common/cfg/users.cfg.tpl common/cfg/users.cfg
 ```
 
-### Complex approach
+#### Complex approach
 
 This is possibly more useful when having a complex setup with multiple files for environment variables and complex values assigned. Try using this is the simple approach does not suit your needs.
 

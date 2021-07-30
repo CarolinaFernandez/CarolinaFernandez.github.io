@@ -1,5 +1,5 @@
 ---
-layout: post-math
+layout: post
 title:  "Reading domain name from X509 in sites"
 description: "Reading the domain name from sites with X509 certificates"
 date:   2020-09-25 21:53:48
