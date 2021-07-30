@@ -18,10 +18,10 @@ a.icon.brands.fa-twitter {
 /* Disqus comments */
 .post-comments {
     padding: 1em 3em 1em 3em;
-		background: #fafafa;
-		border: solid 1px rgba(160, 160, 160, 0.3);
+    background: #f8d3c4;
+    border: solid 1px rgba(160, 160, 160, 0.3);
     margin: 0 3em 3em 1.5em;
-		position: relative;
+    position: relative;
 }
   [data-theme="dark"] .post-comments {
     background-color: #333;
