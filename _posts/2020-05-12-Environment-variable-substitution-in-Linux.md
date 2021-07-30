@@ -17,54 +17,37 @@ This post describes how to implement a basic Bash deployment set of scripts (tes
 
 <!--more-->
 
-### Templates
+### Which pieces to use
 
-Templates can be added in any form you would like, as long as you use Unix-like variables ("$some_var") and use the ".tpl" extension.
-For instance, a template for configuration of the users:
+Just two files, each of them containing a list of "key=value" assignments:
+ * A template: a file that defines the structutre of the resulting file. It contains lines with "someVar=$some_var (i.e., values of the assignment are Unix-like variables)
+ * An environment variables file: a file that provides a list of values, where these are read from. It contains lines with "some_var=50" (i.e., values of the assignment are real, final values)
+
+#### Templates
+
+For instance, a template for configuration of the users, in the "common/cfg/users.cfg.tpl" file:
 
 ```properties
 userDefaultRole = ${STACK_USER_ROLE_DEFAULT}
 numberOfMaxUsers = ${STACK_USER_NUMBER_MAX}
 ```
 
-### Environment variables file
+#### Environment variables file
 
-This will just be a file following the approach of multiple "key=value" lines. An example:
+And this is an example for the "env/development/env.vars" file:
 
 ```properties
 STACK_USER_ROLE_DEFAULT=guest
 STACK_USER_NUMBER_MAX=50
 ```
 
-### Define the folder structure
+That's it.
 
-The script will depend on the folder structure you define.
-Try to use a clean structure and organised in a hierarchical, easy-to-access way.
-As an example, this is the final structure used in this example:
+### Testing
 
-```bash
-$ tree .
-.
-├── common
-│   └── cfg
-│       ├── users.cfg
-│       └── users.cfg.tpl
-├── deploy.sh
-└── env
-    ├── development
-    │   └── env.vars
-    ├── preproduction
-    └── production
+### Structure and pieces
 
-6 directories, 4 files
-```
-
-### Substituting script
-
-The substitution is carried out using the "envsubst", available in multiple Unix systems.
-The script will take the file with the environment variables ("env.vars"), identify all of them and substitute only those values in all templated configuration files (here, those ending in ".tpl") under the provided folder. The source is provided below.
-
-### Test it altogether
+First, the basics.
 
 ```bash
 cd /tmp
@@ -74,19 +57,56 @@ mkdir -p env/{development,preproduction,production}
 mkdir -p common/cfg
 
 # Create env vars file
-cat <<EOF >> env/development/env.vars
+cat <<EOF > env/development/env.vars
 STACK_USER_ROLE_DEFAULT=guest
 STACK_USER_NUMBER_MAX=50
 EOF
 
 # Create template file
-cat <<"EOF" >> common/cfg/users.cfg.tpl
+cat <<"EOF" > common/cfg/users.cfg.tpl
 userDefaultRole = ${STACK_USER_ROLE_DEFAULT}
 numberOfMaxUsers = ${STACK_USER_NUMBER_MAX}
 EOF
+```
 
-# Create script
-cat <<"EOF" >> deploy.sh
+We will create now a replacement script, which can follow a more simple or complex approach, based on your needs.
+
+### Simple approach
+
+Use this for casual replacements, like a single environment variable files or with simple values assigned.
+
+```bash
+# Create replacing script
+cat <<"EOF" > replace.sh
+#!/bin/bash
+
+ENV="development"
+ENV_VARS_FILE="env/${ENV}/env.vars"
+USERS_CFG_FILE="common/cfg/users.cfg"
+
+# Load environment variables, then split & export these to make them available
+source ${ENV_VARS_FILE=}
+export $(cut -d= -f1 ${ENV_VARS_FILE=})
+
+# Replace every exported variable into the template file and generate a new output file
+envsubst < ${USERS_CFG_FILE}.tpl > ${USERS_CFG_FILE}
+EOF
+
+# Run script
+chmod u+x replace.sh
+./replace.sh
+
+# Show difference between the generated configuration file (with variables substitued) and the original template file
+diff common/cfg/users.cfg.tpl common/cfg/users.cfg
+```
+
+### Complex approach
+
+This is possibly more useful when having a complex setup with multiple files for environment variables and complex values assigned. Try using this is the simple approach does not suit your needs.
+
+```bash
+# Create replacing script
+cat <<"EOF" > replace.sh
 #!/bin/bash
 
 ENV="development"
@@ -154,8 +174,8 @@ replace_vars_under_path "${template_common_cfg_files[@]}"
 EOF
 
 # Run script
-chmod u+x deploy.sh
-./deploy.sh
+chmod u+x replace.sh
+./replace.sh
 
 # Show difference between the generated configuration file (with variables substitued) and the original template file
 diff common/cfg/users.cfg.tpl common/cfg/users.cfg
