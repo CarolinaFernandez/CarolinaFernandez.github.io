@@ -34,9 +34,10 @@ We are interested here in four of the paths mentioned in the diagram:
 * **CI2E**: clones a packet from ingress-to-egress
 * **CE2E**: clones a packet from egress-to-egress
 
-In P4_16, it seems a convention to define these as follows (*credit & thanks to **Eder Ollora** for finding & sharing this*):
+In P4_16, it seems a convention to define these as follows (*credit & thanks to <a href="https://github.com/ederollora" target="_blank">Eder Ollora</a> for finding & sharing this*):
 
-```dart
+{% include codeblock-header.html %}
+```cpp
 // Define constants for types of packets
 #define PKT_INSTANCE_TYPE_NORMAL 0
 #define PKT_INSTANCE_TYPE_INGRESS_CLONE 1
@@ -59,7 +60,8 @@ In the following subsections there will be code provided that makes use of such 
 
 The method in use for this is `resubmit`, defined as follows <a title="P4_16 packet redirect sample" href="https://github.com/p4lang/p4c/blob/master/testdata/p4_14_samples_outputs/packet_redirect.p4" target="_blank">here</a>:
 
-```dart
+{% include codeblock-header.html %}
+```cpp
 @name("._resubmit") action _resubmit() {
     resubmit({ standard_metadata, meta.metaA });
 }
@@ -79,7 +81,8 @@ The method supports passing optional metadata as an argument. The metadata is ge
 
 The method in use for this is `recirculate`, defined as follows <a title="P4_16 packet redirect sample" href="https://github.com/p4lang/p4c/blob/master/testdata/p4_14_samples_outputs/packet_redirect.p4" target="_blank">here</a>:
 
-```dart
+{% include codeblock-header.html %}
+```cpp
 @name("._recirculate") action _recirculate() {
     recirculate({ standard_metadata, meta.metaA });
 }
@@ -89,7 +92,8 @@ The method supports passing optional metadata as an argument. The metadata is ge
 
 **Implementation example**: a sample for recirculating in P4_16 is provided <a title="P4_16 sample for recirculating" href="https://github.com/CarolinaFernandez/p4-tutorials/blob/master/exercises/recirculate/solution/recirculate.p4" target="_blank">in this file</a>. Relevant code to provide this feature is documented below.
 
-```dart
+{% include codeblock-header.html %}
+```cpp
 #define PKT_INSTANCE_TYPE_INGRESS_RECIRC 4
 
 control MyIngress(inout headers hdr,
@@ -132,7 +136,8 @@ control MyIngress(inout headers hdr,
 
 **Implementation details**: the method in use for this is `CloneType.I2E`, defined as follows <a title="P4_16 packet redirect sample" href="https://github.com/p4lang/p4c/blob/master/testdata/p4_14_samples_outputs/packet_redirect.p4" target="_blank">here</a>:
 
-```dart
+{% include codeblock-header.html %}
+```cpp
 @name("._clone_i2e") action _clone_i2e(bit<32> mirror_id) {
     clone3(CloneType.I2E, (bit<32>)mirror_id, { standard_metadata, meta.metaA });
 }
@@ -142,7 +147,8 @@ This method expects a mirror (session) ID; defined by a specific number. Metadat
 
 **Implementation example**: a sample for cloning in P4_16 is provided <a title="P4_16 sample for cloning" href="https://github.com/CarolinaFernandez/p4-tutorials/blob/master/exercises/clone/solution/clone.p4" target="_blank">in this file</a>. Relevant code to provide this feature is documented below.
 
-```dart
+{% include codeblock-header.html %}
+```cpp
 #define PKT_INSTANCE_TYPE_INGRESS_CLONE 1
 
 control MyIngress(inout headers hdr,
@@ -185,7 +191,8 @@ control MyEgress(inout headers hdr,
 
 **Implementation details**: the method in use for this is `CloneType.E2E`, defined as follows <a title="P4_16 packet redirect sample" href="https://github.com/p4lang/p4c/blob/master/testdata/p4_14_samples_outputs/packet_redirect.p4" target="_blank">here</a>:
 
-```dart
+{% include codeblock-header.html %}
+```cpp
 @name("._clone_e2e") action _clone_e2e(bit<32> mirror_id) {
     clone3(CloneType.E2E, (bit<32>)mirror_id, { standard_metadata, meta.metaA });
 }
@@ -195,7 +202,8 @@ This method expects a mirror (session) ID; defined by a specific number. Metadat
 
 **Implementation example**: following the example for the *ingress-to-egress* cloning, we could assume that a code resembling the snippet below should work (**note this is NOT tested**).
 
-```dart
+{% include codeblock-header.html %}
+```cpp
 #define PKT_INSTANCE_TYPE_EGRESS_CLONE 2
 
 control MyEgress(inout headers hdr,
