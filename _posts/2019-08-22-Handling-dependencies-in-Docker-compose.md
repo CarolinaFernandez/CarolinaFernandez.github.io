@@ -27,6 +27,7 @@ Two services are provided: the API and the UI.
 
 The interface runs a Python (Flask) process which serves a simple endpoint that returns random UUID4 strings. Once the service is running in the "api" container, it can be queried from the same host where you run Docker:
 
+{% include codeblock-header.html %}
 ```bash
 curl http://localhost:5000/token
 ```
@@ -59,6 +60,7 @@ Summing up:
 
 In this case, the [docker-compose file](https://github.com/CarolinaFernandez/docker-tests/blob/master/compose/dependencies/docker-compose.yml) directly introduces script code in the `healthcheck` and `command` directives.
 
+{% include codeblock-header.html %}
 ```yaml
 version: "3"
 services:
@@ -110,6 +112,7 @@ In this second case, the [docker-compose file](https://github.com/CarolinaFernan
 
 Such newly introduced files are "wait-for-rest.sh" and "ui.sh". The first one polls on an endpoint for a specific amount of time and with a specific frequency. The second one polls the endpoint that returns the token, stores it in disk and waits for 5 minutes before the process can finish.
 
+{% include codeblock-header.html %}
 ```yaml
 version: "3"
 services:
@@ -172,6 +175,7 @@ Refer to the [README](https://github.com/CarolinaFernandez/docker-tests/blob/mas
 
 Quickly put, it looks like this:
 
+{% include codeblock-header.html %}
 ```bash
 # Pull images defined in the docker-compose.yml file or in the referenced
 # Dockerfile files

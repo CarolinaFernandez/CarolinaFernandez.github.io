@@ -34,6 +34,7 @@ The final output will be a report page with one analysis per branch, laid out li
 
 Add the following to your "build.gradle" file to enable the analysis from SonarQube:
 
+{% include codeblock-header.html %}
 ```gradle
 plugins {
     id "org.sonarqube" version "2.6.2"
@@ -58,6 +59,7 @@ The only prerequirement for such a task is to have the code available in the Bam
 
 Inside, you define values such as the "Working subdirectory" and also the "Additional parameters". It is on the latter ones where you define the specific parameters to pass to Gradle:
 
+{% include codeblock-header.html %}
 ```bash
 --stacktrace --debug \
 -Dsonar.projectBaseDir=${bamboo.build.working.directory} \

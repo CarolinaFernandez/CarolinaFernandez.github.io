@@ -32,6 +32,7 @@ Simple bash scripting and iterating on them is enough. There is just a caveat: i
 
 Instead, you may just as well use the directories storing the container data; as these share name. Not that you need to slightly adapt commands for a non-CentOS system.
 
+{% include codeblock-header.html %}
 ```bash
 #!/bin/bash
 

@@ -19,6 +19,7 @@ When installing gRPC and its C++ bindings directly on the environment, the insta
 
 This Docker file will install some of the pre-required packages for gRPC, then download the gRPC repository and use the [run_distrib_test_cmake.sh](https://github.com/grpc/grpc/blob/master/test/distrib/cpp/run_distrib_test_cmake.sh) script, directly provided by the community. Note that this uses an Ubuntu 18.04 LTS distribution, which should be straightforward adjusted to your needs.
 
+{% include codeblock-header.html %}
 ```docker
 FROM ubuntu:18.04
 
@@ -55,6 +56,7 @@ WORKDIR ${BASE_PATH}
 
 The [Dockerfile](https://github.com/CarolinaFernandez/grpc-cpp-env/blob/master/docker/Dockerfile) above is parameterised so that to use a specific gRPC version. You may build the image as follows:
 
+{% include codeblock-header.html %}
 ```bash
 # Define here the gRPC release you wish to use
 GRPC_RELEASE="v1.32.0"

@@ -33,6 +33,7 @@ That's it.
 
 First, the basics.
 
+{% include codeblock-header.html %}
 ```bash
 cd /tmp
 mkdir test_envsubst
@@ -59,6 +60,7 @@ We will create now a replacement script, which can follow a more simple or compl
 
 Use this for casual replacements, like a single environment variable files or with simple values assigned.
 
+{% include codeblock-header.html %}
 ```bash
 # Create replacing script
 cat <<"EOF" > replace.sh
@@ -88,6 +90,7 @@ diff common/cfg/users.cfg.tpl common/cfg/users.cfg
 
 This is possibly more useful when having a complex setup with multiple files for environment variables and complex values assigned. Try using this is the simple approach does not suit your needs.
 
+{% include codeblock-header.html %}
 ```bash
 # Create replacing script
 cat <<"EOF" > replace.sh

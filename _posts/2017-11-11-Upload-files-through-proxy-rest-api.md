@@ -44,6 +44,7 @@ The intermediate or proxy API incorporates the new logic for validating the POST
 
 The first example acts as a simple proxy, sending the binary file received in "*rest1*" towards "*rest2*" just as it was received. Note that this file must be present locally from where "*rest1*" is running (e.g. cURL [does not allow remote paths after the "@"](https://stackoverflow.com/questions/22736756/how-can-i-use-curls-syntax-with-a-remote-url)).
 
+{% include codeblock-header.html %}
 ```python
 from flask import request
 from werkzeug.datastructures import ImmutableMultiDict
@@ -64,6 +65,7 @@ def upload():
 
 The second example would either read a local or a remote file, construct an object with a specific data structure ([FileStorage, from werkzeug library](http://werkzeug.pocoo.org/docs/0.12/datastructures/#werkzeug.datastructures.FileStorage)) and send it towards the "*rest2*" API.
 
+{% include codeblock-header.html %}
 ```python
 from flask import request
 from mimetypes import MimeTypes
@@ -99,6 +101,7 @@ def upload():
 
 #### Altogether
 
+{% include codeblock-header.html %}
 ```python
 from flask import Flask
 from flask import request
@@ -171,6 +174,7 @@ serving.run_simple("0.0.0.0", 8000, app, ssl_context=context)
 
 For the sake of completeness or even testing purposes, the code of the original ("*rest2*") API is here provided; although you will be most probably restricted by its original implementation.
 
+{% include codeblock-header.html %}
 ```python
 from flask import Flask
 from flask import request
@@ -201,7 +205,7 @@ serving.run_simple("0.0.0.0", 8001, app, ssl_context=context)
 
 Pointing [cURL](https://ec.haxx.se/cmdline-options.html) to the exposed endpoints will return an output similar to the one below (in these examples, it indicates the path where the POSTed file is stored in the server where "*rest2*" is running):
 
-```console
+```
 $ rest1_ip="https://127.0.0.1:8000"
 # In case of self-signed certificates, force the insecure "-k" flag
 $ curl -ik ${rest1_ip}/upload1 -X POST -F "somefile=@/opt/test/file.tar.gz"

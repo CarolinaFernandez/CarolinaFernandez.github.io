@@ -38,7 +38,8 @@ The following steps **assume** the following:
 
 First things first: Jenkins must be installed and configured.
 
-```shell
+{% include codeblock-header.html %}
+```bash
 # Installing Jenkins
 apt-get install jenkins
 ```
@@ -47,7 +48,8 @@ Jenkins will automatically start after some time on the port *8080*.
 
 Another port can be chosen in the *HTTP_PORT* directive under the */etc/default/jenkins* file. Also, if you use some DNS for easy access and you wish to use Nginx, you may create a new site file under */etc/nginx/sites-enabled/* and link it from */etc/nginx/sites-available/*:
 
-```shell
+{% include codeblock-header.html %}
+```nginx
 server {
   listen 80;
   server_name <ci.subdomain.domain>;
@@ -102,6 +104,7 @@ In the conditional step, add scripting code that process the incoming payload.
 
 This script processes the GitHub payload to fetch the name ("*ref*") of the branch where some changes were pushed. Any other processing of the payload -such as obtaining the modified files, name and e-mail of the committer, commit hash, timestamp and so on- should be possible by following a similar procedure. Just bear in mind the structure of the GitHub payload, which you will be able to check by either looking at this [GitHub example](https://developer.github.com/v3/activity/events/types/#webhook-payload-example-15), enabling logging POST requests into your server of choice (e.g. Jenkins) or directly look into the "*GitHub Webhooks*" page, after any initial commit.
 
+{% include codeblock-header.html %}
 ```bash
 #!/bin/bash
 current_branch="<current-module-name>"
@@ -140,6 +143,7 @@ A simple task will do here. Just remember to call it from the pull task(s) as a 
 
 The following script is what I use for automatically merging every branch (component) with changes into the master one. It follows a simple approach, as it assumes every change in any modified branch is "trustworthy" and can be passed down to the master branch:
 
+{% include codeblock-header.html %}
 ```bash
 branch_name="master"
 mkdir -p /tmp/project/

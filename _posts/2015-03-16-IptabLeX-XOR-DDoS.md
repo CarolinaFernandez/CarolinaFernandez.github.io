@@ -38,7 +38,7 @@ It usually seems hard to identify [whether your machine is part of a DDoS botnet
 
 In this case, while the malicious binaries attempt to hide themselves, it is actually (still) possible to see them. Providing a given machine reports strange consumption of CPU, you should originally look for the files *IptabLes*, *IptabLex*; but now also for files *aiziwen* and *2862ashui8u*.
 
-```console
+```bash
 # ls -la /boot
 total 1812
 drwxr-xr-x  2 root root    4096 Nov 24 05:52 .
@@ -49,7 +49,7 @@ drwxr-xr-x 21 root root    4096 Sep 27 13:33 ..
 -r--------  1 root root      33 Sep 27 13:33 IptabLex
 ```
 
-```console
+```bash
 # ls -la /root
 total 1812
 drwxr-xr-x  2 root root    4096 Nov 24 05:52 .
@@ -62,7 +62,7 @@ These are the paths of the infected files in my machines, corresponding to the f
 
 Besides, you should also check <code>top</code>:
 
-```console
+```bash
 # top
 
 top - 10:02:30 up 13 min,  2 users,  load average: 0.80, 0.61, 0.36
@@ -92,7 +92,7 @@ First things first: you have to get the machine off the public network. Do you h
 
 Look first for the process with the random name that is consuming most of the machine's CPU (*djaafnvlvv* for this iteration). You should perform a <code>lsof -p $process_pid</code>. This will give you the physical location of the files used to run the process. Alternatively, you could directly scan the filesystem for it:
 
-```console
+```bash
 # find / -name "djaafnvlvv"
 /usr/bin/djaafnvlvv
 /etc/init.d/djaafnvlvv
@@ -101,7 +101,7 @@ Look first for the process with the random name that is consuming most of the ma
 
 Then, have a look at the content of the files, for instance, the file under */etc/init.d/*:
 
-```console
+```bash
 # cat /etc/init.d/djaafnvlvv
 #!/bin/sh
 # chkconfig: 12345 90 90
@@ -128,7 +128,7 @@ esac
 
 The file */etc/init.d/djaafnvlvv* is an [initscript](http://www.linux.com/learn/tutorials/442412-managing-linux-daemons-with-init-scripts) that starts the infected ELF binary file (*/usr/bin/djaafnvlvv*). You could try <code>strings $binary_file</code> to see the strings, the human-readable text. As an example, here are the 6 last lines of one of the original infected binaries, */root/2862ashui8u* - which, if I remember correctly, copied itself under */lib/libgcc4.4.so*:
 
-```console
+```bash
 # strings /root/2862ashui8u | tail -n 6
 cp /lib/libgcc4.so /lib/libgcc4.4.so
 /lib/libgcc4.4.so
@@ -146,7 +146,7 @@ So far, it seems that the two initial files were downloaded into the machine and
 
 Now, open the */etc/crontab* file with your preferred editor. We saw the following entry at the end of the file:
 
-```console
+```bash
 # vim /etc/crontab
 (...)
 */3 * * * * root /etc/cron.hourly/udev.sh
@@ -160,7 +160,7 @@ This step is not that useful to clean your system, but it is interesting to know
 
 Looking at the open connections (<code>lsof -i tcp</code>) related to the infected files, we found the server from where the two infected files mentioned in the first step were being downloaded:
 
-```console
+```bash
 # curl -I -L http://222.186.134.6:6678
 HTTP/1.1 200 OK
 Content-Type: text/html
@@ -173,7 +173,7 @@ Cache-Control: no-cache, no-store, must-revalidate, max-age=-1
 
 Such IP belongs to CHINANET and seems to be [blacklisted because of spam and botnets](http://www.tcpiputils.com/browse/ip-address/222.186.134.6).
 
-```console
+```bash
 $ whois 222.186.134.6
 
 #
@@ -323,7 +323,7 @@ The logical step now is to break the aforementioned vicious circle and remove th
 
 Someone who is not a sysadmin, or at least not fully devoted to it :), may be bewildered at this point. How was it that root couldn't make something? Well... Seems that the infected files were changed its attributes to be *immutable*.
 
-```console
+```bash
 # lsattr -la /root
 ./.                          ---
 ./..                         ---
@@ -333,7 +333,7 @@ Someone who is not a sysadmin, or at least not fully devoted to it :), may be be
 
 You must [change the attributes of the files back to mutable](http://unix.stackexchange.com/a/29904/90930) before being able to delete them.
 
-```console
+```bash
 chattr -i -a  /root/aiziwen
 rm /root/aiziwen
 chattr -i -a  /root/2862ashui8u

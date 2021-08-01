@@ -44,6 +44,7 @@ Note that this step can be cumbersome; so it is quicker to run the following scr
 
 The automated approach (recommended for this deployment, as 40+ interfaces are defined). This script iterates over each interface attached to any LXC instance (defined as <code>lxc.network.veth.pair = </code> in the "config" file of each LXC); then deletes it from the network configuration.
 
+{% include codeblock-header.html %}
 ```bash
 #!/bin/bash
 

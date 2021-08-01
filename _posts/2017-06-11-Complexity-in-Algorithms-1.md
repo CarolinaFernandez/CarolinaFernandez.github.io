@@ -99,8 +99,9 @@ The "*<a title="Introduction to Algorithms" href="http://www.goodreads.com/book/
 
 A Python3 implementation would be as follows:
 
-```python
-def swap(A: list, x: int, y: int) -> list
+{% include codeblock-header.html %}
+```python3
+def swap(A: list, x: int, y: int) -> list:
     aux = A[x]
     A[x] = A[y]
     A[y] = aux
@@ -119,7 +120,7 @@ def insertion_sort(A: list) -> list:
 
 The pseudo-code can be used to analyse the running time in both worst and best cases:
 
-```js
+```js_
 SELECTION-SORT(A)
   for i=1 to A.length-1
     min = A[i]

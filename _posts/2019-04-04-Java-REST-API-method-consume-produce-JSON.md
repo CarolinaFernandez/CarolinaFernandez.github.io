@@ -23,6 +23,7 @@ In this first step the specific endpoint is defined and implemented at the side 
 
 **Users.java**
 
+{% include codeblock-header.html %}
 ```java
 package com.github.carolinafernandez.api;
 
@@ -50,6 +51,7 @@ public interface Users {
 
 **UsersImpl.java**
 
+{% include codeblock-header.html %}
 ```java
 package com.github.carolinafernandez.api.impl;
 
@@ -86,6 +88,7 @@ public class UsersImpl implements Users {
 
 Now, the following call in cURL would suffice to test the proper behaviour of the server side.
 
+{% include codeblock-header.html %}
 ```bash
 curl -X  POST -v --include -H "X-token:424862d3-5ea4-429b-9a39-d783e9607543 " -H "Accept: application/json" -H "Content-Type: application/json" -d "{\"User\":{\"id\":\"usertest\",\"password\":\"usertest\",\"organisation\":\"YourCompany\",\"name\":\"Jane Doe\",\"email\":\"jane.doe@your.org\",\"roles\":[\"ADMIN\"]}}" http://127.0.0.1:8181/users/validate
 ```
@@ -96,6 +99,7 @@ The client side is responsible for interfacing with the API to retrieve the data
 
 **RestClient.java**
 
+{% include codeblock-header.html %}
 ```java
 package com.github.carolinafernandez.client;
 
@@ -165,6 +169,7 @@ public class RestClient {
 
 **UserValidator.java**
 
+{% include codeblock-header.html %}
 ```java
 package com.github.carolinafernandez.validator;
 
@@ -214,6 +219,7 @@ public class UserValidator implements Validator {
 
 **UserController.java**
 
+{% include codeblock-header.html %}
 ```java
 package com.github.carolinafernandez.controller;
 

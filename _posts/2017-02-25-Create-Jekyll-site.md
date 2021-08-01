@@ -23,7 +23,8 @@ The [installation](https://jekyllrb.com/docs/installation/) process expects a Li
 
 The files can now be built and served locally by a thin server. The [<code>--incremental</code>](http://idratherbewriting.com/2015/11/04/jekyll-30-released-incremental-regeneration-rocks/) flag allows to re-build just the content modified. The result of the building process will be available in the shell where these commands are executed.
 
-```console
+{% include codeblock-header.html %}
+```bash
 jekyll build
 jekyll serve --incremental
 ```
@@ -37,7 +38,7 @@ Starting a site with Jekyll should start with the following items, in order:
 
 After those are all set-up, the basic structure for the site is all set-up. From that point you can start filling with specific styles and layouts, use common [includes](https://jekyllrb.com/docs/includes/) files or static pages. An example of a working tree with all the aforementioned would be as follows:
 
-```console
+```
 .
 ├── _config.yml
 ├── _includes
@@ -77,6 +78,7 @@ Some others can be defined by the user, such as <code>_pages</code> (to include 
 
 The configuration file can be used as a central registry for variables to be used across your pages.
 
+{% include codeblock-header.html %}
 ```yaml
 # Setup
 title:        "Title of your site"
@@ -110,7 +112,7 @@ The front page is a normal <code>index.html</code> or <code>index.md</code> file
 
 In this case, the <code>default</code> layout will be used -- as it contains specific code, relevant only to the index.
 
-
+{% include codeblock-header.html %}
 ```markdown
 ---
 layout: default
@@ -132,6 +134,7 @@ The files shall be named in the format <code>year-month-day-title.md</code>. Not
 
 Similar to the main file's view, the post's view can use a specific layout as well. More useful values can be assigned to define the title, publish date, or the categories and labels to further organise the content.
 
+{% include codeblock-header.html %}
 ```markdown
 ---
 layout: post
@@ -158,6 +161,7 @@ Instead of defining a <code>sectionname.html</code> file, do create a folder and
 
 In this case, you need to remove the HTML termination from the post files for every link that points to the content. This is a post-processing done in the URL of the post in order to work as a pretty URL (remember to remove spaces between the curly braces):
 
+{% include codeblock-header.html %}
 ```ruby
 { { post.url | remove: '.html' | prepend: site.baseurl } }
 ```
@@ -166,12 +170,14 @@ In this case, you need to remove the HTML termination from the post files for ev
 
 When listing the available posts in a single page, or in an RSS feed, you can just provide the excerpt of the post (remember to remove spaces between the curly braces):
 
+{% include codeblock-header.html %}
 ```ruby
 { { post.excerpt } }
 ```
 
 Finer control is allowed, as the <code>excerpt_separator</code> key can be defined in <code>_config.yml</code> to define a specific value that identifies the end of the excerpt:
 
+{% include codeblock-header.html %}
 ```yaml
 excerpt_separator: <!--more-->
 ```
@@ -180,6 +186,7 @@ excerpt_separator: <!--more-->
 
 These are quite useful for lengthy posts. Adding the following right after the post's header will do:
 
+{% include codeblock-header.html %}
 ```yaml
 * TOC or any other text can be added (will not be shown)
 {:toc}
@@ -189,6 +196,7 @@ These are quite useful for lengthy posts. Adding the following right after the p
 
 Original source from [Jekyll tips](http://jekyll.tips/jekyll-casts/rss-feed/). This is a simple iterator on the available posts that also provides details on the site as acquired from the configuration file. The code will largely resemble this (remember to remove spaces between the curly braces or %s):
 
+{% include codeblock-header.html %}
 ```xml
 ---
 layout: null
@@ -247,12 +255,14 @@ This requires the MathJax Javascript library. Different methods can be found <a 
 
 Note that, if you want to reuse your code to the maximum, you may want to place partial HTML files under the <code>_includes</code> folder. You can then just use the Ruby's <code>include</code> directive as follows (remember to remove spaces between the curly traces):
 
+{% include codeblock-header.html %}
 ```ruby
 { % include partial-html-file.html % }
 ```
 
 Other sections can be added to work in the same manner as the default ones (<code>_includes</code>, <code>_posts</code>, etc). To do that, add one section per line in <code>_config.yml</code>:
 
+{% include codeblock-header.html %}
 ```yaml
 include:
     - sectionname
@@ -270,6 +280,7 @@ First you need to identify which version you use for both Ruby and the module yo
 
 The class above will serve as the base. Create a new <code>_plugins</code> folder, located at the root of your pages' directory. Inside the folder, place a copy of the code to override. Before starting any modification, you will need to include the specific Ruby's module (here, "Rouge") -- were this not present, Jekyll would not be able to identify the *Rouge* module, nor any of its submodules and classes. Note the "require" at the first line.
 
+{% include codeblock-header.html %}
 ```ruby
 require 'rouge'
 

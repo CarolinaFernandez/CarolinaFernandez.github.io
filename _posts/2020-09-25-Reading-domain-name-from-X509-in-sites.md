@@ -21,6 +21,7 @@ In this Java class, this is done in a simple, minimal way. The code comes from m
 
 First of all, it is useful to check the decoded X509 certificate directly from the site we would like to read from. Using this command and filling in the expected IP in the "ipv4" variable, we can read all the fields of the certificate:
 
+{% include codeblock-header.html %}
 ```bash
 ipv4="a.b.c.d"; echo | openssl s_client -showcerts -servername ${ipv4} \
     -connect ${ipv4}:443 2>/dev/null | openssl x509 -inform pem -noout \
@@ -29,7 +30,7 @@ ipv4="a.b.c.d"; echo | openssl s_client -showcerts -servername ${ipv4} \
 
 Using the 8.8.8.8 (Google) and 1.1.1.1 (Cloudflare) IPv4, we can observe the fields. Only the relevant fields will be shown here.
 
-```bash
+```
 # Google
 ipv4="8.8.8.8"; echo | openssl s_client -showcerts -servername ${ipv4} \
     -connect ${ipv4}:443 2>/dev/null | openssl x509 -inform pem -noout \
@@ -90,6 +91,7 @@ Given this, it seems that the "*X509v3 extensions:*" > "*X509v3 Subject Alternat
 
 **Note**: you can generate such a certificate with X509v3 extensions by adapting this command ([source here](https://security.stackexchange.com/a/183973/46852)):
 
+{% include codeblock-header.html %}
 ```bash
 fqdn="core.service.local"; openssl req \
     -addext "subjectAltName = DNS:${fqdn}" \
@@ -105,6 +107,7 @@ It will first establish an SSL connection (using [this source](https://www.xinot
 
 After loading the chain of X509 certificates, as described in [this source](https://stackoverflow.com/a/41441860/2186237), it attempts to retrieve first the FQDN value from the DNS name. In a decoded X509 certificate, this would be located under "*X509v3 extensions*" and then inside "*X509v3 Subject Alternative Name*". If nothing is there, it will just default to the value inside the "*Common Name*" field of the issuer (as [described here](https://stackoverflow.com/a/5527171/2186237)).
 
+{% include codeblock-header.html %}
 ```java
 import org.bouncycastle.asn1.x500.RDN;
 import org.bouncycastle.asn1.x500.X500Name;
@@ -256,6 +259,7 @@ public class CertificateUtils {
 
 A very simple test can be tried as follows. This will open SSL connections towards both IPs mentioned in the first section (for Google and Cloudflare) and verify that their respective FQDN corresponds to the expected alternative name from the X509 certificate.
 
+{% include codeblock-header.html %}
 ```java
 import org.junit.Test;
 

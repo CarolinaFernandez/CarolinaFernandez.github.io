@@ -31,7 +31,7 @@ The easiest way I went for is the one where the command to create the instance a
 
 Whilst this is documented in the [OpenStack's nova guide](https://docs.openstack.org/nova/latest/admin/availability-zones.html#using-availability-zones-to-select-hosts), you can find here a quick example to adapt. **Note** that this is based on the *Mitaka* version. As you can see from the Nova guide, the basic syntax can follow any of the options below:
 
-```bash
+```
 openstack server create --availability-zone $ZONE ... $SERVER_ID
 openstack server create --availability-zone $ZONE:$HOST ... $SERVER_ID
 openstack server create --availability-zone $ZONE::$NODE ... $SERVER_ID
@@ -41,7 +41,7 @@ openstack server create --availability-zone $ZONE::$NODE ... $SERVER_ID
 
 The following command can be run to easily get the "zone" and the "host". It is more interesting than the `openstack availability zone list` command since that one just provides the "zone".
 
-```bash
+```
 $ openstack host list
 +-------------------------------------------+-------------+----------+
 | Host Name                                 | Service     | Zone     |
@@ -67,6 +67,7 @@ In this example, we have three servers (1, 2, 3) with the "compute" service. Any
 
 Assuming you want to deploy the instance in "server3" (under the "nova" availability zone), the command would be as follows:
 
+{% include codeblock-header.html %}
 ```bash
 openstack server create --flavor=ec1b56f0-4df3-43c2-9663-833a3fad909c --image=aacb59b3-a029-41d5-a79a-35e87db68f22 --security-group=55665ae6-5fe4-4118-a473-4c0457fcfc2c --key-name=test1 --availability-zone=nova:server3 --nic net-id=1fef4ecc-da6b-4db1-9271-89486adf2b91 --nic net-id=00d1e117-2579-4818-938e-b3cbc6dda086 --user-data=/home/test/vm-test1_cloud-init.txt vm-test1
 ```
@@ -79,6 +80,7 @@ As introduced above, there are different options to force this deployment on the
 
 As explained in [this thread](https://ask.openstack.org/en/question/1104/how-do-i-disable-a-nova-compute-node/), it should also be theoretically possible to disable the host(s) you would not wish to deploy to by using the following:
 
+{% include codeblock-header.html %}
 ```bash
 nova service-disable $HOST_NAME nova-compute
 ```
@@ -91,6 +93,7 @@ The option of migrating a server instance from a source compute node to another 
 
 If you want to try it, check the [documentation](https://docs.openstack.org/nova/latest/admin/live-migration-usage.html) and try this command:
 
+{% include codeblock-header.html %}
 ```bash
 openstack server migrate $SERVER_ID --live $HOST_NAME
 ```

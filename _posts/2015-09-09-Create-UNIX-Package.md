@@ -25,7 +25,8 @@ First, the Debian packages. These are the .deb files used to install sources thr
 
 Put simply, these are the commands to create a Debian package:
 
-```console
+{% include codeblock-header.html %}
+```bash
 # Creating a Debian package
 # Creating compressed file with sources
 tar --ignore-failed-read -pczf ${package_name}_${package_version}.tar.gz ${package_name}_${package_version}
@@ -55,7 +56,8 @@ Unlike the Debian package system, the Red Hat package system is less constrained
 
 Here are the steps I followed:
 
-```console
+{% include codeblock-header.html %}
+```bash
 # Creating a Red Hat package
 # Create specific user to generate RPM packages
 useradd $unixpackage_user -m -s /bin/bash

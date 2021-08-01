@@ -27,6 +27,7 @@ Flask can serve requests in different ways; either unsecured (plain HTTP) or sec
 
 Simplest form, provided by default. Only the IP and port need to be configured.
 
+{% include codeblock-header.html %}
 ```python
 from flask import Flask
 from werkzeug import serving
@@ -44,7 +45,7 @@ Other commonly used minimal applications directly use <code>app.run()</code> ([e
 
 Pointing [cURL](https://ec.haxx.se/cmdline-options.html) to the exposed endpoint will return in the expected output:
 
-```console
+```
 $ curl http://127.0.0.1:8000/
 Top-level content
 ```
@@ -55,6 +56,7 @@ This method requires the web server to be bound to a certificate and key. Such d
 
 The [SSL context](http://werkzeug.pocoo.org/docs/0.12/serving/#loading-contexts-by-hand) object holds the location of the [server identity files](https://docs.python.org/3/library/ssl.html#ssl.SSLContext.load_cert_chain) and the type of protocol (SSL/TLS) and the version in use for the HTTPS communication. Possible values are defined [here](https://docs.python.org/2/library/ssl.html#ssl.PROTOCOL_TLS).
 
+{% include codeblock-header.html %}
 ```python
 from flask import Flask
 from werkzeug import serving
@@ -77,7 +79,7 @@ The context can be defined in simpler ways; for instance:
 
 Also, there is a minimal change on the call through cURL: the endpoint is provided through a secure connection now. Note that it is not possible anymore to connect through the plain HTTP endpoint:
 
-```console
+```
 $ curl http://127.0.0.1:8000/
 curl: (56) Recv failure: Connection reset by peer
 
@@ -94,6 +96,7 @@ For this matter;
 1. The connecting client must provide cert and key along with the request; which will be verified against the list of [Certificate Authorities](https://www.quora.com/How-does-SSL-certificate-authority-work) (CAs) trusted by the server (here defined in the *ca.crt* file). Any certificate signed by a trusted authority will operate normally; otherwise the client will be rejected
 1. The server must define the SSL context [verification mode](https://docs.python.org/3/library/ssl.html#ssl.SSLContext.verify_mode). Possible values are defined [here](https://docs.python.org/2/library/ssl.html#constants)
 
+{% include codeblock-header.html %}
 ```python
 from flask import Flask
 from werkzeug import serving
@@ -114,7 +117,8 @@ serving.run_simple("0.0.0.0", 8000, app, ssl_context=context)
 
 This time, cURL expects the client certificate (PKCS#12 or PEM formats); otherwise connection will not take place. Naturally, incoming connections from untrusted clients will result in rejected connections.
 
-```console
+{% include codeblock-header.html %}
+```
 # In case of self-signed certificates, force the insecure "-k" flag
 $ curl -k https://127.0.0.1:8000/ -E client/client.pem
 Top-level content
@@ -130,7 +134,8 @@ The third option --authenticating both server and client-- is based on the [chai
 
 The steps provided [here](https://kb.op5.com/pages/viewpage.action?pageId=19073746#sthash.QrTgcrZX.dpbs) enable a straightforward setup of a CA and signed client certificates, to be used in conjuction with the server above implemented.
 
-```console
+{% include codeblock-header.html %}
+```bash
 # Generate CA certificate (no password)
 openssl genrsa -out root_ca.key 2048
 openssl req -x509 -new -nodes -key root_ca.key -sha256 -days 1024 -out root_ca.crt
@@ -156,6 +161,7 @@ The three options can be encompassed on a single module which delegates the choi
 
 This snippet requires *Python 3.5.2*. The built-in [*ssl*](https://docs.python.org/3.5/library/ssl.html) module is used to set-up the secure context.
 
+{% include codeblock-header.html %}
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -204,6 +210,7 @@ serving.run_simple(
 
 Very similar to he above one, yet relying on *Python 2.7.3* and [*pyOpenSSL 0.14*](https://pyopenssl.org/en/release-0.14/).
 
+{% include codeblock-header.html %}
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
@@ -254,7 +261,7 @@ serving.run_simple(
 
 Note that the sample cURL calls performed above expect the following minimal structure in disk:
 
-```console
+```
 $ tree .
 .
 ├── api.py

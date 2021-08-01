@@ -100,8 +100,8 @@ In this simple scenario, the CD consists of two tasks defined to interact with t
 
 The first and final tasks send a REST payload, formatted in JSON, to the specific incoming webhook (described in the *Slack* section). The payload explicitly indicates the Slack channel where to post the notification and some configuration parameters, in the form of message attachments.
 
+{% include codeblock-header.html %}
 ```bash
-
 deployProject="${bamboo.deploy.project}"
 deployRelease="${bamboo.deploy.release}"
 deployResults="${bamboo.resultsUrl}"

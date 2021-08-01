@@ -34,6 +34,7 @@ In this specific case, the configuration inside the first file is tightly couple
 
 To solve that, let us take the first configuration file (<code>/etc/apache2/sites-available/some_app.conf</code>) as an example:
 
+{% include codeblock-header.html %}
 ```apache
 Listen 5555
 Use SimpleSSLWSGIVHost 5555 some_app /path/to/some_app
@@ -53,7 +54,8 @@ I opted for the second, since the vhost configuration file was not to be touched
 
 That is, first add the environment variable to <code>/etc/apache2/envvars</code>.
 
-```shell
+{% include codeblock-header.html %}
+```bash
 # envvars - default environment variables for apache2ctl
 
 # this won't be correct after changing uid
@@ -103,6 +105,7 @@ export SOME_APP_PATH=/path/to/some_app
 
 Then, reference the env var from a given Apache configuration file. And don't forget the enclosing braces.
 
+{% include codeblock-header.html %}
 ```apache
 Listen 5555
 Use SimpleSSLWSGIVHost 5555 some_app ${SOME_APP_PATH}
@@ -125,7 +128,8 @@ To <u>access the Unix env vars from Python</u> (e.g. from your Django app), just
 
 In order to do that, add the same value to a global env var in <code>/etc/profile.d/some_app.sh</code>.
 
-```shell
+{% include codeblock-header.html %}
+```bash
 #!/bin/bash
 
 export SOME_APP_PATH=/path/to/some_app
@@ -133,6 +137,7 @@ export SOME_APP_PATH=/path/to/some_app
 
 Finally, use it inside your Python code.
 
+{% include codeblock-header.html %}
 ```python
 import os
 

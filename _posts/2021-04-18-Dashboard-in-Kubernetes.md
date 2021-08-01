@@ -78,7 +78,9 @@ echo $TOKEN
 
 Finally, if you want to access the dashboard from outside the node where this runs, issue a `kubectl proxy` command.
 
-*Note: this will run the process in background. Its PID is provided right after its execution, in case you ought to terminate it.*
+{% capture note-text %}This will run the process in background. Its PID is provided right after its execution, in case you ought to terminate it.
+{% endcapture %}
+{% include highlight-note.html %}
 
 {% include codeblock-header.html %}
 ```bash
@@ -87,6 +89,8 @@ nohup kubectl proxy --kubeconfig=/home/vagrant/.kube/config --address='0.0.0.0' 
 
 Now, the dashboard will be located at [http://127.0.0.1:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy](http://127.0.0.1:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy), where you will be asked for the token defined in the previous step.
 
-*Note: if you run this into a remote environment (whether in a VM or in some external cloud), you may not have access to the localhost. In such case, you should make sure to forward specific ports from that VM to your localhost. If using Vagrant, you may examine [this Vagrantfile](https://github.com/CarolinaFernandez/curso-infra-cloud/blob/master/tools/kubernetes/Vagrantfile#L72) first.*
+{% capture note-text %}If you run this into a remote environment (whether in a VM or in some external cloud), you may not have access to the localhost. In such case, you should make sure to forward specific ports from that VM to your localhost. If using Vagrant, you may examine [this Vagrantfile](https://github.com/CarolinaFernandez/curso-infra-cloud/blob/master/tools/kubernetes/Vagrantfile#L72) first.*
+{% endcapture %}
+{% include highlight-warning.html %}
 
 When all above is taken care of, the dashboard will be ready to interact with.

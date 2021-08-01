@@ -23,13 +23,14 @@ The libraries I have checked so far expect a URL pointing to a public, remotely 
 
 First create the basic folder structure within the root folder:
 
-```console
+{% include codeblock-header.html %}
+```bash
 mkdir dist
 ```
 
 Note that the expected file structure at the end of the process is as follows:
 
-```console
+```
 $ tree .
 .
 ├── dist
@@ -59,13 +60,15 @@ Two files will be in use here:
 
 Get the [index.html](https://github.com/swagger-api/swagger-ui/blob/master/dist/index.html) file from the *swagger-ui* project and rename it as <code>index-ui.html</code>.
 
-```console
+{% include codeblock-header.html %}
+```bash
 wget https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/index.html -O index-ui.html
 ```
 
 Fetch the required javascript and css files from the [dist](https://github.com/swagger-api/swagger-ui/tree/master/dist) folder from the *swagger-ui* project and place these under the <code>dist</code> folder:
 
-```console
+{% include codeblock-header.html %}
+```bash
 wget https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/swagger-ui-bundle.js
 wget https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/swagger-ui-standalone-preset.js
 wget https://raw.githubusercontent.com/swagger-api/swagger-ui/master/dist/swagger-ui.css
@@ -76,13 +79,15 @@ mv *.css *.js dist/
 
 Get the [index.html](https://github.com/swagger-api/swagger-editor/blob/master/index.html) file from the *swagger-editor* project and rename it as <code>index-editor.html</code>.
 
-```console
+{% include codeblock-header.html %}
+```bash
 wget https://raw.githubusercontent.com/swagger-api/swagger-editor/master/index.html -O index-editor.html
 ```
 
 Fetch the required javascript and css files from the [dist](https://github.com/swagger-api/swagger-ui/tree/master/dist) folder from the *swagger-ui* project and place these under the <code>dist</code> folder:
 
-```console
+{% include codeblock-header.html %}
+```bash
 wget https://raw.githubusercontent.com/swagger-api/swagger-editor/master/dist/swagger-editor-bundle.js
 wget https://raw.githubusercontent.com/swagger-api/swagger-editor/master/dist/swagger-editor-standalone-preset.js
 wget https://raw.githubusercontent.com/swagger-api/swagger-editor/master/dist/swagger-editor.css
@@ -95,12 +100,14 @@ Swagger may load by default the sample *petstore* API specification -- the same 
 
 To ensure the load of a local specification, download the [api-with-examples.yaml](https://github.com/OAI/OpenAPI-Specification/blob/master/examples/v2.0/yaml/api-with-examples.yaml) file and rename it as <code>swagger.yaml</code>.
 
-```console
+{% include codeblock-header.html %}
+```bash
 wget https://raw.githubusercontent.com/OAI/OpenAPI-Specification/master/examples/v2.0/yaml/api-with-examples.yaml -O swagger.yaml
 ```
 
 This specification file will be later on converted, if needed, to a JSON file and stored a s *spec.js* file in runtime. When rendering the Swagger docs, this can be directly loaded by the html page. Therefore, a minor change in both *index-ui.html* and *index-editor.html* is expected. Ensure that the html file has the following additions:
 
+{% include codeblock-header.html %}
 ```html
 <div id="swagger-***"></div>
 <script src="./dist/swagger-***-bundle.js"> </script>
@@ -135,6 +142,7 @@ The asterisks denote a placeholder for the values "*editor*" or "*ui*", dependin
 
 Once all the css, js, yaml and html files are in place, it is time to develop a minimal server to present these. The following code will expose two endpoints: */editor* and */ui*, each to accommodate a different layout for the swagger documentation -- that is, with and without editor panel. Save it as <code>server.py</code> in the root folder.
 
+{% include codeblock-header.html %}
 ```python
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-

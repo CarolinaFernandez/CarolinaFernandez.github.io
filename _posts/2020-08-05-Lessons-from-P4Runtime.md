@@ -41,6 +41,7 @@ When using any of the language-specific binding, import the files generated from
 
 For instance, the following iterates on the available tables (and its related match and actions), as found in a given P4Info object:
 
+{% include codeblock-header.html %}
 ```cpp
 #define P4_CONFIG_NAMESPACE_ID p4::config::v1
 #include "/path/to/grpc/p4/config/v1/p4info.pb.h"
@@ -112,6 +113,7 @@ Some examples (note that the X's are empty positions to be filled/padded with ze
 | 254 | 11111110 | 8 | 11111110 |
 | 00:00:00:00:00:02 | 10 | 48 | XXXXXXXX XXXXXXXX XXXXXXXX XXXXXXXX XXXXXXXX XXXXXX10 {% raw %}$$\rightarrow$${% endraw %} 00000000 00000000 00000000 00000000 00000000 00000010 |
 
+{% include codeblock-header.html %}
 ```cpp
 std::string encode_value(uint16_t value, size_t bitwidth) {
   char lsb, msb;
@@ -172,6 +174,7 @@ The full set of iterations expected for this value (note that the X's are empty 
 
 Sum of all the iterations/positions = 000010 {% raw %}$$\rightarrow$${% endraw %} 2
 
+{% include codeblock-header.html %}
 ```cpp
 uint16_t decode_value(const std::string value) {
   uint16_t res = 0;

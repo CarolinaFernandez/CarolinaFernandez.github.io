@@ -31,6 +31,7 @@ First, the <code>SimpleMappingExceptionResolver</code> is extended to handle any
 
 **CustomSimpleMappingExceptionResolver.java**
 
+{% include codeblock-header.html %}
 ```java
 package ...;
 
@@ -123,6 +124,7 @@ Now, the custom exception resolved is registered as the default exception handle
 
 **WebAppConfig.java**
 
+{% include codeblock-header.html %}
 ```java
 package ...;
 
@@ -205,6 +207,7 @@ Now that the custom resolver is registered in the configuration of the web appli
 
 **Initializer.java**
 
+{% include codeblock-header.html %}
 ```java
 package ...;
 
@@ -248,7 +251,7 @@ public class Initializer implements WebApplicationInitializer {
 
 Besides the Java classes, there is content to be provided either as tags or views. In this example, we provide a tag file that can be parameterised in different views (one per error code), The structure of such files is as follows:
 
-```bash
+```
 src/main/webapp/WEB-INF/
 ├── tags
 │   └── error.tag
@@ -261,6 +264,7 @@ src/main/webapp/WEB-INF/
 
 **src/main/webapp/WEB-INF/tags/error.tag**: a templated error tag to be used in the error views
 
+{% include codeblock-header.html %}
 ```jstl
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
@@ -289,6 +293,7 @@ src/main/webapp/WEB-INF/
 
 **src/main/webapp/WEB-INF/views/error/404.jsp**: a 404 error-related template
 
+{% include codeblock-header.html %}
 ```jstl
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" isErrorPage="true" %>
@@ -303,6 +308,7 @@ src/main/webapp/WEB-INF/
 
 **src/main/webapp/WEB-INF/views/error/500.jsp**: a 500 error-related template
 
+{% include codeblock-header.html %}
 ```jstl
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" isErrorPage="true" %>
@@ -317,6 +323,7 @@ src/main/webapp/WEB-INF/
 
 **src/main/webapp/WEB-INF/views/error/generic.jsp**: a generic error template (for anything that does not fit the cases above and *can be captured by the Spring framework*)
 
+{% include codeblock-header.html %}
 ```jstl
 <%@ page language="java" contentType="text/html; charset=utf-8"
          pageEncoding="utf-8" isErrorPage="true" %>
