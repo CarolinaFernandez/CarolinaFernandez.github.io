@@ -3,9 +3,6 @@
     font-size: .7rem !important;
   }
 }
-.highlighter-rouge {
-    max-width: 44em !important;
-}
 .main-content .highlight {
     margin-bottom: 1rem;
     max-width: 95%;
@@ -41,10 +38,8 @@
     display: flex;
     justify-content: flex-end;
     /* Only possible when the code-header is just used to copy code */
-    margin-bottom: -4em;
-}
-.copy-code-button::after {
-    content: "Copy";
+    margin-bottom: -2.8em;
+    margin-right: 0.25em;
 }
 .copy-code-button {
     align-items: center;
@@ -52,19 +47,46 @@
     border: solid 1px rgba(108, 107, 107, 0.3);
     cursor: pointer;
     display: grid;
-    font-size: 0.8em;
+    font-size: 0.7em;
     grid-auto-flow: column;
     grid-column-gap: 4px;
-    padding: 0em 0.7em 0.2em 0.7em;
+    max-height: 4em;
+    padding: 0em 0.5em 0em 0.5em;
 }
 [data-theme="dark"] .copy-code-button,
 [data-theme="dark"] .copy-code-button.copied {
     background-color: rgb(64, 62, 63);
 }
+.copy-code-button .fas::after,
+.copy-code-button .fas.copied::after {
+    clear: both;
+    display: block;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    font-size: 0.8em;
+    margin-top: .5em;
+}
+.copy-code-button .fas::after {
+    content: "Copy";
+}
 /* Class toggled via JavaScript */
-.copy-code-button.copied::after {
+.copy-code-button .fas.copied::after {
     content: "Copied";
 }
+
+/**/
+/*.copy-code-button .fas::after {
+    clear: both;
+    content: "Copy";
+    display: block;
+    font-family: "Source Sans Pro", Helvetica, sans-serif;
+    margin-top: .5em;
+}*/
+/* Class toggled via JavaScript */
+/*.copy-code-button.copied::after {
+    content: "Copied";
+}*/
+/**/
+
 [data-theme="dark"] .copy-code-button:hover {
     background-color: #313131;
 }

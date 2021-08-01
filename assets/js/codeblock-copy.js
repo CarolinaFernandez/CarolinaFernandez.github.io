@@ -18,10 +18,11 @@ copyCodeButtons.forEach((copyCodeButton, index) => {
         }
 
         window.navigator.clipboard.writeText(code);
-        copyCodeButton.classList.add("copied");
 
+        const copyCodeButtonIcon = copyCodeButton.getElementsByClassName("fas")[0];
+        copyCodeButtonIcon.classList.add("copied");
         setTimeout(() => {
-            copyCodeButton.classList.remove("copied");
+            copyCodeButtonIcon.classList.remove("copied");
         }, 2000);
     });
 });
