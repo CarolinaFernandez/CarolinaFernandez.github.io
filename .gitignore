@@ -2,3 +2,4 @@
 _site
 *bash
 .DS_Store
+_posts/2021-06-28-Private-Docker-registry-in-multi-node-Kubernetes-cluster.md
