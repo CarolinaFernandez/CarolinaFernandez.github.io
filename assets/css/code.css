@@ -65,6 +65,9 @@
 .copy-code-button.copied::after {
     content: "Copied";
 }
+[data-theme="dark"] .copy-code-button:hover {
+    background-color: #313131;
+}
 .main-content .highlight .code pre,
 .main-content .highlight .rouge-code pre {
     border: 1rem;

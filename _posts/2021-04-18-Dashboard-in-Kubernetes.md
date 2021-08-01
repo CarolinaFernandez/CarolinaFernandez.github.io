@@ -42,7 +42,7 @@ export K8S_MASTER_NODE_NAME=$(kubectl get nodes | grep master | cut -d" " -f1)
 ```
 
 Now, create all dashboard-related resources. Feel free to have a look at the manifest to understand its content.
- include codeblock-header.html %}
+{% include codeblock-header.html %}
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/{{ site.author.github }}/{{ site.author.url }}/master/file/post/2021-04-18-Dashboard-in-Kubernetes/kubernetes-dashboard.yaml
 ```
@@ -85,7 +85,7 @@ Finally, if you want to access the dashboard from outside the node where this ru
 nohup kubectl proxy --kubeconfig=/home/vagrant/.kube/config --address='0.0.0.0' --port=8001 --accept-hosts='.*' > kubectl_proxy_dashboard.log &
 ```
 
-Now, the dashboard will be located at [http://127.0.0.1:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy](http://127.0.0.1:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy). You may access it and input the token from the previous step.
+Now, the dashboard will be located at [http://127.0.0.1:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy](http://127.0.0.1:8001/api/v1/namespaces/kubernetes-dashboard/services/https:kubernetes-dashboard:/proxy), where you will be asked for the token defined in the previous step.
 
 *Note: if you run this into a remote environment (whether in a VM or in some external cloud), you may not have access to the localhost. In such case, you should make sure to forward specific ports from that VM to your localhost. If using Vagrant, you may examine [this Vagrantfile](https://github.com/CarolinaFernandez/curso-infra-cloud/blob/master/tools/kubernetes/Vagrantfile#L72) first.*
 
