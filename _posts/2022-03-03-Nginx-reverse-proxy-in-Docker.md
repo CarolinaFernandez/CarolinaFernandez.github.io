@@ -44,9 +44,8 @@ As an example, the local server will be reached via the "/local" endpoint and th
                              ...........................
                                Docker network = srv-net
 ```
-That is, assuming 
 
-{% capture note-text %}The communication is bidirectional: i.e., request flow goes via browser->rev_proxy->server, whilst response flow goes via server->rev_proxy->browser.
+{% capture note-text %}The communication is bidirectional: i.e., request flow goes via browser->rev_proxy->server, whilst response flows back via server->rev_proxy->browser.
 {% endcapture %}
 {% include highlight-note.html %}
 
@@ -74,19 +73,21 @@ The example is taken from [this answer](https://serverfault.com/a/379679):
 
 This effectively removes the "/local" prefix from the user request; as a pre-processing step before passing it to the target server.
 
-### Passing the Authorization header
+### Passing the authorisation header
 
 Two options were considered here. Pick the one most suited to your needs and locate it under server/location, same as with the "rewrite" directive:
 
-* Passing the credentials provided by the user (as when directly interacting with the original API):
+1. Passing the credentials provided by the user (as when directly interacting with the original API):
   ```nginx
   proxy_set_header   Authorization $http_authorization;
   ```
-* Hardcoding the credentials of the target service:
+1. Hardcoding the credentials of the target service:
+  First encoding the user and password in base64
   ```bash
   $ echo -n "user:password" | base64
   dXNlcjpwYXNzd29yZA==
   ```
+  And then pasting it as part of the authorisation header:
   ```nginx
   proxy_set_header   Authorization "Basic dXNlcjpwYXNzd29yZA==";
   ```
@@ -141,7 +142,7 @@ COPY ./nginx_reverse_proxy.conf /etc/nginx/conf.d/default.conf
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
 ```
 
-{% capture note-text %}The contents of the file *Dockerfile.srvlocal* are not provided here. You should have ready a Docker-based REST API running as a Docker container (optionally with BasicAuth).
+{% capture note-text %}The contents of the file "Dockerfile.srvlocal" are not provided here. You should have ready a Docker-based REST API running as a Docker container (optionally with BasicAuth).
 {% endcapture %}
 {% include highlight-warning.html %}
 
@@ -152,7 +153,7 @@ ENTRYPOINT ["nginx", "-g", "daemon off;"]
 The file *docker-compose.yaml* has the following contents now:
 
 {% include codeblock-header.html %}
-```docker
+```yaml
 version: "3.5"
 
 services:
@@ -187,11 +188,12 @@ networks:
 
 To run the containers, the following commands are expected:
 
+{% include codeblock-header.html %}
 ```bash
 docker network create srv-net
 docker-compose -f ./docker-compose.yaml up -d
 ```
 
-The two different options can be tested, observing the following transformations:
+In the end, the two different options can be tested. The requests will be transformed as follows:
 * http://localhost:8080/local/api/v1/method-local -> https://srv-local:8081/api/v1/method-local
 * http://localhost:8080/api/v1/method-remote -> https://srv.remote.net/api/v1/method-remote
