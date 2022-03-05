@@ -3606,11 +3606,11 @@
 		}
 
 			#intro .logo:before {
-				background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100px' height='100px' viewBox='0 0 100 100' preserveAspectRatio='none' zoomAndPan='disable'%3E%3Cpolygon points='0,70 0,100 90,100' style='fill:%23151617' /%3E%3C/svg%3E") !important;
+				background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100px' height='100px' viewBox='0 0 100 100' preserveAspectRatio='none' zoomAndPan='disable'%3E%3Cpolygon points='0,70 0,100 90,100' style='fill:%231a1c1d' /%3E%3C/svg%3E") !important;
 				background-position: top left;
 				background-repeat: no-repeat;
 				background-size: 100% 103%;
-				content: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100px' height='100px' viewBox='0 0 100 100' preserveAspectRatio='none' zoomAndPan='disable'%3E%3Cpolygon points='0,55 0,90 120,100' style='fill:%23151617' /%3E%3C/svg%3E") !important;
+				content: '';
 				display: block;
 				height: 100%;
 				left: 0;
@@ -3620,11 +3620,11 @@
 			}
 
 			[data-theme="light"] #intro .logo:before {
-				background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100px' height='100px' viewBox='0 0 100 100' preserveAspectRatio='none' zoomAndPan='disable'%3E%3Cpolygon points='0,70 0,100 90,100' style='fill:%2356210b' /%3E%3C/svg%3E") !important;
+				background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100px' height='100px' viewBox='0 0 100 100' preserveAspectRatio='none' zoomAndPan='disable'%3E%3Cpolygon points='0,70 0,100 90,100' style='fill:%23f6ccbb' /%3E%3C/svg%3E") !important;
 				background-position: top left;
 				background-repeat: no-repeat;
 				background-size: 100% 103%;
-				content: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100px' height='100px' viewBox='0 0 100 100' preserveAspectRatio='none' zoomAndPan='disable'%3E%3Cpolygon points='0,55 0,90 120,100' style='fill:%2356210b' /%3E%3C/svg%3E") !important;
+				content: '';
 				display: block;
 				height: 100%;
 				left: 0;
