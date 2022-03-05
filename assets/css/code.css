@@ -43,7 +43,7 @@
 }
 .copy-code-button {
     align-items: center;
-    background-color: #f4cbbd;
+    background-color: rgb(64, 62, 63);
     border: solid 1px rgba(108, 107, 107, 0.3);
     cursor: pointer;
     display: grid;
@@ -53,9 +53,9 @@
     max-height: 4em;
     padding: 0em 0.5em 0em 0.5em;
 }
-[data-theme="dark"] .copy-code-button,
-[data-theme="dark"] .copy-code-button.copied {
-    background-color: rgb(64, 62, 63);
+[data-theme="light"] .copy-code-button,
+[data-theme="light"] .copy-code-button.copied {
+    background-color: #f4cbbd;
 }
 .copy-code-button .fas::after,
 .copy-code-button .fas.copied::after {
@@ -87,7 +87,7 @@
 }*/
 /**/
 
-[data-theme="dark"] .copy-code-button:hover {
+.copy-code-button:hover {
     background-color: #313131;
 }
 .main-content .highlight .code pre,

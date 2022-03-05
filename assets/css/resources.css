@@ -126,12 +126,12 @@
 }
 .publication-title,
 .publication-title a {
-    color: #567437;
+    color: #ddd56e;
     font-weight: bolder;
 }
-  [data-theme="dark"] .publication-title,
-  [data-theme="dark"] .publication-title a {
-    color: #ddd56e;
+  [data-theme="light"] .publication-title,
+  [data-theme="light"] .publication-title a {
+    color: #567437;
   }
 .studies a,
 .experience a,

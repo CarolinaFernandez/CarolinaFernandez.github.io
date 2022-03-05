@@ -5,18 +5,18 @@ function applyInitialTheme(themeSwitcher) {
       htmlTag.attr("data-theme", theme);
   }
   // Select the "opposite" theme when loading to show the other option/icon
-  reverseTheme = (theme==undefined?"dark":undefined);
+  reverseTheme = (theme==undefined?"light":undefined);
   toggleThemeIcon(themeSwitcher, reverseTheme);
 }
 function toggleThemeIcon(themeSwitcher, themeName) {
-  if (typeof themeName !== typeof undefined && themeName !== false && themeName == "dark") {
-    $(themeSwitcher).removeClass("fa-sun");
-    $(themeSwitcher).addClass("fa-moon");
-    $(themeSwitcher).css("color", "#4652aa");
-  } else {
+  if (typeof themeName !== typeof undefined && themeName !== false && themeName == "light") {
     $(themeSwitcher).removeClass("fa-moon");
     $(themeSwitcher).addClass("fa-sun");
     $(themeSwitcher).css("color", "#f8b856");
+  } else {
+    $(themeSwitcher).removeClass("fa-sun");
+    $(themeSwitcher).addClass("fa-moon");
+    $(themeSwitcher).css("color", "#4652aa");
   }
 }
 function toggleTheme(themeSwitcher) {
@@ -28,8 +28,8 @@ function toggleTheme(themeSwitcher) {
       htmlTag.removeAttr("data-theme");
       return window.localStorage.removeItem("site-theme");
     }
-    htmlTag.attr("data-theme", "dark");
-    window.localStorage.setItem("site-theme", "dark");
+    htmlTag.attr("data-theme", "light");
+    window.localStorage.setItem("site-theme", "light");
 }
 
 $(document).ready(function() {
