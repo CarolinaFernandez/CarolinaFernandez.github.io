@@ -39,12 +39,6 @@ The authentication takes place extracting the client's certificates from the hea
 
 Simple instructions are shown below to configure the Keycloak Docker container to work in reverse proxy mode.
 The content of the simple NGINX redirection is available on the [keycloak.nginx.conf](https://github.com/CarolinaFernandez/keycloak-mtls/blob/master/nginx/keycloak.nginx.conf) file at the repository. This is a simple approach that sends several headers, among these, the header "X-Client-Cert" that is explicitly configured for Keycloak. 
-
-More information:
-  * [Source code (oull request) for the X509 client certificate user authentication behind reverse proxy](https://github.com/keycloak/keycloak/pull/4546)
-  * [Illustrative Keycloak forum discussion](https://keycloak.discourse.group/t/x509-authentication-with-keycloak-on-kubernetes-via-ingress/16035)
-  * [Possible source code of the NGINX Service Provider Interface (SPI)](https://github.com/keycloak/keycloak/blob/main/services/src/main/java/org/keycloak/services/x509/NginxProxySslClientCertificateLookup.java)
-
  
 ### Reverse proxy deployment
 
@@ -56,11 +50,12 @@ It also provides scripts to programmatically generate all required resources and
 {% endcapture %}
 {% include highlight-warning.html %}
 
-The general [reverse proxy variables](https://www.keycloak.org/server/reverseproxy) are explained in this Keycloak guide, although after testing, these are not required to pass the certificate headers.
+The general [reverse proxy](https://www.keycloak.org/server/reverseproxy) variables are explained in this Keycloak guide, although after testing, these are not required to pass the certificate headers.
+For more in-depth details, here is source code (pull request) for the [X509 client certificate user authentication behind reverse proxy](https://github.com/keycloak/keycloak/pull/4546) logic in Keycloak's GitHub. Besides this, a potentially useful source implementation of the [NGINX Service Provider Interface (SPI)](https://github.com/keycloak/keycloak/blob/main/services/src/main/java/org/keycloak/services/x509/NginxProxySslClientCertificateLookup.java) is available in the repository.
 
 #### Docker-compose configuration for Keycloak
 
-There are few variables that are configured for the Keycloak container (these and others are referenced in this [illustrative discussio](https://keycloak.discourse.group/t/x509-authentication-with-keycloak-on-kubernetes-via-ingress/16035)):
+There are few variables that are configured for the Keycloak container (these and others are referenced in this [illustrative discussion](https://keycloak.discourse.group/t/x509-authentication-with-keycloak-on-kubernetes-via-ingress/16035)):
 
 | Property | Value | Description |
 |----------|-------|-------------|
@@ -124,7 +119,13 @@ services:
 
 #### Evaluation
 
-Now, to obtain the token,  [here](https://github.com/CarolinaFernandez/keycloak-mtls/blob/master/keycloak-token-get-proxy.py).
+More information:
+  * [Source code (oull request) for the X509 client certificate user authentication behind reverse proxy](https://github.com/keycloak/keycloak/pull/4546)
+  * [Possible source code of the NGINX Service Provider Interface (SPI)](https://github.com/keycloak/keycloak/blob/main/services/src/main/java/org/keycloak/services/x509/NginxProxySslClientCertificateLookup.java)
+
+The token can be now obtained by passing the appropriate header (matching the value under "KC_SPI_X509CERT_LOOKUP_NGINX_SSL_CLIENT_CERT") to Keycloak's token endpoint.
+The payload will contain the typical expected values (for keys "grant_type" and "client_id"), whilst the realm name will be encoded in Keycloak's token endpoint.
+The full source is located [here](https://github.com/CarolinaFernandez/keycloak-mtls/blob/master/keycloak-token-get-proxy.py).
 
 {% include codeblock-header.html %}
 ```python
@@ -144,7 +145,7 @@ realm_name = "x509"
 token_url = f"{keycloak_url}/realms/{realm_name}/protocol/openid-connect/token"
 
 headers = {"Content-Type": "application/x-www-form-urlencoded"}
-payload = {"client_id": client_id, "grant_type": "client_credentials"}
+payload = {"grant_type": "client_credentials", "client_id": client_id}
 
 # Encode certificate properly to e.g. change \n by %0A, space by %20, etc
 client_cert_data_enc = urllib.parse.quote(client_cert_data)
