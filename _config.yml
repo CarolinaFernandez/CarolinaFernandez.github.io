@@ -25,6 +25,9 @@ gems:
   - jekyll-paginate
   - rouge
 
+plugins:
+  - jekyll-paginate
+
 exclude: ["cv"]
 
 # Post configuration
