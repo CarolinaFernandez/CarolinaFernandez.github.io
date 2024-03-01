@@ -119,10 +119,6 @@ services:
 
 #### Evaluation
 
-More information:
-  * [Source code (oull request) for the X509 client certificate user authentication behind reverse proxy](https://github.com/keycloak/keycloak/pull/4546)
-  * [Possible source code of the NGINX Service Provider Interface (SPI)](https://github.com/keycloak/keycloak/blob/main/services/src/main/java/org/keycloak/services/x509/NginxProxySslClientCertificateLookup.java)
-
 The token can be now obtained by passing the appropriate header (matching the value under "KC_SPI_X509CERT_LOOKUP_NGINX_SSL_CLIENT_CERT") to Keycloak's token endpoint.
 The payload will contain the typical expected values (for keys "grant_type" and "client_id"), whilst the realm name will be encoded in Keycloak's token endpoint.
 The full source is located [here](https://github.com/CarolinaFernandez/keycloak-mtls/blob/master/keycloak-token-get-proxy.py).
