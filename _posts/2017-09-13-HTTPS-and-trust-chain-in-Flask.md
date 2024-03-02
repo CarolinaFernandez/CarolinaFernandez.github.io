@@ -3,7 +3,7 @@ layout: post
 title:  "HTTPS and trust chain in Flask"
 description: "Different ways to set-up HTTP and HTTPS connection with a Flask-based server"
 date:   2017-09-13 20:12:18
-update: 2024-03-02 19:11:03
+update: 2024-03-02 19:13:19
 categories: development
 tags: [python, flask]
 comments: true
@@ -153,12 +153,10 @@ This time, cURL expects the client certificate (PKCS#12 or PEM formats); otherwi
 {% include codeblock-header.html %}
 ```
 # In case of self-signed certificates, force the insecure "-k" flag
-$ curl -k https://127.0.0.1:8000/ -E client/client.pem
+$ curl -k https://127.0.0.1:8000/ -E client.pem
 Top-level content
-$ curl -k https://127.0.0.1:8000/ -E client/untrusted_client.pem
-curl: (35) gnutls_handshake() failed: Error in the push function.
 $ curl -k https://127.0.0.1:8000/
-curl: (35) gnutls_handshake() failed: Handshake failed
+curl: (35) error:0A000410:SSL routines::sslv3 alert handshake failure
 ```
 
 ### Altogether
