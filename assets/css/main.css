@@ -2701,6 +2701,12 @@
 						margin: -0.625em 0 1.7em 0;
 						text-transform: uppercase;
 					}
+                                        ul.posts article header .updated {
+                                                font-size: 0.4em;
+                                                font-weight: 200;
+                                                letter-spacing: 0.17em;
+                                        }
+
 
 					ul.posts article header > :last-child {
 						margin-bottom: 0;
@@ -2765,6 +2771,16 @@
 					margin: -0.625em 0 1.7em 0;
 					text-transform: uppercase;
 				}
+
+                                .mini-post header .updated {
+                                        display: block;
+                                        font-family: "Raleway", Helvetica, sans-serif;
+                                        font-size: 0.4em;
+                                        font-weight: 200;
+                                        letter-spacing: 0.25em;
+                                        margin: -0.625em 0 1.7em 0;
+                                        text-transform: uppercase;
+                                }
 
 				.mini-post header .author {
 					position: absolute;
@@ -2904,10 +2920,20 @@
 						text-transform: uppercase;
 						white-space: nowrap;
 					}
-
 						[data-theme="light"] .post > header .meta .published {
 							color: #ffdcdc;
 						}
+
+                                        .post > header .meta .updated {
+                                                font-size: 0.7em;
+                                                font-weight: 600;
+                                                letter-spacing: 0.17em;
+                                                margin-top: 0em;
+                                        }
+						[data-theme="light"] .post > header .meta .updated {
+							color: #ffdcdc;
+						}
+
 
 			.post > a.image.featured {
 				overflow: hidden;

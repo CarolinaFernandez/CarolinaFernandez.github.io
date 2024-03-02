@@ -8,6 +8,16 @@ layout: default
 		<div class="title">
 			<h2>{{ page.title }}</h2>
 		</div>
+                <div class="meta">
+                        <div class="post-meta">
+                                        {% if page.update %}
+                                        <time class="published" datetime="{{ page.update }}">
+                                                <em aria-hidden="true" class="fa fa-calendar" alt="Updated"></em>
+                                                {{ page.update | date: "%-Y/%-m/%-d" }}
+                                        </time>
+                                        {% endif %}
+                        </div>
+                </div>
 	</header>
 
 	<div>
