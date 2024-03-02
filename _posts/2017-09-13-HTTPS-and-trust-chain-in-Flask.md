@@ -3,7 +3,7 @@ layout: post
 title:  "HTTPS and trust chain in Flask"
 description: "Different ways to set-up HTTP and HTTPS connection with a Flask-based server"
 date:   2017-09-13 20:12:18
-update: 2024-03-02 18:24:05
+update: 2024-03-02 19:11:03
 categories: development
 tags: [python, flask]
 comments: true
@@ -54,6 +54,7 @@ cat server.crt ca.crt > server_chain.pem
 openssl req -new -newkey rsa:4096 -nodes -keyout client.key -out client.csr -subj "/C=${CERT_DN_C}/ST=${CERT_DN_ST}/L=${CERT_DN_L}/O=${CERT_DN_O}/OU=${CERT_DN_OU}/CN=client.server.localhost/emailAddress=client@localhost"
 openssl x509 -req -CA ca.crt -CAkey ca.key -in client.csr -out client.crt -days 365 -CAcreateserial
 cat client.crt client.key > client.pem
+```
 
 #### HTTP
 
@@ -101,7 +102,7 @@ def main():
     return "Top-level content"
 
 context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
-context.load_cert_chain("server.crt", "server.key")
+context.load_cert_chain("server_chain.pem", "server.key")
 serving.run_simple("0.0.0.0", 8000, app, ssl_context=context)
 ```
 
@@ -143,7 +144,7 @@ def main():
 context = ssl.SSLContext(ssl.PROTOCOL_TLSv1_2)
 context.verify_mode = ssl.CERT_REQUIRED
 context.load_verify_locations("ca.crt")
-context.load_cert_chain("server.crt", "server.key")
+context.load_cert_chain("server_chain.pem", "server.key")
 serving.run_simple("0.0.0.0", 8000, app, ssl_context=context)
 ```
 
