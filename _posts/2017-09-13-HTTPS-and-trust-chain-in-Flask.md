@@ -20,7 +20,7 @@ comments: true
 
 Flask can serve requests in different ways; either unsecured (plain HTTP) or secured (HTTPS). The latter form can be tuned to allow different granularity and protocol-related options onthe security aspects.
 
-{% capture note-text %}The following code has been tested with Python 3.10.12. Previous versions will probably require modifications in the code. See below for differences.
+{% capture note-text %}The following code has been tested with Python 3.10.12. Previous versions will probably require modifications in the code.
 {% endcapture %}
 {% include highlight-warning.html %}
 
